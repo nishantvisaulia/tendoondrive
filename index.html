@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tendoon Drive — India's Premium Car Discovery Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & VARS ─────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --r:#FF3B30;--r2:#cc2b21;
+  --g:#c9a84c;--g2:#e8c97a;--gd:#8a6a20;
+  --p:#7c3aed;
+  --bg:#06060f;--bg2:#0d0d1f;--bg3:#131326;
+  --s:#1a1a35;--s2:#222244;
+  --b:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.12);--b3:rgba(255,255,255,0.2);
+  --t:#f4f2ef;--t2:#9896a4;--t3:#4e4d5a;
+  --gr:#22c55e;--gr2:rgba(34,197,94,0.15);
+  --yw:#f59e0b;
+  --radius:14px;--radius-lg:22px;--radius-xl:32px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;cursor:none}
+
+/* ─── CUSTOM CURSOR ──────────────────────────────────────*/
+#cursor{position:fixed;width:10px;height:10px;background:var(--r);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(255,59,48,0.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:16px;height:16px;background:var(--g)}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:50px;height:50px;border-color:rgba(201,168,76,0.6)}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────*/
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--r);border-radius:2px}
+
+/* ─── ANIMATED BACKGROUND ───────────────────────────────*/
+.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:drift 20s ease-in-out infinite alternate}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);top:-20%;left:-10%;animation-delay:0s}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,59,48,0.08),transparent 70%);bottom:-10%;right:-5%;animation-delay:-8s}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.07),transparent 70%);top:40%;left:40%;animation-delay:-15s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.1)}}
+
+/* ─── GRID LINES ─────────────────────────────────────────*/
+.grid-lines{position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:80px 80px}
+
+/* ─── NAV ────────────────────────────────────────────────*/
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;border-bottom:1px solid var(--b2);backdrop-filter:blur(24px) saturate(180%);background:rgba(6,6,15,0.7);transition:all .3s}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-wordmark{font-family:'Bebas Neue',display;font-size:1.7rem;letter-spacing:0.06em;color:var(--t);line-height:1}
+.nav-wordmark span{color:var(--r)}
+.nav-pill{background:var(--r);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;padding:2px 7px;border-radius:4px;text-transform:uppercase;align-self:flex-end;margin-bottom:2px}
+.nav-links{display:flex;align-items:center;gap:0.25rem}
+.nav-link{padding:0.4rem 0.9rem;border-radius:8px;font-size:0.83rem;font-weight:500;color:var(--t2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--t);background:var(--b)}
+.nav-actions{display:flex;align-items:center;gap:0.6rem}
+
+/* ─── BUTTONS ────────────────────────────────────────────*/
+.btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.2rem;border-radius:10px;font-family:'Manrope',sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;letter-spacing:.01em;text-decoration:none;white-space:nowrap}
+.btn-ghost{background:transparent;border:1px solid var(--b2);color:var(--t2)}
+.btn-ghost:hover{border-color:var(--b3);color:var(--t);background:var(--b)}
+.btn-red{background:var(--r);color:#fff;box-shadow:0 4px 24px rgba(255,59,48,.3)}
+.btn-red:hover{background:var(--r2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(255,59,48,.4)}
+.btn-gold{background:linear-gradient(135deg,var(--g2) 0%,var(--g) 50%,var(--gd) 100%);color:#0a0005;box-shadow:0 4px 24px rgba(201,168,76,.3)}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 8px 32px rgba(201,168,76,.45)}
+.btn-lg{padding:.8rem 2rem;font-size:.95rem;border-radius:12px}
+.btn-outline-gold{background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--g)}
+.btn-outline-gold:hover{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.7)}
+
+/* ─── GLASS CARD ─────────────────────────────────────────*/
+.glass{background:rgba(255,255,255,0.035);backdrop-filter:blur(20px);border:1px solid var(--b2);border-radius:var(--radius-lg)}
+.glass:hover{border-color:var(--b3)}
+
+/* ─── HERO ───────────────────────────────────────────────*/
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 2rem 3rem;overflow:hidden;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border:1px solid var(--b2);border-radius:50px;background:var(--b);margin-bottom:2rem;font-size:.75rem;font-weight:600;color:var(--t2);letter-spacing:.05em}
+.hero-eyebrow-dot{width:24px;height:24px;border-radius:50%;background:var(--r);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700}
+.hero-title{font-family:'Bebas Neue',display;font-size:clamp(4.5rem,12vw,10rem);line-height:.92;text-align:center;letter-spacing:0.02em;margin-bottom:1.5rem;position:relative}
+.hero-title .line1{display:block;color:var(--t)}
+.hero-title .line2{display:block;-webkit-text-stroke:1.5px rgba(255,255,255,0.25);color:transparent;letter-spacing:.04em}
+.hero-title .line3{display:block;color:var(--r)}
+.hero-sub{font-size:1rem;color:var(--t2);text-align:center;max-width:520px;line-height:1.75;margin-bottom:2.5rem;font-weight:400}
+.hero-sub strong{color:var(--t);font-weight:600}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:4rem}
+
+/* ─── SEARCH GLASS ───────────────────────────────────────*/
+.search-wrap{width:100%;max-width:760px;position:relative;z-index:2}
+.search-glass{display:flex;align-items:center;background:rgba(255,255,255,0.04);backdrop-filter:blur(32px);border:1px solid var(--b2);border-radius:var(--radius-xl);padding:6px;gap:4px;box-shadow:0 20px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08)}
+.search-glass:focus-within{border-color:rgba(255,59,48,0.4);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 3px rgba(255,59,48,0.08)}
+.sg-select,.sg-input{background:transparent;border:none;font-family:'Manrope',sans-serif;font-size:.88rem;color:var(--t);outline:none;padding:.75rem 1rem}
+.sg-select{border-right:1px solid var(--b);min-width:140px;cursor:pointer;color:var(--t2)}
+.sg-select option{background:var(--bg3);color:var(--t)}
+.sg-input{flex:1}
+.sg-input::placeholder{color:var(--t3)}
+.sg-btn{background:var(--r);color:#fff;border:none;border-radius:22px;padding:.7rem 1.6rem;font-family:'Manrope',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.sg-btn:hover{background:var(--r2);transform:scale(1.03)}
+
+/* ─── HERO METRICS ───────────────────────────────────────*/
+.hero-metrics{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;margin-top:3rem}
+.metric{text-align:center}
+.metric-num{font-family:'Bebas Neue',display;font-size:2.8rem;letter-spacing:.03em;line-height:1;background:linear-gradient(135deg,var(--t) 0%,var(--t2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-num.red{background:linear-gradient(135deg,var(--r) 0%,#ff8080 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);margin-top:2px}
+
+/* ─── SECTIONS ───────────────────────────────────────────*/
+.section{position:relative;z-index:1;padding:5rem 2rem}
+.sect-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--r);margin-bottom:.6rem}
+.sect-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--t);line-height:1.1;margin-bottom:.5rem}
+.sect-title em{color:var(--g);font-style:italic}
+.sect-line{width:48px;height:2px;background:linear-gradient(90deg,var(--r),transparent);margin-top:.8rem}
+.sect-header{margin-bottom:3rem}
+.max{max-width:1240px;margin:0 auto}
+
+/* ─── BRAND LOGOS STRIP ──────────────────────────────────*/
+.brands-scroll-wrap{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,black 15%,black 85%,transparent)}
+.brands-track{display:flex;gap:1.25rem;width:max-content;animation:scroll-left 40s linear infinite}
+.brands-track:hover{animation-play-state:paused}
+@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.brand-chip{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:.6rem 1.25rem;background:var(--b);border:1px solid var(--b2);border-radius:50px;cursor:pointer;transition:all .25s;white-space:nowrap}
+.brand-chip:hover{background:var(--b2);border-color:var(--b3);transform:translateY(-2px)}
+.brand-chip img{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1) opacity(.7)}
+.brand-chip:hover img{opacity:1;filter:none}
+.brand-chip-name{font-size:.8rem;font-weight:600;color:var(--t2)}
+.brand-chip:hover .brand-chip-name{color:var(--t)}
+
+/* ─── BRAND GRID (click) ─────────────────────────────────*/
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+.brand-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.4rem 1rem;background:var(--b);border:1px solid var(--b2);border-radius:var(--radius);cursor:pointer;transition:all .3s;text-align:center;position:relative;overflow:hidden}
+.brand-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,59,48,0.06),transparent);opacity:0;transition:.3s}
+.brand-card:hover{border-color:rgba(255,59,48,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(255,59,48,0.12)}
+.brand-card:hover::before{opacity:1}
+.brand-card img{width:44px;height:44px;object-fit:contain;transition:.3s;filter:grayscale(40%) brightness(.85)}
+.brand-card:hover img{filter:none;transform:scale(1.1)}
+.brand-card-name{font-size:.78rem;font-weight:700;color:var(--t2);letter-spacing:.02em}
+.brand-card:hover .brand-card-name{color:var(--t)}
+.brand-card-count{font-size:.65rem;color:var(--t3);margin-top:1px}
+
+/* ─── CAR CARDS ──────────────────────────────────────────*/
+.cars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem}
+.car-card{background:var(--bg2);border:1px solid var(--b2);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .35s;position:relative}
+.car-card:hover{border-color:rgba(255,59,48,0.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,59,48,0.1)}
+.car-img-wrap{position:relative;height:190px;overflow:hidden;background:linear-gradient(135deg,var(--bg3),var(--s))}
+.car-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block}
+.car-card:hover .car-img-wrap img{transform:scale(1.06)}
+.car-img-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.3}
+.car-tag{position:absolute;top:12px;left:12px;padding:3px 10px;border-radius:6px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;backdrop-filter:blur(8px)}
+.tag-hot{background:rgba(255,59,48,0.85);color:#fff}
+.tag-new{background:rgba(34,197,94,0.85);color:#fff}
+.tag-ev{background:rgba(124,58,237,0.85);color:#fff}
+.tag-luxury{background:rgba(201,168,76,0.85);color:#000}
+.car-wish{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;transition:all .2s}
+.car-wish:hover,.car-wish.active{background:rgba(255,59,48,0.8);border-color:transparent}
+.car-body{padding:1.25rem}
+.car-brand-row{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
+.car-brand-logo{width:20px;height:20px;object-fit:contain;filter:brightness(.7)}
+.car-brand-txt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--r)}
+.car-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--t);margin-bottom:2px;line-height:1.1}
+.car-variant{font-size:.75rem;color:var(--t3);margin-bottom:1rem}
+.car-price-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem}
+.car-price{font-size:1.25rem;font-weight:800;color:var(--t)}
+.car-price-sub{font-size:.65rem;color:var(--t3);font-weight:400;display:block;margin-top:1px}
+.car-specs-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding-top:1rem;border-top:1px solid var(--b)}
+.cspec{text-align:center;padding:.4rem 0}
+.cspec-val{font-size:.82rem;font-weight:700;color:var(--t)}
+.cspec-key{font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-top:1px}
+.car-card-footer{padding:.75rem 1.25rem;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.car-fuel-badge{padding:3px 10px;border-radius:5px;font-size:.68rem;font-weight:600;background:var(--b);color:var(--t2)}
+.car-cta{font-size:.75rem;font-weight:600;color:var(--r);display:flex;align-items:center;gap:4px}
+
+/* ─── LOCK WALL ──────────────────────────────────────────*/
+.lock-wall{position:relative}
+.lock-overlay{position:absolute;left:0;right:0;bottom:0;top:20%;background:linear-gradient(to bottom,transparent,var(--bg) 45%);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:3rem}
+.lock-box{width:100%;max-width:500px;padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.lock-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,59,48,0.06),rgba(124,58,237,0.06));border-radius:var(--radius-xl);pointer-events:none}
+.lock-icon-wrap{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--r),#ff8c69);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 8px 30px rgba(255,59,48,.35);font-size:1.5rem}
+.lock-title{font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:.6rem}
+.lock-title em{color:var(--g);font-style:italic}
+.lock-perks{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0}
+.perk{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:var(--b);border:1px solid var(--b2);font-size:.75rem;color:var(--t2)}
+.perk::before{content:'✦';color:var(--g);font-size:.55rem}
+.lock-note{font-size:.75rem;color:var(--t3);margin-top:1rem}
+.lock-note a{color:var(--g);cursor:pointer}
+
+/* ─── SERVICES ───────────────────────────────────────────*/
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
+.service-card{padding:2rem 1.6rem;background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);transition:all .3s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;bottom:-30px;right:-30px;width:100px;height:100px;border-radius:50%;opacity:.05;transition:.3s}
+.service-card:hover{border-color:var(--b3);background:rgba(255,255,255,0.055);transform:translateY(-3px)}
+.sc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.1rem}
+.sc-icon.red{background:rgba(255,59,48,0.15);color:var(--r)}
+.sc-icon.gold{background:rgba(201,168,76,0.15);color:var(--g)}
+.sc-icon.green{background:var(--gr2);color:var(--gr)}
+.sc-icon.purple{background:rgba(124,58,237,0.15);color:#a78bfa}
+.sc-title{font-weight:700;font-size:.95rem;color:var(--t);margin-bottom:.4rem}
+.sc-desc{font-size:.8rem;color:var(--t2);line-height:1.65}
+.sc-badge{display:inline-block;margin-top:.9rem;padding:2px 10px;border-radius:4px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.badge-free{background:var(--gr2);color:var(--gr)}
+.badge-pro{background:rgba(201,168,76,0.15);color:var(--g)}
+
+/* ─── FILTER BAR ─────────────────────────────────────────*/
+.filter-bar{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
+.filter-select{background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--t);font-family:'Manrope',sans-serif;font-size:.83rem;padding:.55rem 1rem;outline:none;cursor:pointer;transition:.2s}
+.filter-select:focus{border-color:rgba(255,59,48,.4)}
+.filter-select option{background:var(--bg3)}
+.count-badge{margin-left:auto;font-size:.78rem;color:var(--t3)}
+
+/* ─── EMI CALC ───────────────────────────────────────────*/
+.emi-panel{max-width:660px;margin:0 auto;padding:2.5rem;background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-xl)}
+.emi-slider-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.emi-label{font-size:.78rem;color:var(--t2);min-width:110px;font-weight:600}
+input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:2px;background:var(--b2);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--r);cursor:pointer;box-shadow:0 0 0 4px rgba(255,59,48,.2)}
+.emi-val{min-width:90px;text-align:right;font-weight:700;font-size:.88rem;color:var(--g)}
+.emi-result-card{background:var(--bg3);border-radius:var(--radius);padding:1.5rem;text-align:center;margin-top:.5rem;border:1px solid var(--b)}
+.emi-big{font-family:'Bebas Neue',display;font-size:3.5rem;letter-spacing:.04em;line-height:1;background:linear-gradient(135deg,var(--g2),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.emi-sub{font-size:.75rem;color:var(--t3);margin-top:.3rem}
+
+/* ─── MODAL BACKDROP ─────────────────────────────────────*/
+.modal-bd{position:fixed;inset:0;background:rgba(2,2,10,0.88);backdrop-filter:blur(16px);z-index:800;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-bd.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--b2);border-radius:var(--radius-xl);width:100%;position:relative;animation:modalPop .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalPop{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close-btn{position:absolute;top:1.1rem;right:1.1rem;width:34px;height:34px;border-radius:50%;background:var(--b);border:1px solid var(--b2);color:var(--t2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;transition:.2s}
+.modal-close-btn:hover{background:var(--b2);color:var(--t)}
+
+/* ─── AUTH MODAL ─────────────────────────────────────────*/
+.auth-modal{max-width:430px;padding:2.5rem}
+.auth-logo{font-family:'Bebas Neue',display;font-size:1.5rem;letter-spacing:.06em;color:var(--t);text-align:center;margin-bottom:.2rem}
+.auth-logo span{color:var(--r)}
+.auth-title{font-family:'DM Serif Display',serif;font-size:2rem;text-align:center;margin-bottom:.4rem}
+.auth-desc{font-size:.82rem;color:var(--t2);text-align:center;margin-bottom:1.75rem;line-height:1.6}
+.social-btn{width:100%;display:flex;align-items:center;gap:12px;padding:.75rem 1rem;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--t);font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;transition:.2s;margin-bottom:.6rem}
+.social-btn:hover{background:var(--b2);border-color:var(--b3)}
+.social-icon{width:22px;height:22px;flex-shrink:0}
+.divider{display:flex;align-items:center;gap:.75rem;color:var(--t3);font-size:.75rem;margin:1rem 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--b2)}
+.form-field{margin-bottom:.9rem}
+.form-lbl{font-size:.75rem;font-weight:600;color:var(--t2);display:block;margin-bottom:5px}
+.form-inp{width:100%;background:var(--b);border:1px solid var(--b2);border-radius:9px;padding:.65rem 1rem;color:var(--t);font-family:'Manrope',sans-serif;font-size:.88rem;outline:none;transition:.2s}
+.form-inp:focus{border-color:rgba(255,59,48,.5);background:rgba(255,255,255,.04)}
+.form-inp::placeholder{color:var(--t3)}
+.auth-switch{text-align:center;font-size:.78rem;color:var(--t3);margin-top:1.1rem}
+.auth-switch a{color:var(--g);cursor:pointer;text-decoration:none}
+
+/* ─── CAR DETAIL MODAL ───────────────────────────────────*/
+.car-detail-modal{max-width:900px;max-height:90vh;overflow-y:auto;padding:0}
+.cdm-header{position:sticky;top:0;background:rgba(13,13,31,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.cdm-body{padding:2rem}
+.cdm-hero-img{width:100%;height:260px;object-fit:cover;border-radius:var(--radius);background:var(--bg3);display:block;margin-bottom:1.5rem}
+.cdm-price-strip{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.price-cell{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius);padding:1rem;text-align:center}
+.price-cell.highlight{background:linear-gradient(135deg,rgba(255,59,48,0.12),rgba(201,168,76,0.06));border-color:rgba(255,59,48,0.25)}
+.pc-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:.3rem}
+.pc-val{font-size:1.15rem;font-weight:800;color:var(--t)}
+.pc-val.gold{color:var(--g)}
+.pc-val.green{color:var(--gr)}
+.tabs-row{display:flex;border-bottom:1px solid var(--b);margin-bottom:1.5rem;gap:0;overflow-x:auto}
+.tab-pill{padding:.55rem 1.1rem;font-size:.8rem;font-weight:600;color:var(--t3);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:.2s;font-family:'Manrope',sans-serif}
+.tab-pill.on{color:var(--r);border-bottom-color:var(--r)}
+.tp{display:none}.tp.on{display:block}
+.specs-tbl{width:100%;border-collapse:collapse}
+.specs-tbl tr{border-bottom:1px solid var(--b)}
+.specs-tbl td{padding:.6rem .2rem;font-size:.85rem}
+.specs-tbl td:first-child{color:var(--t3);width:45%}
+.specs-tbl td:last-child{color:var(--t);font-weight:600}
+.variants-list{display:flex;flex-direction:column;gap:.6rem}
+.vitem{display:flex;justify-content:space-between;align-items:center;background:var(--b);border:1px solid var(--b2);border-radius:10px;padding:.85rem 1.1rem}
+.vitem-name{font-weight:700;font-size:.88rem}
+.vitem-fuel{font-size:.72rem;color:var(--t3);margin-top:2px}
+.vitem-price{font-weight:800;color:var(--g);font-size:.95rem}
+.feats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem}
+.feat-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--t2);padding:.35rem 0}
+.feat-item::before{content:'';width:6px;height:6px;background:var(--gr);border-radius:50%;flex-shrink:0}
+.state-tbl{width:100%;border-collapse:collapse}
+.state-tbl th{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);padding:.5rem;text-align:left;border-bottom:1px solid var(--b)}
+.state-tbl td{padding:.6rem .5rem;font-size:.82rem;border-bottom:1px solid var(--b)}
+.state-tbl td:last-child{color:var(--g);font-weight:700}
+
+/* ─── USER NAV ───────────────────────────────────────────*/
+.user-chip{display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border:1px solid var(--b2);border-radius:50px;cursor:pointer;transition:.2s}
+.user-chip:hover{border-color:var(--b3)}
+.user-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--p));display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff}
+.user-nm{font-size:.78rem;font-weight:600}
+
+/* ─── WISHLIST ───────────────────────────────────────────*/
+.empty-state{text-align:center;padding:5rem 2rem;color:var(--t3)}
+.empty-icon{font-size:3.5rem;margin-bottom:1rem;opacity:.4}
+
+/* ─── TOAST ──────────────────────────────────────────────*/
+#toast{position:fixed;top:80px;right:1.5rem;z-index:9000;padding:.85rem 1.5rem;border-radius:12px;font-size:.85rem;font-weight:600;transform:translateX(120%);transition:transform .3s;pointer-events:none;border:1px solid var(--b2);backdrop-filter:blur(20px)}
+#toast.show{transform:translateX(0)}
+#toast.success{background:rgba(34,197,94,0.15);color:var(--gr);border-color:rgba(34,197,94,0.3)}
+#toast.info{background:rgba(201,168,76,0.12);color:var(--g);border-color:rgba(201,168,76,0.3)}
+
+/* ─── UPCOMING SECTION ───────────────────────────────────*/
+.upcoming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.upcoming-card{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);padding:1.5rem;transition:.3s}
+.upcoming-card:hover{border-color:var(--b3);background:rgba(255,255,255,.05)}
+.uc-brand{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:.4rem}
+.uc-name{font-family:'DM Serif Display',serif;font-size:1.2rem;margin-bottom:.3rem}
+.uc-launch{font-size:.75rem;color:var(--yw);display:flex;align-items:center;gap:5px}
+.uc-launch::before{content:'';width:6px;height:6px;background:var(--yw);border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.uc-price{font-size:.82rem;color:var(--t2);margin-top:.5rem}
+
+/* ─── FADE IN ANIMATION ──────────────────────────────────*/
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ─── NAV SCROLLED ───────────────────────────────────────*/
+nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
+
+/* ─── COMPARE TOOL ───────────────────────────────────────*/
+.compare-bar{position:fixed;bottom:0;left:0;right:0;z-index:400;background:rgba(13,13,31,0.97);backdrop-filter:blur(20px);border-top:1px solid var(--b2);padding:.75rem 2rem;display:none;align-items:center;justify-content:space-between;gap:1rem}
+.compare-bar.visible{display:flex}
+.compare-slots{display:flex;gap:.75rem;flex:1}
+.cslot{min-width:160px;height:46px;border:1.5px dashed rgba(255,59,48,.3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--t3);gap:6px;cursor:pointer;transition:.2s;padding:0 .75rem;position:relative}
+.cslot.filled{border-style:solid;border-color:rgba(255,59,48,.5);color:var(--t);background:rgba(255,59,48,.06)}
+.cslot .cs-remove{position:absolute;top:-7px;right:-7px;width:18px;height:18px;background:var(--r);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;cursor:pointer}
+.compare-modal{max-width:960px;max-height:90vh;overflow-y:auto;padding:0}
+.cm-header{position:sticky;top:0;background:rgba(13,13,31,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.cm-body{padding:1.5rem;overflow-x:auto}
+.cm-table{width:100%;border-collapse:collapse;min-width:600px}
+.cm-table th{padding:.75rem;font-size:.75rem;font-weight:700;text-align:left;border-bottom:2px solid var(--b2);color:var(--t2)}
+.cm-table th.car-col{text-align:center;min-width:180px}
+.cm-table td{padding:.65rem .75rem;font-size:.82rem;border-bottom:1px solid var(--b);vertical-align:top}
+.cm-table td.row-label{color:var(--t3);font-weight:600;width:140px;white-space:nowrap}
+.cm-table td.car-val{text-align:center;font-weight:500;color:var(--t)}
+.cm-table td.car-val.best{color:var(--gr);font-weight:700}
+.cm-car-thumb{width:100%;height:100px;object-fit:cover;border-radius:8px;margin-bottom:.5rem;background:var(--bg3)}
+.compare-add-btn{font-size:.72rem;padding:.3rem .75rem;white-space:nowrap}
+
+/* ─── NEWS SECTION ───────────────────────────────────────*/
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.news-card{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:.3s}
+.news-card:hover{border-color:var(--b3);transform:translateY(-3px)}
+.news-img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,var(--bg3),var(--s));display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.news-body{padding:1rem}
+.news-cat{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--r);margin-bottom:.4rem}
+.news-title{font-weight:700;font-size:.9rem;color:var(--t);line-height:1.4;margin-bottom:.4rem}
+.news-meta{font-size:.72rem;color:var(--t3)}
+
+/* ─── AI ADVISOR ─────────────────────────────────────────*/
+.ai-advisor-panel{max-width:700px;margin:0 auto;padding:2.5rem;background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-xl);position:relative;overflow:hidden}
+.ai-advisor-panel::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.15),transparent 70%);pointer-events:none}
+.ai-step{display:none}.ai-step.on{display:block}
+.ai-q{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--t);margin-bottom:1.25rem;line-height:1.3}
+.ai-opts{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:1.5rem}
+.ai-opt{padding:.55rem 1.1rem;border:1px solid var(--b2);border-radius:8px;background:var(--b);color:var(--t2);font-size:.83rem;font-weight:500;cursor:pointer;transition:.2s;font-family:'Manrope',sans-serif}
+.ai-opt:hover,.ai-opt.sel{border-color:rgba(255,59,48,.5);background:rgba(255,59,48,.08);color:var(--t)}
+.ai-progress{display:flex;gap:.4rem;margin-bottom:1.5rem}
+.ai-prog-dot{width:8px;height:8px;border-radius:50%;background:var(--b2);transition:.3s}
+.ai-prog-dot.on{background:var(--r);width:24px;border-radius:4px}
+.ai-result{background:var(--bg3);border-radius:var(--radius);padding:1.5rem;border:1px solid var(--b)}
+.ai-result-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--r);margin-bottom:.75rem}
+
+/* ─── REVIEWS ────────────────────────────────────────────*/
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
+.review-card{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);padding:1.4rem}
+.rv-header{display:flex;align-items:center;gap:10px;margin-bottom:.75rem}
+.rv-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--r),var(--p));display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0}
+.rv-name{font-weight:700;font-size:.88rem}
+.rv-car{font-size:.72rem;color:var(--t3)}
+.rv-stars{color:var(--yw);font-size:.9rem;margin-bottom:.6rem}
+.rv-text{font-size:.8rem;color:var(--t2);line-height:1.65}
+.rv-date{font-size:.68rem;color:var(--t3);margin-top:.5rem}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────*/
+@media(max-width:768px){
+  nav{padding:0 1.2rem}
+  .nav-links{display:none}
+  .hero-title{font-size:clamp(3rem,18vw,6rem)}
+  .search-glass{flex-direction:column;border-radius:var(--radius-lg)}
+  .sg-select{border-right:none;border-bottom:1px solid var(--b);width:100%}
+  .sg-btn{width:calc(100% - 8px);margin:4px}
+  .cdm-price-strip{grid-template-columns:1fr}
+  .feats-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- BG -->
+<div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="grid-lines"></div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ═══ NAV ═════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a class="nav-brand" href="#">
+    <span class="nav-wordmark">Tendoon<span>Drive</span></span>
+    <span class="nav-pill">BETA</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#brands-sec">Brands</a>
+    <a class="nav-link" href="#cars-sec">Cars</a>
+    <a class="nav-link" href="#services-sec">Services</a>
+    <a class="nav-link" href="#upcoming-sec">Upcoming</a>
+    <a class="nav-link" href="#" onclick="requireLoginAction('compare')" id="nav-compare">Compare</a>
+  </div>
+  <div class="nav-actions" id="nav-guest">
+    <button class="btn btn-ghost" onclick="openModal('login-modal')">Sign In</button>
+    <button class="btn btn-red" onclick="openModal('reg-modal')">Join Free →</button>
+  </div>
+  <div class="nav-actions" id="nav-user" style="display:none">
+    <div class="user-chip" onclick="openModal('login-modal')">
+      <div class="user-av" id="uav">N</div>
+      <span class="user-nm" id="unm">User</span>
+    </div>
+    <button class="btn btn-ghost" style="font-size:.75rem;padding:.35rem .85rem" onclick="doLogout()">Logout</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot">✦</span>India's #1 Car Discovery Platform</div>
+  <h1 class="hero-title">
+    <span class="line1">FIND YOUR</span>
+    <span class="line2">PERFECT</span>
+    <span class="line3">DRIVE.</span>
+  </h1>
+  <p class="hero-sub">Every car. Every brand. Every budget.<br><strong>500+ models</strong> from <strong>40+ brands</strong> — with real prices, full specs, and live comparisons.</p>
+  <div class="hero-cta">
+    <button class="btn btn-red btn-lg" onclick="openModal('reg-modal')">🚀 Get Free Access</button>
+    <button class="btn btn-outline-gold btn-lg" onclick="sScroll('brands-sec')">Explore Brands</button>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-glass">
+      <select class="sg-select" id="hero-state" onchange="setHeroState()">
+        <option value="">Select State</option>
+        <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+        <option selected>Chandigarh</option><option>Chhattisgarh</option><option>Delhi</option>
+        <option>Goa</option><option>Gujarat</option><option>Haryana</option>
+        <option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option>
+        <option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option>
+        <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+        <option>Tamil Nadu</option><option>Telangana</option><option>Uttar Pradesh</option>
+        <option>Uttarakhand</option><option>West Bengal</option>
+      </select>
+      <input class="sg-input" id="hero-q" placeholder="Search brand, model... e.g. Nexon, Creta, Swift" onkeydown="if(event.key==='Enter')doHeroSearch()">
+      <button class="sg-btn" onclick="doHeroSearch()">Search →</button>
+    </div>
+  </div>
+
+  <div class="hero-metrics">
+    <div class="metric"><div class="metric-num red">40<span style="-webkit-text-fill-color:var(--r)">+</span></div><div class="metric-label">Brands</div></div>
+    <div class="metric"><div class="metric-num">500+</div><div class="metric-label">Car Models</div></div>
+    <div class="metric"><div class="metric-num">28</div><div class="metric-label">States</div></div>
+    <div class="metric"><div class="metric-num red">FREE</div><div class="metric-label">To Join</div></div>
+  </div>
+</section>
+
+<!-- ═══ BRANDS STRIP (auto-scroll) ══════════════════════ -->
+<section class="section" style="padding:2rem 0 1rem" id="brands-sec">
+  <div class="max" style="margin-bottom:1.5rem">
+    <div class="sect-label">All Manufacturers</div>
+    <div class="sect-title">Browse by <em>Brand</em></div>
+    <div class="sect-line"></div>
+  </div>
+  <!-- Scrolling strip -->
+  <div class="brands-scroll-wrap" style="margin-bottom:2.5rem">
+    <div class="brands-track" id="brands-strip"></div>
+  </div>
+  <!-- Clickable grid -->
+  <div class="max">
+    <div class="brand-grid" id="brands-grid-main"></div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ══════════════════════════════════════════ -->
+<section class="section" id="services-sec" style="background:linear-gradient(135deg,rgba(255,59,48,0.03),rgba(124,58,237,0.03))">
+  <div class="max">
+    <div class="sect-header">
+      <div class="sect-label">What We Offer</div>
+      <div class="sect-title">Our <em>Services</em></div>
+      <div class="sect-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="sc-icon red">🔍</div>
+        <div class="sc-title">Smart Car Discovery</div>
+        <div class="sc-desc">Browse 500+ cars with powerful filters — brand, budget, fuel, body type. Find your perfect match instantly.</div>
+        <span class="sc-badge badge-free">Free</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon gold">📍</div>
+        <div class="sc-title">State-wise On-Road Price</div>
+        <div class="sc-desc">Real on-road prices with RTO registration, insurance & dealer charges for every Indian state.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon purple">⚖️</div>
+        <div class="sc-title">Side-by-Side Compare</div>
+        <div class="sc-desc">Compare up to 3 cars on specs, features, price & value. Make data-driven decisions.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon green">💰</div>
+        <div class="sc-title">EMI Calculator</div>
+        <div class="sc-desc">Instantly calculate EMI with custom loan amount, interest rate & tenure. Plan your budget smartly.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon red">❤️</div>
+        <div class="sc-title">Wishlist & Alerts</div>
+        <div class="sc-desc">Save your dream cars and get notified instantly on price drops, new variants & launches.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon gold">🤖</div>
+        <div class="sc-title">AI Car Advisor</div>
+        <div class="sc-desc">Get personalized recommendations based on your budget, usage pattern & lifestyle needs.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon green">🛠️</div>
+        <div class="sc-title">Service Cost Estimator</div>
+        <div class="sc-desc">Year-wise service costs, maintenance schedules & brand-wise cost of ownership analysis.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+      <div class="service-card fade-in">
+        <div class="sc-icon purple">📊</div>
+        <div class="sc-title">Depreciation Tracker</div>
+        <div class="sc-desc">Resale value projections & depreciation curves. Know your car's future worth before you buy.</div>
+        <span class="sc-badge badge-pro">After Login</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAR LISTING (TEASER + LOCK) ════════════════════ -->
+<section class="section lock-wall" id="cars-sec">
+  <div class="max">
+    <div class="sect-header">
+      <div class="sect-label">Featured Vehicles</div>
+      <div class="sect-title">Trending Cars <em>in India</em></div>
+      <div class="sect-line"></div>
+    </div>
+    <div class="cars-grid" id="teaser-grid"></div>
+  </div>
+  <div class="lock-overlay" id="lock-wall-el">
+    <div class="lock-box glass">
+      <div class="lock-icon-wrap">🔓</div>
+      <div class="lock-title">Unlock <em>Full Access</em></div>
+      <p style="font-size:.85rem;color:var(--t2);line-height:1.7;margin-bottom:.5rem">Sign in free with Google or email to access India's most complete car database.</p>
+      <div class="lock-perks">
+        <span class="perk">500+ Cars & Specs</span>
+        <span class="perk">All Variants</span>
+        <span class="perk">State-wise Prices</span>
+        <span class="perk">EMI Calculator</span>
+        <span class="perk">Compare Tool</span>
+        <span class="perk">Wishlist</span>
+      </div>
+      <button class="btn btn-red btn-lg" style="width:100%;justify-content:center;font-size:1rem" onclick="openModal('reg-modal')">Join Free — No Credit Card</button>
+      <div class="lock-note">Already a member? <a onclick="openModal('login-modal')">Sign In</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOGGED-IN CONTENT ════════════════════════════════ -->
+<div id="loggedin-zone" style="display:none">
+
+  <!-- FULL CARS -->
+  <section class="section" id="all-cars-sec">
+    <div class="max">
+      <div class="sect-header">
+        <div class="sect-label">Full Database</div>
+        <div class="sect-title">All Cars <em>in India</em></div>
+        <div class="sect-line"></div>
+      </div>
+      <div class="filter-bar">
+        <select class="filter-select" id="fb" onchange="applyFilters()"><option value="">All Brands</option></select>
+        <select class="filter-select" id="ff" onchange="applyFilters()"><option value="">All Fuel Types</option><option>Petrol</option><option>Diesel</option><option>Electric</option><option>CNG</option><option>Hybrid</option></select>
+        <select class="filter-select" id="fbo" onchange="applyFilters()"><option value="">All Body Types</option><option>Hatchback</option><option>Sedan</option><option>SUV</option><option>MUV</option><option>Luxury</option></select>
+        <select class="filter-select" id="fpr" onchange="applyFilters()">
+          <option value="">Any Budget</option>
+          <option value="0-500000">Under ₹5 Lakh</option>
+          <option value="500000-1000000">₹5L – ₹10L</option>
+          <option value="1000000-2000000">₹10L – ₹20L</option>
+          <option value="2000000-5000000">₹20L – ₹50L</option>
+          <option value="5000000-99999999">Above ₹50L</option>
+        </select>
+        <span class="count-badge" id="car-count-lbl"></span>
+      </div>
+      <div class="cars-grid" id="all-cars-grid"></div>
+    </div>
+  </section>
+
+  <!-- EMI CALC -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="max">
+      <div class="sect-header" style="text-align:center">
+        <div class="sect-label">Finance Tool</div>
+        <div class="sect-title">EMI <em>Calculator</em></div>
+        <div class="sect-line" style="margin:0.8rem auto 0"></div>
+      </div>
+      <div class="emi-panel glass">
+        <div class="emi-slider-row"><span class="emi-label">Loan Amount</span><input type="range" min="100000" max="10000000" step="50000" value="700000" id="er-amt" oninput="calcEmi()"><span class="emi-val" id="ev-amt">₹7L</span></div>
+        <div class="emi-slider-row"><span class="emi-label">Interest Rate</span><input type="range" min="6" max="18" step="0.5" value="8.5" id="er-rate" oninput="calcEmi()"><span class="emi-val" id="ev-rate">8.5%</span></div>
+        <div class="emi-slider-row"><span class="emi-label">Tenure</span><input type="range" min="12" max="84" step="12" value="60" id="er-ten" oninput="calcEmi()"><span class="emi-val" id="ev-ten">60 mo</span></div>
+        <div class="emi-result-card">
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:.2rem">Monthly EMI</div>
+          <div class="emi-big" id="emi-main">₹14,448</div>
+          <div class="emi-sub" id="emi-break">Total Interest: ₹1,66,900 | Total Payable: ₹8,66,900</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISHLIST -->
+  <section class="section">
+    <div class="max">
+      <div class="sect-header">
+        <div class="sect-label">Saved Cars</div>
+        <div class="sect-title">My <em>Wishlist</em></div>
+        <div class="sect-line"></div>
+      </div>
+      <div id="wishlist-zone"><div class="empty-state"><div class="empty-icon">❤️</div><div>Your wishlist is empty</div><div style="font-size:.8rem;margin-top:.4rem">Click ♡ on any car to save it</div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ COMPARE STICKY BAR ════════════════════════════════ -->
+<div class="compare-bar" id="compare-bar">
+  <div style="font-size:.78rem;font-weight:700;color:var(--t2);white-space:nowrap">⚖️ Compare</div>
+  <div class="compare-slots" id="compare-slots">
+    <div class="cslot" id="cs0">+ Add Car 1</div>
+    <div class="cslot" id="cs1">+ Add Car 2</div>
+    <div class="cslot" id="cs2">+ Add Car 3</div>
+  </div>
+  <button class="btn btn-red" id="compare-go-btn" onclick="openCompare()" style="display:none">Compare Now →</button>
+  <button class="btn btn-ghost" style="font-size:.75rem;padding:.35rem .85rem" onclick="clearCompare()">Clear</button>
+</div>
+
+<!-- ═══ COMPARE MODAL ════════════════════════════════════ -->
+<div class="modal-bd" id="compare-modal">
+  <div class="modal compare-modal">
+    <div class="cm-header">
+      <div style="font-family:'DM Serif Display',serif;font-size:1.3rem">Side-by-Side <span style="color:var(--r)">Comparison</span></div>
+      <button class="modal-close-btn" style="position:static" onclick="closeModal('compare-modal')">✕</button>
+    </div>
+    <div class="cm-body" id="cm-body"></div>
+  </div>
+</div>
+
+<!-- ═══ AI CAR ADVISOR ════════════════════════════════════ -->
+<div id="ai-advisor-zone" style="display:none">
+<section class="section" style="background:linear-gradient(135deg,rgba(124,58,237,0.05),rgba(255,59,48,0.03))">
+  <div class="max">
+    <div class="sect-header" style="text-align:center">
+      <div class="sect-label">Powered by AI</div>
+      <div class="sect-title">AI Car <em>Advisor</em></div>
+      <div class="sect-line" style="margin:.8rem auto 0"></div>
+      <p style="font-size:.85rem;color:var(--t2);margin-top:1rem">Answer 4 quick questions — get your perfect car match.</p>
+    </div>
+    <div class="ai-advisor-panel glass">
+      <div class="ai-progress" id="ai-progress">
+        <div class="ai-prog-dot on"></div><div class="ai-prog-dot"></div><div class="ai-prog-dot"></div><div class="ai-prog-dot"></div>
+      </div>
+      <!-- Step 1 -->
+      <div class="ai-step on" id="ai-s1">
+        <div class="ai-q">💰 What's your budget?</div>
+        <div class="ai-opts">
+          <button class="ai-opt" onclick="aiPick(1,this,'under5')">Under ₹5 Lakh</button>
+          <button class="ai-opt" onclick="aiPick(1,this,'5to10')">₹5L – ₹10L</button>
+          <button class="ai-opt" onclick="aiPick(1,this,'10to20')">₹10L – ₹20L</button>
+          <button class="ai-opt" onclick="aiPick(1,this,'20to50')">₹20L – ₹50L</button>
+          <button class="ai-opt" onclick="aiPick(1,this,'above50')">Above ₹50L</button>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="ai-step" id="ai-s2">
+        <div class="ai-q">🚗 How will you mostly use it?</div>
+        <div class="ai-opts">
+          <button class="ai-opt" onclick="aiPick(2,this,'city')">City Commute</button>
+          <button class="ai-opt" onclick="aiPick(2,this,'highway')">Highway Touring</button>
+          <button class="ai-opt" onclick="aiPick(2,this,'offroad')">Off-Road Adventure</button>
+          <button class="ai-opt" onclick="aiPick(2,this,'family')">Family Trips</button>
+          <button class="ai-opt" onclick="aiPick(2,this,'business')">Business Use</button>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="ai-step" id="ai-s3">
+        <div class="ai-q">⛽ Preferred fuel type?</div>
+        <div class="ai-opts">
+          <button class="ai-opt" onclick="aiPick(3,this,'petrol')">Petrol</button>
+          <button class="ai-opt" onclick="aiPick(3,this,'diesel')">Diesel</button>
+          <button class="ai-opt" onclick="aiPick(3,this,'cng')">CNG</button>
+          <button class="ai-opt" onclick="aiPick(3,this,'electric')">Electric (EV)</button>
+          <button class="ai-opt" onclick="aiPick(3,this,'any')">No Preference</button>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="ai-step" id="ai-s4">
+        <div class="ai-q">🏠 How many seats do you need?</div>
+        <div class="ai-opts">
+          <button class="ai-opt" onclick="aiPick(4,this,'2')">2 (Sports/Coupe)</button>
+          <button class="ai-opt" onclick="aiPick(4,this,'5')">5 (Standard)</button>
+          <button class="ai-opt" onclick="aiPick(4,this,'7')">6–7 (Family MUV)</button>
+        </div>
+      </div>
+      <!-- Result -->
+      <div class="ai-step" id="ai-result-step">
+        <div class="ai-result">
+          <div class="ai-result-title">🤖 AI Recommendation</div>
+          <div id="ai-result-content"></div>
+        </div>
+        <button class="btn btn-ghost" style="margin-top:1rem;font-size:.8rem" onclick="resetAi()">← Start Over</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══ USER REVIEWS ══════════════════════════════════════ -->
+<section class="section">
+  <div class="max">
+    <div class="sect-header">
+      <div class="sect-label">Community</div>
+      <div class="sect-title">Owner <em>Reviews</em></div>
+      <div class="sect-line"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av">RK</div><div><div class="rv-name">Rajesh Kumar</div><div class="rv-car">Tata Nexon XZ+</div></div></div><div class="rv-stars">★★★★★</div><div class="rv-text">Nexon ne meri expectations se zyada performance diya. Build quality ekdum solid, mileage bhi 17+ milta hai city mein. ADAS features bahut useful hain highway pe.</div><div class="rv-date">2 weeks ago · Delhi</div></div>
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av" style="background:linear-gradient(135deg,#0057a8,#004090)">PS</div><div><div class="rv-name">Priya Sharma</div><div class="rv-car">Hyundai Creta SX</div></div></div><div class="rv-stars">★★★★★</div><div class="rv-text">Creta ka sunroof aur Bose sound system — dono ne family trips ka maza double kar diya. Cabin space excellent hai, kids ke liye bhi comfortable. Highly recommend!</div><div class="rv-date">1 month ago · Mumbai</div></div>
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av" style="background:linear-gradient(135deg,#cf0a2c,#9a0820)">AM</div><div><div class="rv-name">Arjun Mehta</div><div class="rv-car">Mahindra Thar Roxx</div></div></div><div class="rv-stars">★★★★☆</div><div class="rv-text">Beast machine! Off-road mein koi competitor nahi. City mein thoda fuel average zyada hai lekin experience ke liye worth it hai. Build quality top-notch.</div><div class="rv-date">3 weeks ago · Chandigarh</div></div>
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">SG</div><div><div class="rv-name">Sneha Gupta</div><div class="rv-car">Tata Punch EV</div></div></div><div class="rv-stars">★★★★★</div><div class="rv-text">Switch to EV karne ka best decision! 421km range daily use ke liye zyada se zyada hai. Charging at home overnight — petrol station kabhi nahi jaate ab. V2L feature bonus hai!</div><div class="rv-date">2 months ago · Bangalore</div></div>
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av" style="background:linear-gradient(135deg,#05141f,#0d2a40)">VT</div><div><div class="rv-name">Vikram Tiwari</div><div class="rv-car">Kia Seltos X-Line</div></div></div><div class="rv-stars">★★★★★</div><div class="rv-text">Seltos ka interior feel premium cars jaisa lagta hai. Bose audio system + panoramic sunroof — road trip ka pure vibes! Turbo engine response amazing hai 7-DCT ke saath.</div><div class="rv-date">5 days ago · Pune</div></div>
+      <div class="review-card fade-in"><div class="rv-header"><div class="rv-av" style="background:linear-gradient(135deg,#cc0000,#990000)">MN</div><div><div class="rv-name">Meena Nair</div><div class="rv-car">Honda City ZX CVT</div></div></div><div class="rv-stars">★★★★☆</div><div class="rv-text">City sedan segment ka undisputed king. 506L boot space meri golf bag + family luggage sab fit ho jaata hai. CVT smooth hai, 18+ mileage highway mein. Reliable brand.</div><div class="rv-date">1 week ago · Chennai</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAR NEWS ══════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg2)">
+  <div class="max">
+    <div class="sect-header">
+      <div class="sect-label">Stay Updated</div>
+      <div class="sect-title">Latest Car <em>News</em></div>
+      <div class="sect-line"></div>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ UPCOMING CARS ════════════════════════════════════ -->
+<section class="section" id="upcoming-sec" style="background:var(--bg3)">
+  <div class="max">
+    <div class="sect-header">
+      <div class="sect-label">Coming Soon</div>
+      <div class="sect-title">Upcoming <em>Launches</em></div>
+      <div class="sect-line"></div>
+    </div>
+    <div class="upcoming-grid" id="upcoming-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer style="position:relative;z-index:1;background:var(--bg2);border-top:1px solid var(--b2);padding:3rem 2rem 1.5rem;text-align:center">
+  <div style="font-family:'Bebas Neue',display;font-size:2.2rem;letter-spacing:.06em;margin-bottom:.2rem">Tendoon<span style="color:var(--r)">Drive</span></div>
+  <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--t3);margin-bottom:2rem">Innovate · Connect · Evolve</div>
+  <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
+    <a href="#" style="font-size:.8rem;color:var(--t3);text-decoration:none;transition:.2s" onmouseover="this.style.color='var(--r)'" onmouseout="this.style.color='var(--t3)'">About</a>
+    <a href="#" style="font-size:.8rem;color:var(--t3);text-decoration:none;transition:.2s" onmouseover="this.style.color='var(--r)'" onmouseout="this.style.color='var(--t3)'">Privacy</a>
+    <a href="#" style="font-size:.8rem;color:var(--t3);text-decoration:none;transition:.2s" onmouseover="this.style.color='var(--r)'" onmouseout="this.style.color='var(--t3)'">Terms</a>
+    <a href="https://tendoon.blogspot.com" target="_blank" style="font-size:.8rem;color:var(--g);text-decoration:none">tendoon.com</a>
+    <a href="https://wa.me/+91" style="font-size:.8rem;color:var(--t3);text-decoration:none" onmouseover="this.style.color='var(--gr)'" onmouseout="this.style.color='var(--t3)'">WhatsApp</a>
+  </div>
+  <div style="font-size:.72rem;color:var(--t3);padding-top:1.5rem;border-top:1px solid var(--b)">© 2025 Tendoon Digital. All rights reserved.</div>
+</footer>
+
+<!-- ═══ LOGIN MODAL ══════════════════════════════════════ -->
+<div class="modal-bd" id="login-modal">
+  <div class="modal auth-modal">
+    <button class="modal-close-btn" onclick="closeModal('login-modal')">✕</button>
+    <div class="auth-logo">Tendoon<span>Drive</span></div>
+    <div class="auth-title">Welcome Back</div>
+    <div class="auth-desc">Sign in to access full car database, specs & prices</div>
+    <button class="social-btn" onclick="socialAuth('Google')">
+      <svg class="social-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <div class="divider">or sign in with email</div>
+    <div class="form-field"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="you@example.com" id="li-email"></div>
+    <div class="form-field"><label class="form-lbl">Password</label><input class="form-inp" type="password" placeholder="••••••••" id="li-pass"></div>
+    <button class="btn btn-red" style="width:100%;justify-content:center;padding:.8rem;font-size:.92rem" onclick="doLogin()">Sign In →</button>
+    <div class="auth-switch">No account? <a onclick="switchModal('login-modal','reg-modal')">Join Free</a></div>
+  </div>
+</div>
+
+<!-- ═══ REGISTER MODAL ══════════════════════════════════ -->
+<div class="modal-bd" id="reg-modal">
+  <div class="modal auth-modal">
+    <button class="modal-close-btn" onclick="closeModal('reg-modal')">✕</button>
+    <div class="auth-logo">Tendoon<span>Drive</span></div>
+    <div class="auth-title">Create Account</div>
+    <div class="auth-desc">Free forever. No credit card required.</div>
+    <button class="social-btn" onclick="socialAuth('Google')">
+      <svg class="social-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.77c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Sign up with Google
+    </button>
+    <div class="divider">or use email</div>
+    <div class="form-field"><label class="form-lbl">Full Name</label><input class="form-inp" type="text" placeholder="Rahul Sharma" id="rg-name"></div>
+    <div class="form-field"><label class="form-lbl">Email Address</label><input class="form-inp" type="email" placeholder="you@example.com" id="rg-email"></div>
+    <div class="form-field"><label class="form-lbl">Password</label><input class="form-inp" type="password" placeholder="Min. 6 characters" id="rg-pass"></div>
+    <button class="btn btn-red" style="width:100%;justify-content:center;padding:.8rem;font-size:.92rem" onclick="doRegister()">Create Free Account →</button>
+    <div class="auth-switch">Already a member? <a onclick="switchModal('reg-modal','login-modal')">Sign In</a></div>
+  </div>
+</div>
+
+<!-- ═══ CAR DETAIL MODAL ═════════════════════════════════ -->
+<div class="modal-bd" id="car-modal">
+  <div class="modal car-detail-modal">
+    <div class="cdm-header">
+      <div>
+        <div id="cdm-brand" style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--r)"></div>
+        <div id="cdm-name" style="font-family:'DM Serif Display',serif;font-size:1.25rem;line-height:1.1"></div>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center">
+        <button class="btn btn-outline-gold" style="font-size:.75rem;padding:.35rem .85rem" onclick="wishCurrentCar()">♡ Wishlist</button>
+        <button class="modal-close-btn" style="position:static" onclick="closeModal('car-modal')">✕</button>
+      </div>
+    </div>
+    <div class="cdm-body" id="cdm-body"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// CURSOR
+// ═══════════════════════════════════════════════════════
+const cur = document.getElementById('cursor'), curR = document.getElementById('cursor-ring');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animCursor(){cx+=(mx-cx)*.15;cy+=(my-cy)*.15;curR.style.left=cx+'px';curR.style.top=cy+'px';requestAnimationFrame(animCursor)}animCursor();
+
+// ═══════════════════════════════════════════════════════
+// DATA — BRANDS with Wikipedia SVG logo URLs
+// ═══════════════════════════════════════════════════════
+const BRANDS=[
+  {name:'Maruti Suzuki',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',models:14,color:'#0057a8'},
+  {name:'Hyundai',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/120px-Hyundai_Motor_Company_logo.svg.png',models:12,color:'#002c5f'},
+  {name:'Tata',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',models:13,color:'#00529b'},
+  {name:'Mahindra',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mahindra_Brand_Logo.jpg/120px-Mahindra_Brand_Logo.jpg',models:11,color:'#cf0a2c'},
+  {name:'Honda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/120px-Honda.svg.png',models:7,color:'#cc0000'},
+  {name:'Toyota',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/120px-Toyota_carlogo.svg.png',models:9,color:'#eb0a1e'},
+  {name:'Kia',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/120px-Kia-logo.svg.png',models:6,color:'#05141f'},
+  {name:'Renault',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2021_Text.svg/120px-Renault_2021_Text.svg.png',models:4,color:'#efdf00'},
+  {name:'Volkswagen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/120px-Volkswagen_logo_2019.svg.png',models:5,color:'#001e50'},
+  {name:'Skoda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Skoda-auto-logo.svg/120px-Skoda-auto-logo.svg.png',models:4,color:'#4ba82e'},
+  {name:'MG',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MG_Motor_logo.svg/120px-MG_Motor_logo.svg.png',models:6,color:'#b22222'},
+  {name:'Jeep',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jeep_Logo.svg/120px-Jeep_Logo.svg.png',models:4,color:'#2e5fa3'},
+  {name:'Nissan',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Nissan_logo.svg/120px-Nissan_logo.svg.png',models:3,color:'#c3002f'},
+  {name:'BMW',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/120px-BMW.svg.png',models:15,color:'#0066b2'},
+  {name:'Mercedes-Benz',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/120px-Mercedes-Logo.svg.png',models:18,color:'#aaa'},
+  {name:'Audi',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/120px-Audi-Logo_2016.svg.png',models:12,color:'#bb0a14'},
+  {name:'Lexus',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Lexus_-_Logo.svg/120px-Lexus_-_Logo.svg.png',models:5,color:'#8a7256'},
+  {name:'Volvo',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Volvo_logo.svg/120px-Volvo_logo.svg.png',models:6,color:'#003057'},
+  {name:'Porsche',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Porsche_Logo.svg/120px-Porsche_Logo.svg.png',models:8,color:'#c0352a'},
+  {name:'Citroen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Citro%C3%ABn_logo.svg/120px-Citro%C3%ABn_logo.svg.png',models:3,color:'#e4141c'},
+];
+
+const STATE_TAX={'Chandigarh':1.08,'Delhi':1.08,'Haryana':1.09,'Punjab':1.10,'Maharashtra':1.11,'Karnataka':1.13,'Tamil Nadu':1.10,'Gujarat':1.07,'Rajasthan':1.12,'Uttar Pradesh':1.11,'West Bengal':1.10,'Andhra Pradesh':1.12,'Telangana':1.11,'Kerala':1.13,'Madhya Pradesh':1.08,'Bihar':1.09,'Odisha':1.10,'Himachal Pradesh':1.09,'Uttarakhand':1.09,'Jharkhand':1.10,'Assam':1.11,'Chhattisgarh':1.09,'Goa':1.07};
+
+const CARS=[
+  {id:1,brand:'Tata',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',name:'Nexon',variant:'XZ+ (O) Dark',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'Manual/AMT',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'Smart',p:789900,f:'Petrol MT'},{n:'Pure',p:959900,f:'Petrol MT'},{n:'Creative+',p:1149900,f:'Petrol MT'},{n:'Fearless+',p:1369900,f:'Petrol AMT'},{n:'XZ+ Dark',p:1499900,f:'Petrol AMT'}],features:['Sunroof','Connected Car','Air Purifier','JBL Sound','Wireless Charging','ADAS Level 2','Ventilated Seats','Digital Cluster','360° Camera','Ambient Lighting','Cruise Control','Auto-dimming IRVM'],specs:{Length:'3993 mm',Width:'1811 mm',Height:'1606 mm',Wheelbase:'2498 mm','Boot Space':'350 L','Fuel Tank':'44 L','Ground Clearance':'208 mm','Kerb Weight':'1255 kg','Tyre Size':'215/60 R16',Airbags:'6',Warranty:'3yr / 1.25L km'}},
+  {id:2,brand:'Hyundai',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/120px-Hyundai_Motor_Company_logo.svg.png',name:'Creta',variant:'SX Tech (O)',body:'SUV',fuel:'Petrol',ex:1999000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'16.8 kmpl',trans:'7-DCT Auto',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚘',variants:[{n:'E',p:1099000,f:'Petrol MT'},{n:'EX',p:1299000,f:'Petrol MT'},{n:'S',p:1499000,f:'Petrol MT'},{n:'SX',p:1749000,f:'Petrol DCT'},{n:'SX Tech (O)',p:1999000,f:'Turbo DCT'}],features:['Panoramic Sunroof','ADAS Level 2','Bose Sound','Digital Key','Ventilated Seats','Wireless AA/CP','BlueLink Connected','360° Camera','Drive Modes','HUD','Ambient Lighting','Remote Start'],specs:{Length:'4310 mm',Width:'1790 mm',Height:'1635 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1375 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
+  {id:3,brand:'Maruti Suzuki',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',name:'Swift',variant:'ZXi+',body:'Hatchback',fuel:'Petrol',ex:979900,engine:'1.2L DualJet',power:'82 bhp',torque:'112 Nm',mileage:'24.8 kmpl',trans:'Manual/AMT',seats:5,safety:'3★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/159089/swift-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',emoji:'🏎',variants:[{n:'Lxi',p:679900,f:'Petrol MT'},{n:'Vxi',p:769900,f:'Petrol MT'},{n:'Zxi',p:879900,f:'Petrol MT'},{n:'ZXi+',p:979900,f:'Petrol AMT'}],features:['SmartPlay Pro+','Suzuki Connect','LED Headlamps','Cruise Control','Auto AC','Push Start','Alloys','Rear Camera','HUD','Speed Alert','Front Armrest','Steering Controls'],specs:{Length:'3860 mm',Width:'1735 mm',Height:'1530 mm',Wheelbase:'2450 mm','Boot Space':'268 L','Fuel Tank':'37 L','Ground Clearance':'163 mm','Kerb Weight':'905 kg','Tyre Size':'185/65 R15',Airbags:'6',Warranty:'2yr / 40000 km'}},
+  {id:4,brand:'Tata',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',name:'Punch EV',variant:'Empowered+',body:'SUV',fuel:'Electric',ex:1399900,engine:'35 kWh Battery',power:'122 bhp',torque:'190 Nm',mileage:'421 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',emoji:'⚡',variants:[{n:'Smart',p:999900,f:'EV 25kWh'},{n:'Smart+',p:1099900,f:'EV 25kWh'},{n:'Adventure',p:1199900,f:'EV 35kWh'},{n:'Empowered+',p:1399900,f:'EV 35kWh'}],features:['V2L / V2V Charging','Arcade.ev OS','Wireless Charging','Air Purifier','ADAS','Sunroof','JBL Sound','Digital Cluster','360° Camera','DC Fast Charge','Leatherette Seats','Ambient Lighting'],specs:{Battery:'35 kWh',Range:'421 km (MIDC)','Fast Charge':'0-80% in 56 min','Home Charge':'~9.5 hrs',Wheelbase:'2445 mm','Boot Space':'366 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'140 kmph',Warranty:'3yr | Battery 8yr/1.6L km'}},
+  {id:5,brand:'Mahindra',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mahindra_Brand_Logo.jpg/120px-Mahindra_Brand_Logo.jpg',name:'Thar Roxx',variant:'MX5 AWD',body:'SUV',fuel:'Diesel',ex:2199900,engine:'2.2L mHawk',power:'175 bhp',torque:'370 Nm',mileage:'15.2 kmpl',trans:'6AT/6MT',seats:5,safety:'5★ GNCAP',tag:'new',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚐',variants:[{n:'MX1',p:1299900,f:'Petrol MT 2WD'},{n:'MX3',p:1599900,f:'Diesel MT 2WD'},{n:'AX5',p:1899900,f:'Diesel AT AWD'},{n:'MX5 AWD',p:2199900,f:'Diesel AT AWD'}],features:['Level 2 ADAS','Harman Kardon','Panoramic Sunroof','AWD Terrain Modes','12.3" Cluster','Wireless AA/CP','Snorkel Intake','Skid Plates','Ventilated Seats','Hill Descent','Off-road Camera','4-zone Ambient'],specs:{Length:'4428 mm',Width:'1870 mm',Height:'1923 mm',Wheelbase:'2850 mm','Boot Space':'645 L','Fuel Tank':'57 L','Ground Clearance':'226 mm','Approach Angle':'41.6°','Departure Angle':'36.7°',Airbags:'7',Warranty:'3yr / Unlimited'}},
+  {id:6,brand:'Kia',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/120px-Kia-logo.svg.png',name:'Seltos',variant:'X-Line GT',body:'SUV',fuel:'Petrol',ex:2099900,engine:'1.5L Turbo GDi',power:'158 bhp',torque:'253 Nm',mileage:'17.7 kmpl',trans:'7-DCT',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'EX',p:1099900,f:'Petrol MT'},{n:'HTX',p:1499900,f:'Petrol MT'},{n:'HTX+',p:1799900,f:'Diesel DCT'},{n:'X-Line GT',p:2099900,f:'Turbo DCT'}],features:['Panoramic Sunroof','Bose Audio','Level 2 ADAS','Connected Tech','Digital Cluster','HUD','Ventilated Seats','Meridian Sound','360° Camera','Ambient Light','6 Drive Modes','Remote Start'],specs:{Length:'4365 mm',Width:'1800 mm',Height:'1645 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1390 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
+  {id:7,brand:'Maruti Suzuki',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',name:'Brezza',variant:'ZXi+',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.5L K15C',power:'102 bhp',torque:'137 Nm',mileage:'19.8 kmpl',trans:'Manual/Auto',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/153601/brezza-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'LXi',p:799900,f:'Petrol MT'},{n:'VXi',p:949900,f:'Petrol MT'},{n:'ZXi',p:1249900,f:'Petrol AT'},{n:'ZXi+',p:1499900,f:'Petrol AT'}],features:['Sunroof','Head-Up Display','Suzuki Connect','360° Camera','Wireless Charging','SmartPlay Pro','Ventilated Seats','LED DRLs','Auto AC','Push Start','Cruise Control','Rain Sensing Wipers'],specs:{Length:'3995 mm',Width:'1790 mm',Height:'1685 mm',Wheelbase:'2500 mm','Boot Space':'328 L','Fuel Tank':'48 L','Ground Clearance':'198 mm','Kerb Weight':'1175 kg','Tyre Size':'195/60 R16',Airbags:'6',Warranty:'2yr / 40000 km'}},
+  {id:8,brand:'Honda',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/120px-Honda.svg.png',name:'City',variant:'ZX CVT',body:'Sedan',fuel:'Petrol',ex:1799900,engine:'1.5L i-VTEC',power:'119 bhp',torque:'145 Nm',mileage:'17.8 kmpl',trans:'CVT Automatic',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/134297/city-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'V',p:1149900,f:'Petrol MT'},{n:'VX',p:1399900,f:'Petrol MT'},{n:'ZX',p:1649900,f:'Petrol MT'},{n:'ZX CVT',p:1799900,f:'Petrol CVT'}],features:['LaneWatch Camera','Honda Connect','8" Touchscreen','Wireless AA/CP','LED Headlights','Paddle Shifters','Auto AC','Push Start','Walk Away Lock','Ventilated Seats','Rear Sunshade','Ambient Lighting'],specs:{Length:'4549 mm',Width:'1748 mm',Height:'1489 mm',Wheelbase:'2589 mm','Boot Space':'506 L','Fuel Tank':'40 L','Ground Clearance':'165 mm','Kerb Weight':'1160 kg','Tyre Size':'185/55 R16',Airbags:'6',Warranty:'3yr / Unlimited'}},
+];
+
+const UPCOMING=[
+  {brand:'Mahindra',name:'XEV 9e',launch:'Q3 2025',price:'₹35–45 Lakh (est.)',type:'Electric SUV'},
+  {brand:'Tata',name:'Sierra EV',launch:'Q4 2025',price:'₹30–40 Lakh (est.)',type:'Electric SUV'},
+  {brand:'Hyundai',name:'Creta EV N-Line',launch:'Q2 2025',price:'₹22–28 Lakh (est.)',type:'Electric SUV'},
+  {brand:'Maruti Suzuki',name:'e Vitara',launch:'Q2 2025',price:'₹18–25 Lakh (est.)',type:'Electric SUV'},
+  {brand:'Kia',name:'EV6 GT',launch:'Q3 2025',price:'₹65–75 Lakh (est.)',type:'Performance EV'},
+  {brand:'BMW',name:'iX2',launch:'Q4 2025',price:'₹65–80 Lakh (est.)',type:'Luxury Electric'},
+];
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+let user=null, wishlist=JSON.parse(localStorage.getItem('td_wish')||'[]'), activeCar=null, selState='Chandigarh';
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  buildBrandStrip();buildBrandGrid();buildTeaserCars();buildUpcoming();calcEmi();
+  const saved=localStorage.getItem('td_user');if(saved){user=JSON.parse(saved);onLogin();}
+  observeFadeIns();
+});
+
+// ─── SCROLL ANIMATIONS
+function observeFadeIns(){const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>io.observe(el))}
+
+function pf(p){return p>=100000?'₹'+(p/100000).toFixed(2)+'L':'₹'+(p/1000).toFixed(0)+'K'}
+
+// ─── BRANDS
+function buildBrandStrip(){
+  const track=document.getElementById('brands-strip');
+  const doubled=[...BRANDS,...BRANDS];
+  track.innerHTML=doubled.map(b=>`<div class="brand-chip" onclick="filterByBrand('${b.name}')"><img src="${b.logo}" alt="${b.name}" onerror="this.style.display='none'"><span class="brand-chip-name">${b.name}</span></div>`).join('');
+}
+function buildBrandGrid(){
+  const grid=document.getElementById('brands-grid-main');
+  grid.innerHTML=BRANDS.map(b=>`<div class="brand-card" onclick="filterByBrand('${b.name}')"><img src="${b.logo}" alt="${b.name}" onerror="this.outerHTML='<div style=\\"width:44px;height:44px;border-radius:10px;background:rgba(255,59,48,0.15);color:var(--r);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem\\">${b.name.slice(0,2)}</div>'" loading="lazy"><div class="brand-card-name">${b.name}</div><div class="brand-card-count">${b.models} models</div></div>`).join('');
+}
+
+// ─── CARS
+function carHTML(car,interactive=true){
+  const tagMap={hot:['tag-hot','🔥 Trending'],new:['tag-new','✦ New'],ev:['tag-ev','⚡ Electric'],luxury:['tag-luxury','★ Luxury']};
+  const[tClass,tLabel]=tagMap[car.tag]||['tag-hot',''];
+  const onClickBody=interactive?`onclick="openCarDetail(${car.id})"`:`onclick="openModal('login-modal')"`;
+  const onClickWish=interactive?`onclick="event.stopPropagation();toggleWish(${car.id})"`:``; 
+  const isWished=wishlist.includes(car.id);
+  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" ${onClickWish}>${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.brandLogo}" alt="${car.brand}" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span><span class="car-cta">View Details →</span></div></div>`;
+}
+
+function buildTeaserCars(){document.getElementById('teaser-grid').innerHTML=CARS.slice(0,3).map(c=>carHTML(c,false)).join('')}
+
+function buildAllCars(data){
+  const grid=document.getElementById('all-cars-grid');
+  const cars=data||CARS;
+  document.getElementById('car-count-lbl').textContent=cars.length+' cars found';
+  grid.innerHTML=cars.map(c=>carHTML(c,true)).join('');
+  // Populate brand filter once
+  const fb=document.getElementById('fb');
+  if(fb.options.length<2){const brands=[...new Set(CARS.map(c=>c.brand))].sort();brands.forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;fb.appendChild(o)})}
+}
+
+function buildUpcoming(){
+  document.getElementById('upcoming-grid').innerHTML=UPCOMING.map(u=>`<div class="upcoming-card"><div class="uc-brand">${u.brand}</div><div class="uc-name">${u.name}</div><div class="uc-launch">Launching ${u.launch}</div><div class="uc-price">${u.price} · ${u.type}</div></div>`).join('');
+}
+
+// ─── CAR DETAIL
+function openCarDetail(id){
+  if(!user){openModal('login-modal');return}
+  const car=CARS.find(c=>c.id==id);if(!car)return;
+  activeCar=car;
+  document.getElementById('cdm-brand').textContent=car.brand;
+  document.getElementById('cdm-name').textContent=car.name+' — '+car.variant;
+  const state=document.getElementById('hero-state').value||selState;
+  const mult=STATE_TAX[state]||1.10;
+  const onRoad=Math.round(car.ex*mult*1.03);
+  document.getElementById('cdm-body').innerHTML=`
+    <img class="cdm-hero-img" src="${car.img}" alt="${car.name}" onerror="this.style.fontSize='5rem';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.textContent='${car.emoji}'">
+    <div class="cdm-price-strip">
+      <div class="price-cell"><div class="pc-label">Ex-Showroom</div><div class="pc-val">${pf(car.ex)}</div></div>
+      <div class="price-cell highlight"><div class="pc-label">On-Road · ${state}</div><div class="pc-val gold">${pf(onRoad)}</div></div>
+      <div class="price-cell"><div class="pc-label">Safety Rating</div><div class="pc-val green">${car.safety}</div></div>
+    </div>
+    <div class="tabs-row">
+      <button class="tab-pill on" onclick="switchTab(this,'t-ov')">Overview</button>
+      <button class="tab-pill" onclick="switchTab(this,'t-var')">Variants (${car.variants.length})</button>
+      <button class="tab-pill" onclick="switchTab(this,'t-specs')">Full Specs</button>
+      <button class="tab-pill" onclick="switchTab(this,'t-feat')">Features</button>
+      <button class="tab-pill" onclick="switchTab(this,'t-prices')">State Prices</button>
+    </div>
+    <div id="t-ov" class="tp on"><table class="specs-tbl">${[['Brand',car.brand],['Model',car.name],['Body Type',car.body],['Engine',car.engine],['Power',car.power],['Torque',car.torque],['Transmission',car.trans],['Fuel',car.fuel],['Mileage',car.mileage],['Seating',car.seats+' persons']].map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table></div>
+    <div id="t-var" class="tp"><div class="variants-list">${car.variants.map(v=>`<div class="vitem"><div><div class="vitem-name">${v.n}</div><div class="vitem-fuel">${v.f}</div></div><div class="vitem-price">${pf(v.p)}</div></div>`).join('')}</div></div>
+    <div id="t-specs" class="tp"><table class="specs-tbl">${Object.entries(car.specs).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table></div>
+    <div id="t-feat" class="tp"><div class="feats-grid">${car.features.map(f=>`<div class="feat-item">${f}</div>`).join('')}</div></div>
+    <div id="t-prices" class="tp"><p style="font-size:.78rem;color:var(--t3);margin-bottom:1rem">Approximate on-road prices including RTO, insurance & handling charges.</p><table class="state-tbl"><thead><tr><th>State</th><th>RTO %</th><th>On-Road Price</th></tr></thead><tbody>${Object.entries(STATE_TAX).map(([s,m])=>`<tr style="${s===state?'background:rgba(255,59,48,0.06)':''}"><td>${s}${s===state?' ★':''}</td><td>${((m-1)*100).toFixed(1)}%</td><td>${pf(Math.round(car.ex*m*1.03))}</td></tr>`).join('')}</tbody></table></div>`;
+  openModal('car-modal');
+}
+function switchTab(btn,id){
+  document.querySelectorAll('#cdm-body .tab-pill').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#cdm-body .tp').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');document.getElementById(id).classList.add('on');
+}
+
+// ─── WISHLIST
+function toggleWish(id){if(!user){openModal('login-modal');return}const i=wishlist.indexOf(id);if(i>=0)wishlist.splice(i,1);else wishlist.push(id);localStorage.setItem('td_wish',JSON.stringify(wishlist));buildAllCars();buildWishlist();toast(i>=0?'Removed from wishlist':'Added to wishlist ❤','success')}
+function wishCurrentCar(){if(activeCar)toggleWish(activeCar.id)}
+function buildWishlist(){const z=document.getElementById('wishlist-zone');const saved=CARS.filter(c=>wishlist.includes(c.id));if(!saved.length){z.innerHTML='<div class="empty-state"><div class="empty-icon">❤️</div><div>Your wishlist is empty</div><div style="font-size:.78rem;margin-top:.4rem">Click ♡ on any car card to save here</div></div>'}else{z.innerHTML=`<div class="cars-grid">${saved.map(c=>carHTML(c,true)).join('')}</div>`}}
+
+// ─── FILTERS
+function applyFilters(){
+  const brand=document.getElementById('fb').value;
+  const fuel=document.getElementById('ff').value;
+  const body=document.getElementById('fbo').value;
+  const budget=document.getElementById('fpr').value;
+  let r=CARS.filter(c=>{
+    if(brand&&c.brand!==brand)return false;
+    if(fuel&&!c.fuel.toLowerCase().includes(fuel.toLowerCase()))return false;
+    if(body&&c.body!==body)return false;
+    if(budget){const[mn,mx]=budget.split('-').map(Number);if(c.ex<mn||c.ex>mx)return false}
+    return true;
+  });
+  buildAllCars(r);
+}
+function filterByBrand(brand){if(!user){openModal('login-modal');return}document.getElementById('all-cars-sec').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.getElementById('fb').value=brand;applyFilters()},400)}
+
+// ─── SEARCH
+function doHeroSearch(){
+  const q=document.getElementById('hero-q').value.toLowerCase().trim();
+  const st=document.getElementById('hero-state').value;
+  if(st)selState=st;
+  if(!user){openModal('login-modal');return}
+  const found=CARS.filter(c=>c.name.toLowerCase().includes(q)||c.brand.toLowerCase().includes(q)||c.body.toLowerCase().includes(q));
+  document.getElementById('all-cars-sec').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>buildAllCars(found.length?found:CARS),400);
+}
+function setHeroState(){selState=document.getElementById('hero-state').value||'Chandigarh'}
+
+// ─── AUTH
+function doLogin(){const e=document.getElementById('li-email').value.trim(),p=document.getElementById('li-pass').value;if(!e||!p){toast('Please fill all fields','info');return}if(!e.includes('@')){toast('Enter valid email','info');return}loginAs({name:e.split('@')[0],email:e})}
+function doRegister(){const n=document.getElementById('rg-name').value.trim(),e=document.getElementById('rg-email').value.trim(),p=document.getElementById('rg-pass').value;if(!n||!e||!p){toast('Please fill all fields','info');return}if(!e.includes('@')){toast('Enter valid email','info');return}if(p.length<6){toast('Password min. 6 chars','info');return}loginAs({name:n,email:e})}
+function socialAuth(provider){loginAs({name:provider+' User',email:provider.toLowerCase()+'@user.com'})}
+function loginAs(u){user=u;localStorage.setItem('td_user',JSON.stringify(u));closeAll();onLogin();toast(`Welcome, ${u.name.split(' ')[0]}! 🎉`,'success')}
+function onLogin(){document.getElementById('nav-guest').style.display='none';document.getElementById('nav-user').style.display='flex';const i=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);document.getElementById('uav').textContent=i;document.getElementById('unm').textContent=user.name.split(' ')[0];document.getElementById('lock-wall-el').style.display='none';document.getElementById('loggedin-zone').style.display='block';buildAllCars();buildWishlist();}
+function doLogout(){user=null;localStorage.removeItem('td_user');document.getElementById('nav-guest').style.display='flex';document.getElementById('nav-user').style.display='none';document.getElementById('lock-wall-el').style.display='flex';document.getElementById('loggedin-zone').style.display='none';toast('Logged out','info')}
+
+// ─── EMI
+function calcEmi(){
+  const P=+document.getElementById('er-amt').value;
+  const r=+document.getElementById('er-rate').value/12/100;
+  const n=+document.getElementById('er-ten').value;
+  const emi=Math.round(P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
+  const total=emi*n,int=total-P;
+  const fl=v=>v>=100000?'₹'+(v/100000).toFixed(2)+'L':'₹'+v.toLocaleString('en-IN');
+  document.getElementById('ev-amt').textContent=fl(P);
+  document.getElementById('ev-rate').textContent=parseFloat(document.getElementById('er-rate').value).toFixed(1)+'%';
+  document.getElementById('ev-ten').textContent=n+' mo';
+  document.getElementById('emi-main').textContent='₹'+emi.toLocaleString('en-IN')+'/mo';
+  document.getElementById('emi-break').textContent='Interest: '+fl(int)+' | Total: '+fl(total);
+}
+
+// ─── MODALS
+function openModal(id){document.getElementById(id).classList.add('show');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('show');document.body.style.overflow=''}
+function closeAll(){document.querySelectorAll('.modal-bd').forEach(m=>m.classList.remove('show'));document.body.style.overflow=''}
+function switchModal(a,b){closeModal(a);setTimeout(()=>openModal(b),120)}
+document.querySelectorAll('.modal-bd').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll()}));
+
+// ─── TOAST
+let tTimer;function toast(msg,type='info'){const t=document.getElementById('toast');t.textContent=msg;t.className='show '+type;clearTimeout(tTimer);tTimer=setTimeout(()=>t.className='',3200)}
+
+// ─── UTILS
+function sScroll(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function requireLoginAction(action){if(!user){openModal('login-modal');return}if(action==='compare'){document.getElementById('compare-bar').classList.add('visible');toast('Select cars using ⚖ button on any card','info')}}
+
+// ─── NAV SCROLL EFFECT
+window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>60)});
+
+// ═══════════════════════════════════════════════════════
+// COMPARE TOOL
+// ═══════════════════════════════════════════════════════
+let compareCars=[];
+function toggleCompare(id){
+  if(!user){openModal('login-modal');return}
+  const idx=compareCars.indexOf(id);
+  if(idx>=0){compareCars.splice(idx,1);toast('Removed from compare','info')}
+  else if(compareCars.length>=3){toast('Max 3 cars can be compared','info');return}
+  else{compareCars.push(id);toast('Added to compare ⚖','success')}
+  updateCompareBar();buildAllCars();
+}
+function updateCompareBar(){
+  const bar=document.getElementById('compare-bar');
+  if(user)bar.classList.add('visible');
+  for(let i=0;i<3;i++){
+    const slot=document.getElementById('cs'+i);
+    const cid=compareCars[i];
+    if(cid){const c=CARS.find(x=>x.id===cid);slot.className='cslot filled';slot.innerHTML=`<span style="font-size:.72rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px">${c.name}</span><div class="cs-remove" onclick="event.stopPropagation();removeFromCompare(${cid})">✕</div>`}
+    else{slot.className='cslot';slot.textContent='+ Add Car '+(i+1)}
+  }
+  document.getElementById('compare-go-btn').style.display=compareCars.length>=2?'block':'none';
+}
+function removeFromCompare(id){compareCars=compareCars.filter(x=>x!==id);updateCompareBar();buildAllCars()}
+function clearCompare(){compareCars=[];updateCompareBar();buildAllCars()}
+function openCompare(){
+  if(compareCars.length<2){toast('Add at least 2 cars to compare','info');return}
+  const cars=compareCars.map(id=>CARS.find(c=>c.id===id));
+  const state=document.getElementById('hero-state').value||selState;
+  let html=`<table class="cm-table"><thead><tr><th>Specification</th>`;
+  cars.forEach(c=>html+=`<th class="car-col">${c.brand} ${c.name}</th>`);
+  html+=`</tr></thead><tbody><tr><td class="row-label">Photo</td>`;
+  cars.forEach(c=>html+=`<td class="car-val"><img class="cm-car-thumb" src="${c.img}" alt="${c.name}" onerror="this.style.fontSize='2.5rem';this.style.lineHeight='100px';this.alt='${c.emoji}'"></td>`);
+  html+=`</tr>`;
+  // Ex-showroom
+  const prices=cars.map(c=>c.ex); const minP=Math.min(...prices);
+  html+=`<tr><td class="row-label">Ex-Showroom</td>`;
+  cars.forEach(c=>html+=`<td class="car-val ${c.ex===minP?'best':''}">${pf(c.ex)}${c.ex===minP?' ✓':''}</td>`);
+  html+=`</tr>`;
+  // On-road
+  const ors=cars.map(c=>Math.round(c.ex*(STATE_TAX[state]||1.10)*1.03)); const minOR=Math.min(...ors);
+  html+=`<tr><td class="row-label">On-Road (${state})</td>`;
+  cars.forEach((c,i)=>html+=`<td class="car-val ${ors[i]===minOR?'best':''}">${pf(ors[i])}${ors[i]===minOR?' ✓':''}</td>`);
+  html+=`</tr>`;
+  // Mileage — highest is best
+  const miles=cars.map(c=>parseFloat(c.mileage)); const maxMile=Math.max(...miles);
+  html+=`<tr><td class="row-label">Mileage</td>`;
+  cars.forEach(c=>html+=`<td class="car-val ${parseFloat(c.mileage)===maxMile?'best':''}">${c.mileage}${parseFloat(c.mileage)===maxMile?' ✓':''}</td>`);
+  html+=`</tr>`;
+  [['Engine','engine'],['Power','power'],['Torque','torque'],['Transmission','trans'],['Fuel','fuel'],['Body Type','body'],['Seating','seats'],['Safety','safety']].forEach(([label,key])=>{
+    html+=`<tr><td class="row-label">${label}</td>`;
+    cars.forEach(c=>html+=`<td class="car-val">${c[key]}</td>`);
+    html+=`</tr>`;
+  });
+  html+=`</tbody></table>`;
+  document.getElementById('cm-body').innerHTML=html;
+  openModal('compare-modal');
+}
+
+// ═══════════════════════════════════════════════════════
+// AI ADVISOR
+// ═══════════════════════════════════════════════════════
+const aiAnswers={};let aiStep=1;
+function aiPick(step,btn,val){
+  document.querySelectorAll(`#ai-s${step} .ai-opt`).forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel'); aiAnswers['s'+step]=val;
+  setTimeout(()=>{
+    document.getElementById('ai-s'+step).classList.remove('on');
+    const next=step+1;
+    if(next<=4){document.getElementById('ai-s'+next).classList.add('on')}
+    else{showAiResult()}
+    updateAiProgress(step+1);
+  },320);
+}
+function updateAiProgress(step){document.querySelectorAll('.ai-prog-dot').forEach((d,i)=>d.classList.toggle('on',i<step))}
+function showAiResult(){
+  const budgetMap={'under5':[0,500000],'5to10':[500000,1000000],'10to20':[1000000,2000000],'20to50':[2000000,5000000],'above50':[5000000,99999999]};
+  const [mn,mx]=budgetMap[aiAnswers.s1]||[0,99999999];
+  const fuel=aiAnswers.s3; const use=aiAnswers.s2;
+  let recs=CARS.filter(c=>{
+    if(c.ex<mn||c.ex>mx)return false;
+    if(fuel!=='any'&&!c.fuel.toLowerCase().includes(fuel))return false;
+    if(aiAnswers.s4==='7'&&c.seats<6)return false;
+    return true;
+  }).slice(0,3);
+  if(!recs.length)recs=CARS.slice(0,3);
+  const useTxt={city:'City Commute',highway:'Highway Touring',offroad:'Off-Road Adventures',family:'Family Trips',business:'Business Use'};
+  let html=`<p style="font-size:.82rem;color:var(--t2);margin-bottom:1rem;line-height:1.6">Based on your <strong style="color:var(--t)">${useTxt[use]||'preferences'}</strong>, here are your top matches:</p>`;
+  recs.forEach((c,i)=>html+=`<div style="display:flex;align-items:center;gap:12px;padding:.85rem;background:var(--b);border:1px solid var(--b2);border-radius:12px;margin-bottom:.6rem;cursor:pointer;transition:.2s" onclick="closeAll();openCarDetail(${c.id})" onmouseover="this.style.borderColor='rgba(255,59,48,.5)'" onmouseout="this.style.borderColor='var(--b2)'"><div style="width:28px;height:28px;border-radius:50%;background:var(--r);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:#fff;flex-shrink:0">${i+1}</div><img src="${c.brandLogo}" style="width:22px;height:22px;object-fit:contain;filter:brightness(.7)" onerror="this.style.display='none'"><div style="flex:1"><div style="font-weight:700;font-size:.9rem">${c.brand} ${c.name}</div><div style="font-size:.72rem;color:var(--t3)">${c.variant} · ${pf(c.ex)} · ${c.fuel}</div></div><span style="font-size:.75rem;color:var(--r);font-weight:600">View →</span></div>`);
+  document.getElementById('ai-result-content').innerHTML=html;
+  document.getElementById('ai-result-step').classList.add('on');
+}
+function resetAi(){for(let i=1;i<=4;i++){const s=document.getElementById('ai-s'+i);if(s){s.classList.remove('on');s.querySelectorAll('.ai-opt').forEach(b=>b.classList.remove('sel'))}}document.getElementById('ai-result-step').classList.remove('on');document.getElementById('ai-s1').classList.add('on');Object.keys(aiAnswers).forEach(k=>delete aiAnswers[k]);updateAiProgress(1)}
+
+// ═══════════════════════════════════════════════════════
+// NEWS RENDER
+// ═══════════════════════════════════════════════════════
+const NEWS=[
+  {cat:'Launch',title:'Tata Sierra EV officially confirmed for India launch in late 2025',meta:'3 days ago · Tata Motors',emoji:'⚡'},
+  {cat:'Review',title:'Mahindra Thar Roxx long-term: 6 months, 12,000 km — full verdict',meta:'1 week ago · Tendoon Drive',emoji:'🚙'},
+  {cat:'Price Update',title:'Maruti Swift prices hiked by ₹15,000 across all variants from April 2025',meta:'2 weeks ago · Maruti Suzuki',emoji:'💰'},
+  {cat:'EV',title:'India EV sales cross 2 lakh units in a single month for the first time ever',meta:'5 days ago · SIAM Data',emoji:'📊'},
+  {cat:'Upcoming',title:'Hyundai Creta Electric N-Line teased — sportier design, performance tuning',meta:'4 days ago · Hyundai India',emoji:'🔥'},
+  {cat:'Policy',title:'New BH series number plate rules 2025: Everything car buyers need to know',meta:'3 weeks ago · RTO India',emoji:'📋'},
+];
+function buildNews(){const g=document.getElementById('news-grid');if(g)g.innerHTML=NEWS.map(n=>`<div class="news-card fade-in"><div class="news-img">${n.emoji}</div><div class="news-body"><div class="news-cat">${n.cat}</div><div class="news-title">${n.title}</div><div class="news-meta">${n.meta}</div></div></div>`).join('')}
+
+// ═══════════════════════════════════════════════════════
+// UPDATED carHTML WITH COMPARE BUTTON
+// ═══════════════════════════════════════════════════════
+function carHTML(car,interactive=true){
+  const tagMap={hot:['tag-hot','🔥 Trending'],new:['tag-new','✦ New'],ev:['tag-ev','⚡ Electric'],luxury:['tag-luxury','★ Luxury']};
+  const[tClass,tLabel]=tagMap[car.tag]||['tag-hot',''];
+  const onClickBody=interactive?`onclick="openCarDetail(${car.id})"`:`onclick="openModal('login-modal')"`;
+  const isWished=wishlist.includes(car.id);
+  const inCompare=compareCars.includes(car.id);
+  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" onclick="event.stopPropagation();toggleWish(${car.id})">${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.brandLogo}" alt="${car.brand}" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span>${interactive?`<button class="btn btn-ghost" style="font-size:.66rem;padding:.25rem .6rem;${inCompare?'border-color:rgba(255,59,48,.6);color:var(--r)':''}" onclick="event.stopPropagation();toggleCompare(${car.id})">${inCompare?'⚖ Added':'⚖'}</button>`:''}<span class="car-cta">Details →</span></div></div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// PATCH onLogin to show extra sections & compare bar
+// ═══════════════════════════════════════════════════════
+const _baseOnLogin=onLogin;
+onLogin=function(){_baseOnLogin();document.getElementById('ai-advisor-zone').style.display='block';updateCompareBar();}
+
+// Build news on load
+window.addEventListener('DOMContentLoaded',buildNews);
+</script>
+</body>
+</html>
