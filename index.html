@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tendoon Drive — India's Premium Car Discovery Platform</title>
+<title>Tendoon Drive — India's #1 Car Discovery Platform | Prices, Specs & Reviews</title>
+<meta name="description" content="Find every car in India — real ex-showroom & on-road prices for all states, specs, variants, comparisons, EMI calculator. 500+ models, 40+ brands.">
+<meta name="keywords" content="car prices India, on-road price, car comparison, best cars India 2025, car specs, EMI calculator, Tata Nexon, Hyundai Creta, Maruti Swift">
+<meta property="og:title" content="Tendoon Drive — India's Premium Car Discovery Platform">
+<meta property="og:description" content="Real car prices, specs, and comparisons for every Indian state.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tendoon.com/cars">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Tendoon Drive","url":"https://tendoon.com","description":"India premium car discovery platform","potentialAction":{"@type":"SearchAction","target":"https://tendoon.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -22,13 +30,15 @@
   --radius:14px;--radius-lg:22px;--radius-xl:32px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;cursor:none}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden}
 
-/* ─── CUSTOM CURSOR ──────────────────────────────────────*/
-#cursor{position:fixed;width:10px;height:10px;background:var(--r);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(255,59,48,0.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:16px;height:16px;background:var(--g)}
-body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:50px;height:50px;border-color:rgba(201,168,76,0.6)}
+
+/* ─── PERFORMANCE ────────────────────────────────────────*/
+@media(prefers-reduced-motion:reduce){.orb,.hero-slide,.hero-car-img,.car-card,.brand-card{animation:none!important;transition:none!important}}
+.hero-slide{will-change:opacity}
+.hero-car-img{will-change:opacity,transform}
+.orb{will-change:transform}
+@media(max-width:768px){.orb{display:none}.grid-lines{display:none}.hero-car-img{width:110%;max-width:unset}}
 
 /* ─── SCROLLBAR ──────────────────────────────────────────*/
 ::-webkit-scrollbar{width:3px}
@@ -52,7 +62,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;ali
 .nav-wordmark{font-family:'Bebas Neue',display;font-size:1.7rem;letter-spacing:0.06em;color:var(--t);line-height:1}
 .nav-wordmark span{color:var(--r)}
 .nav-pill{background:var(--r);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;padding:2px 7px;border-radius:4px;text-transform:uppercase;align-self:flex-end;margin-bottom:2px}
-.nav-links{display:flex;align-items:center;gap:0.25rem}
+.nav-links{display:flex;align-items:center;gap:0.25rem}@media(max-width:860px){.nav-links{display:none}}
 .nav-link{padding:0.4rem 0.9rem;border-radius:8px;font-size:0.83rem;font-weight:500;color:var(--t2);text-decoration:none;transition:all .2s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:var(--t);background:var(--b)}
 .nav-actions{display:flex;align-items:center;gap:0.6rem}
@@ -144,13 +154,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;ali
 .brand-chip:hover .brand-chip-name{color:var(--t)}
 
 /* ─── BRAND GRID (click) ─────────────────────────────────*/
-.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.1rem;grid-auto-rows:1fr}
 .brand-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:1.4rem 1rem;background:var(--b);border:1px solid var(--b2);border-radius:var(--radius);cursor:pointer;transition:all .3s;text-align:center;position:relative;overflow:hidden}
 .brand-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,59,48,0.06),transparent);opacity:0;transition:.3s}
 .brand-card:hover{border-color:rgba(255,59,48,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(255,59,48,0.12)}
 .brand-card:hover::before{opacity:1}
-.brand-card img{width:44px;height:44px;object-fit:contain;transition:.3s;filter:grayscale(40%) brightness(.85)}
-.brand-card:hover img{filter:none;transform:scale(1.1)}
+.brand-card img{width:52px;height:52px;object-fit:contain;transition:.3s;filter:grayscale(20%) brightness(.9);display:block;margin:0 auto}
+.brand-card:hover img{filter:none!important;transform:scale(1.08)}
 .brand-card-name{font-size:.78rem;font-weight:700;color:var(--t2);letter-spacing:.02em}
 .brand-card:hover .brand-card-name{color:var(--t)}
 .brand-card-count{font-size:.65rem;color:var(--t3);margin-top:1px}
@@ -187,19 +197,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;ali
 .car-fuel-badge{padding:3px 10px;border-radius:5px;font-size:.68rem;font-weight:600;background:var(--b);color:var(--t2)}
 .car-cta{font-size:.75rem;font-weight:600;color:var(--r);display:flex;align-items:center;gap:4px}
 
-/* ─── LOCK WALL ──────────────────────────────────────────*/
-.lock-wall{position:relative}
-.lock-overlay{position:absolute;left:0;right:0;bottom:0;top:20%;background:linear-gradient(to bottom,transparent,var(--bg) 45%);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:3rem}
-.lock-box{width:100%;max-width:500px;padding:2.5rem;text-align:center;position:relative;overflow:hidden}
-.lock-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,59,48,0.06),rgba(124,58,237,0.06));border-radius:var(--radius-xl);pointer-events:none}
-.lock-icon-wrap{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--r),#ff8c69);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;box-shadow:0 8px 30px rgba(255,59,48,.35);font-size:1.5rem}
-.lock-title{font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:.6rem}
-.lock-title em{color:var(--g);font-style:italic}
-.lock-perks{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0}
-.perk{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:var(--b);border:1px solid var(--b2);font-size:.75rem;color:var(--t2)}
-.perk::before{content:'✦';color:var(--g);font-size:.55rem}
-.lock-note{font-size:.75rem;color:var(--t3);margin-top:1rem}
-.lock-note a{color:var(--g);cursor:pointer}
+/* Lock wall removed — 95% free access */
+/* ─── SOFT SIGNUP NUDGE ──────────────────────────────────*/
+.signup-nudge{background:linear-gradient(135deg,rgba(255,59,48,.08),rgba(124,58,237,.06));border:1px solid rgba(255,59,48,.18);border-radius:var(--radius-lg);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem}
+.signup-nudge p{font-size:.85rem;color:var(--t2);margin:0}
+.signup-nudge p strong{color:var(--t)}
+
 
 /* ─── SERVICES ───────────────────────────────────────────*/
 .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
@@ -351,10 +354,10 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 .compare-add-btn{font-size:.72rem;padding:.3rem .75rem;white-space:nowrap}
 
 /* ─── NEWS SECTION ───────────────────────────────────────*/
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
-.news-card{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:.3s}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}@media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.news-grid{grid-template-columns:1fr}}
+.news-card{background:var(--b);border:1px solid var(--b2);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:.3s;text-decoration:none;display:block;color:inherit}
 .news-card:hover{border-color:var(--b3);transform:translateY(-3px)}
-.news-img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,var(--bg3),var(--s));display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.news-img{width:100%;height:170px;overflow:hidden;background:linear-gradient(135deg,var(--bg3),var(--s));display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}.news-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.news-card:hover .news-img img{transform:scale(1.06)}
 .news-body{padding:1rem}
 .news-cat{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--r);margin-bottom:.4rem}
 .news-title{font-weight:700;font-size:.9rem;color:var(--t);line-height:1.4;margin-bottom:.4rem}
@@ -400,10 +403,6 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
 <!-- BG -->
 <div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 <div class="grid-lines"></div>
@@ -426,7 +425,7 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
   </div>
   <div class="nav-actions" id="nav-guest">
     <button class="btn btn-ghost" onclick="openModal('login-modal')">Sign In</button>
-    <button class="btn btn-red" onclick="openModal('reg-modal')">Join Free →</button>
+    <button class="btn btn-red" onclick="openModal('reg-modal')" title="Free signup for Compare &amp; Wishlist">Sign Up →</button>
   </div>
   <div class="nav-actions" id="nav-user" style="display:none">
     <div class="user-chip" onclick="openModal('login-modal')">
@@ -459,7 +458,7 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
   </h1>
   <p class="hero-sub">Every car. Every brand. Every budget.<br><strong>500+ models</strong> from <strong>40+ brands</strong> — real prices, full specs, live comparisons.</p>
   <div class="hero-cta">
-    <button class="btn btn-red btn-lg" onclick="openModal('reg-modal')">🚀 Get Free Access</button>
+    <button class="btn btn-red btn-lg" onclick="openModal('reg-modal')">🚗 Explore All Cars</button>
     <button class="btn btn-outline-gold btn-lg" onclick="sScroll('brands-sec')">Explore Brands</button>
   </div>
 
@@ -479,6 +478,15 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
       </select>
       <input class="sg-input" id="hero-q" placeholder="Search brand, model... e.g. Nexon, Creta, Swift" onkeydown="if(event.key==='Enter')doHeroSearch()">
       <button class="sg-btn" onclick="doHeroSearch()">Search →</button>
+    </div>
+    <!-- Quick search chips -->
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;padding:0 .25rem">
+      <button onclick="quickSearch('under 10 lakh')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">💰 Under ₹10 Lakh</button>
+      <button onclick="quickSearch('best mileage')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">🌿 Best Mileage</button>
+      <button onclick="quickSearch('electric')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">⚡ Electric Cars</button>
+      <button onclick="quickSearch('suv')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">🏔️ SUVs</button>
+      <button onclick="quickSearch('family car')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">👨‍👩‍👧 Family Car</button>
+      <button onclick="quickSearch('sedan')" style="padding:.3rem .75rem;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:.72rem;cursor:pointer;font-family:Manrope,sans-serif;transition:.2s;backdrop-filter:blur(8px)" onmouseover="this.style.background='rgba(255,59,48,.15)';this.style.borderColor='rgba(255,59,48,.4)';this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(255,255,255,.6)'">🚗 Sedans</button>
     </div>
   </div>
 
@@ -585,27 +593,10 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
     </div>
     <div class="cars-grid" id="teaser-grid"></div>
   </div>
-  <div class="lock-overlay" id="lock-wall-el">
-    <div class="lock-box glass">
-      <div class="lock-icon-wrap">🔓</div>
-      <div class="lock-title">Unlock <em>Full Access</em></div>
-      <p style="font-size:.85rem;color:var(--t2);line-height:1.7;margin-bottom:.5rem">Sign in free with Google or email to access India's most complete car database.</p>
-      <div class="lock-perks">
-        <span class="perk">500+ Cars & Specs</span>
-        <span class="perk">All Variants</span>
-        <span class="perk">State-wise Prices</span>
-        <span class="perk">EMI Calculator</span>
-        <span class="perk">Compare Tool</span>
-        <span class="perk">Wishlist</span>
-      </div>
-      <button class="btn btn-red btn-lg" style="width:100%;justify-content:center;font-size:1rem" onclick="openModal('reg-modal')">Join Free — No Credit Card</button>
-      <div class="lock-note">Already a member? <a onclick="openModal('login-modal')">Sign In</a></div>
-    </div>
-  </div>
 </section>
 
 <!-- ═══ LOGGED-IN CONTENT ════════════════════════════════ -->
-<div id="loggedin-zone" style="display:none">
+<div id="loggedin-zone" style="display:block">
 
   <!-- FULL CARS -->
   <section class="section" id="all-cars-sec">
@@ -614,6 +605,13 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
         <div class="sect-label">Full Database</div>
         <div class="sect-title">All Cars <em>in India</em></div>
         <div class="sect-line"></div>
+      </div>
+      <div class="signup-nudge" id="signup-nudge-bar">
+        <p>✦ <strong>95% free</strong> — Browse, search & compare specs freely. <strong>Sign up free</strong> to unlock Compare tool & Wishlist.</p>
+        <div style="display:flex;gap:.6rem">
+          <button class="btn btn-ghost" style="font-size:.78rem;padding:.35rem .85rem" onclick="openModal('login-modal')">Sign In</button>
+          <button class="btn btn-red" style="font-size:.78rem;padding:.35rem .85rem" onclick="openModal('reg-modal')">Sign Up Free</button>
+        </div>
       </div>
       <div class="filter-bar">
         <select class="filter-select" id="fb" onchange="applyFilters()"><option value="">All Brands</option></select>
@@ -691,7 +689,7 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 </div>
 
 <!-- ═══ AI CAR ADVISOR ════════════════════════════════════ -->
-<div id="ai-advisor-zone" style="display:none">
+<div id="ai-advisor-zone" style="display:block">
 <section class="section" style="background:linear-gradient(135deg,rgba(124,58,237,0.05),rgba(255,59,48,0.03))">
   <div class="max">
     <div class="sect-header" style="text-align:center">
@@ -782,9 +780,19 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 <section class="section" style="background:var(--bg2)">
   <div class="max">
     <div class="sect-header">
-      <div class="sect-label">Stay Updated</div>
-      <div class="sect-title">Latest Car <em>News</em></div>
-      <div class="sect-line"></div>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div class="sect-label" style="display:flex;align-items:center;gap:8px">
+            <span>Stay Updated</span>
+            <span id="news-live-dot" style="display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:4px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);font-size:.6rem;font-weight:700;color:#22c55e">
+              <span style="width:5px;height:5px;background:#22c55e;border-radius:50%;animation:pulse 1.4s ease-in-out infinite"></span>LIVE
+            </span>
+          </div>
+          <div class="sect-title">Latest Car <em>News</em></div>
+          <div class="sect-line"></div>
+        </div>
+        <button class="btn btn-ghost" onclick="fetchLiveNews()" style="font-size:.75rem;padding:.4rem .9rem;align-self:flex-end">↻ Refresh</button>
+      </div>
     </div>
     <div class="news-grid" id="news-grid"></div>
   </div>
@@ -874,50 +882,40 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 
 <script>
 // ═══════════════════════════════════════════════════════
-// CURSOR
-// ═══════════════════════════════════════════════════════
-const cur = document.getElementById('cursor'), curR = document.getElementById('cursor-ring');
-let mx=0,my=0,cx=0,cy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-function animCursor(){cx+=(mx-cx)*.15;cy+=(my-cy)*.15;curR.style.left=cx+'px';curR.style.top=cy+'px';requestAnimationFrame(animCursor)}animCursor();
-
-// ═══════════════════════════════════════════════════════
-// DATA — BRANDS with Wikipedia SVG logo URLs
-// ═══════════════════════════════════════════════════════
 const BRANDS=[
-  {name:'Maruti Suzuki',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',models:14,color:'#0057a8'},
-  {name:'Hyundai',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/120px-Hyundai_Motor_Company_logo.svg.png',models:12,color:'#002c5f'},
-  {name:'Tata',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',models:13,color:'#00529b'},
-  {name:'Mahindra',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mahindra_Brand_Logo.jpg/120px-Mahindra_Brand_Logo.jpg',models:11,color:'#cf0a2c'},
-  {name:'Honda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/120px-Honda.svg.png',models:7,color:'#cc0000'},
-  {name:'Toyota',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/120px-Toyota_carlogo.svg.png',models:9,color:'#eb0a1e'},
-  {name:'Kia',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/120px-Kia-logo.svg.png',models:6,color:'#05141f'},
-  {name:'Renault',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2021_Text.svg/120px-Renault_2021_Text.svg.png',models:4,color:'#efdf00'},
-  {name:'Volkswagen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/120px-Volkswagen_logo_2019.svg.png',models:5,color:'#001e50'},
-  {name:'Skoda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Skoda-auto-logo.svg/120px-Skoda-auto-logo.svg.png',models:4,color:'#4ba82e'},
-  {name:'MG',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MG_Motor_logo.svg/120px-MG_Motor_logo.svg.png',models:6,color:'#b22222'},
-  {name:'Jeep',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jeep_Logo.svg/120px-Jeep_Logo.svg.png',models:4,color:'#2e5fa3'},
-  {name:'Nissan',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Nissan_logo.svg/120px-Nissan_logo.svg.png',models:3,color:'#c3002f'},
-  {name:'BMW',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/120px-BMW.svg.png',models:15,color:'#0066b2'},
-  {name:'Mercedes-Benz',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/120px-Mercedes-Logo.svg.png',models:18,color:'#aaa'},
-  {name:'Audi',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/120px-Audi-Logo_2016.svg.png',models:12,color:'#bb0a14'},
-  {name:'Lexus',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Lexus_-_Logo.svg/120px-Lexus_-_Logo.svg.png',models:5,color:'#8a7256'},
-  {name:'Volvo',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Volvo_logo.svg/120px-Volvo_logo.svg.png',models:6,color:'#003057'},
-  {name:'Porsche',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Porsche_Logo.svg/120px-Porsche_Logo.svg.png',models:8,color:'#c0352a'},
-  {name:'Citroen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Citro%C3%ABn_logo.svg/120px-Citro%C3%ABn_logo.svg.png',models:3,color:'#e4141c'},
+  {name:'Maruti Suzuki',logo:'https://www.carlogos.org/car-logos/suzuki-logo-2000-full-640.png',models:14,color:'#0057a8'},
+  {name:'Hyundai',logo:'https://www.carlogos.org/car-logos/hyundai-logo-2017-640.png',models:12,color:'#002c5f'},
+  {name:'Tata',logo:'https://www.carlogos.org/car-logos/tata-logo-640.png',models:13,color:'#00529b'},
+  {name:'Mahindra',logo:'https://www.carlogos.org/car-logos/mahindra-logo-2000-640.png',models:11,color:'#cf0a2c'},
+  {name:'Honda',logo:'https://www.carlogos.org/car-logos/honda-logo-2000-full-640.png',models:7,color:'#cc0000'},
+  {name:'Toyota',logo:'https://www.carlogos.org/car-logos/toyota-logo-2019-640.png',models:9,color:'#eb0a1e'},
+  {name:'Kia',logo:'https://www.carlogos.org/car-logos/kia-logo-2021-640.png',models:6,color:'#05141f'},
+  {name:'Renault',logo:'https://www.carlogos.org/car-logos/renault-logo-2021-640.png',models:4,color:'#efdf00'},
+  {name:'Volkswagen',logo:'https://www.carlogos.org/car-logos/volkswagen-logo-2019-640.png',models:5,color:'#001e50'},
+  {name:'Skoda',logo:'https://www.carlogos.org/car-logos/skoda-logo-2016-640.png',models:4,color:'#4ba82e'},
+  {name:'MG',logo:'https://www.carlogos.org/car-logos/mg-logo-640.png',models:6,color:'#b22222'},
+  {name:'Jeep',logo:'https://www.carlogos.org/car-logos/jeep-logo-640.png',models:4,color:'#2e5fa3'},
+  {name:'Nissan',logo:'https://www.carlogos.org/car-logos/nissan-logo-2020-640.png',models:3,color:'#c3002f'},
+  {name:'BMW',logo:'https://www.carlogos.org/car-logos/bmw-logo-2020-gray-640.png',models:15,color:'#0066b2'},
+  {name:'Mercedes-Benz',logo:'https://www.carlogos.org/car-logos/mercedes-benz-logo-2011-640.png',models:18,color:'#aaa'},
+  {name:'Audi',logo:'https://www.carlogos.org/car-logos/audi-logo-2016-640.png',models:12,color:'#bb0a14'},
+  {name:'Lexus',logo:'https://www.carlogos.org/car-logos/lexus-logo-1988-640.png',models:5,color:'#8a7256'},
+  {name:'Volvo',logo:'https://www.carlogos.org/car-logos/volvo-logo-2014-640.png',models:6,color:'#003057'},
+  {name:'Porsche',logo:'https://www.carlogos.org/car-logos/porsche-logo-2008-640.png',models:8,color:'#c0352a'},
+  {name:'Citroen',logo:'https://www.carlogos.org/car-logos/citroen-logo-2022-640.png',models:3,color:'#e4141c'},
 ];
 
 const STATE_TAX={'Chandigarh':1.08,'Delhi':1.08,'Haryana':1.09,'Punjab':1.10,'Maharashtra':1.11,'Karnataka':1.13,'Tamil Nadu':1.10,'Gujarat':1.07,'Rajasthan':1.12,'Uttar Pradesh':1.11,'West Bengal':1.10,'Andhra Pradesh':1.12,'Telangana':1.11,'Kerala':1.13,'Madhya Pradesh':1.08,'Bihar':1.09,'Odisha':1.10,'Himachal Pradesh':1.09,'Uttarakhand':1.09,'Jharkhand':1.10,'Assam':1.11,'Chhattisgarh':1.09,'Goa':1.07};
 
 const CARS=[
-  {id:1,brand:'Tata',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',name:'Nexon',variant:'XZ+ (O) Dark',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'Manual/AMT',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'Smart',p:789900,f:'Petrol MT'},{n:'Pure',p:959900,f:'Petrol MT'},{n:'Creative+',p:1149900,f:'Petrol MT'},{n:'Fearless+',p:1369900,f:'Petrol AMT'},{n:'XZ+ Dark',p:1499900,f:'Petrol AMT'}],features:['Sunroof','Connected Car','Air Purifier','JBL Sound','Wireless Charging','ADAS Level 2','Ventilated Seats','Digital Cluster','360° Camera','Ambient Lighting','Cruise Control','Auto-dimming IRVM'],specs:{Length:'3993 mm',Width:'1811 mm',Height:'1606 mm',Wheelbase:'2498 mm','Boot Space':'350 L','Fuel Tank':'44 L','Ground Clearance':'208 mm','Kerb Weight':'1255 kg','Tyre Size':'215/60 R16',Airbags:'6',Warranty:'3yr / 1.25L km'}},
-  {id:2,brand:'Hyundai',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/120px-Hyundai_Motor_Company_logo.svg.png',name:'Creta',variant:'SX Tech (O)',body:'SUV',fuel:'Petrol',ex:1999000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'16.8 kmpl',trans:'7-DCT Auto',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚘',variants:[{n:'E',p:1099000,f:'Petrol MT'},{n:'EX',p:1299000,f:'Petrol MT'},{n:'S',p:1499000,f:'Petrol MT'},{n:'SX',p:1749000,f:'Petrol DCT'},{n:'SX Tech (O)',p:1999000,f:'Turbo DCT'}],features:['Panoramic Sunroof','ADAS Level 2','Bose Sound','Digital Key','Ventilated Seats','Wireless AA/CP','BlueLink Connected','360° Camera','Drive Modes','HUD','Ambient Lighting','Remote Start'],specs:{Length:'4310 mm',Width:'1790 mm',Height:'1635 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1375 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
-  {id:3,brand:'Maruti Suzuki',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',name:'Swift',variant:'ZXi+',body:'Hatchback',fuel:'Petrol',ex:979900,engine:'1.2L DualJet',power:'82 bhp',torque:'112 Nm',mileage:'24.8 kmpl',trans:'Manual/AMT',seats:5,safety:'3★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/159089/swift-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',emoji:'🏎',variants:[{n:'Lxi',p:679900,f:'Petrol MT'},{n:'Vxi',p:769900,f:'Petrol MT'},{n:'Zxi',p:879900,f:'Petrol MT'},{n:'ZXi+',p:979900,f:'Petrol AMT'}],features:['SmartPlay Pro+','Suzuki Connect','LED Headlamps','Cruise Control','Auto AC','Push Start','Alloys','Rear Camera','HUD','Speed Alert','Front Armrest','Steering Controls'],specs:{Length:'3860 mm',Width:'1735 mm',Height:'1530 mm',Wheelbase:'2450 mm','Boot Space':'268 L','Fuel Tank':'37 L','Ground Clearance':'163 mm','Kerb Weight':'905 kg','Tyre Size':'185/65 R15',Airbags:'6',Warranty:'2yr / 40000 km'}},
-  {id:4,brand:'Tata',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/120px-Tata_logo.svg.png',name:'Punch EV',variant:'Empowered+',body:'SUV',fuel:'Electric',ex:1399900,engine:'35 kWh Battery',power:'122 bhp',torque:'190 Nm',mileage:'421 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',emoji:'⚡',variants:[{n:'Smart',p:999900,f:'EV 25kWh'},{n:'Smart+',p:1099900,f:'EV 25kWh'},{n:'Adventure',p:1199900,f:'EV 35kWh'},{n:'Empowered+',p:1399900,f:'EV 35kWh'}],features:['V2L / V2V Charging','Arcade.ev OS','Wireless Charging','Air Purifier','ADAS','Sunroof','JBL Sound','Digital Cluster','360° Camera','DC Fast Charge','Leatherette Seats','Ambient Lighting'],specs:{Battery:'35 kWh',Range:'421 km (MIDC)','Fast Charge':'0-80% in 56 min','Home Charge':'~9.5 hrs',Wheelbase:'2445 mm','Boot Space':'366 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'140 kmph',Warranty:'3yr | Battery 8yr/1.6L km'}},
-  {id:5,brand:'Mahindra',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mahindra_Brand_Logo.jpg/120px-Mahindra_Brand_Logo.jpg',name:'Thar Roxx',variant:'MX5 AWD',body:'SUV',fuel:'Diesel',ex:2199900,engine:'2.2L mHawk',power:'175 bhp',torque:'370 Nm',mileage:'15.2 kmpl',trans:'6AT/6MT',seats:5,safety:'5★ GNCAP',tag:'new',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚐',variants:[{n:'MX1',p:1299900,f:'Petrol MT 2WD'},{n:'MX3',p:1599900,f:'Diesel MT 2WD'},{n:'AX5',p:1899900,f:'Diesel AT AWD'},{n:'MX5 AWD',p:2199900,f:'Diesel AT AWD'}],features:['Level 2 ADAS','Harman Kardon','Panoramic Sunroof','AWD Terrain Modes','12.3" Cluster','Wireless AA/CP','Snorkel Intake','Skid Plates','Ventilated Seats','Hill Descent','Off-road Camera','4-zone Ambient'],specs:{Length:'4428 mm',Width:'1870 mm',Height:'1923 mm',Wheelbase:'2850 mm','Boot Space':'645 L','Fuel Tank':'57 L','Ground Clearance':'226 mm','Approach Angle':'41.6°','Departure Angle':'36.7°',Airbags:'7',Warranty:'3yr / Unlimited'}},
-  {id:6,brand:'Kia',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/120px-Kia-logo.svg.png',name:'Seltos',variant:'X-Line GT',body:'SUV',fuel:'Petrol',ex:2099900,engine:'1.5L Turbo GDi',power:'158 bhp',torque:'253 Nm',mileage:'17.7 kmpl',trans:'7-DCT',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'EX',p:1099900,f:'Petrol MT'},{n:'HTX',p:1499900,f:'Petrol MT'},{n:'HTX+',p:1799900,f:'Diesel DCT'},{n:'X-Line GT',p:2099900,f:'Turbo DCT'}],features:['Panoramic Sunroof','Bose Audio','Level 2 ADAS','Connected Tech','Digital Cluster','HUD','Ventilated Seats','Meridian Sound','360° Camera','Ambient Light','6 Drive Modes','Remote Start'],specs:{Length:'4365 mm',Width:'1800 mm',Height:'1645 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1390 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
-  {id:7,brand:'Maruti Suzuki',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/120px-Suzuki_logo_2.svg.png',name:'Brezza',variant:'ZXi+',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.5L K15C',power:'102 bhp',torque:'137 Nm',mileage:'19.8 kmpl',trans:'Manual/Auto',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/153601/brezza-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'LXi',p:799900,f:'Petrol MT'},{n:'VXi',p:949900,f:'Petrol MT'},{n:'ZXi',p:1249900,f:'Petrol AT'},{n:'ZXi+',p:1499900,f:'Petrol AT'}],features:['Sunroof','Head-Up Display','Suzuki Connect','360° Camera','Wireless Charging','SmartPlay Pro','Ventilated Seats','LED DRLs','Auto AC','Push Start','Cruise Control','Rain Sensing Wipers'],specs:{Length:'3995 mm',Width:'1790 mm',Height:'1685 mm',Wheelbase:'2500 mm','Boot Space':'328 L','Fuel Tank':'48 L','Ground Clearance':'198 mm','Kerb Weight':'1175 kg','Tyre Size':'195/60 R16',Airbags:'6',Warranty:'2yr / 40000 km'}},
-  {id:8,brand:'Honda',brandLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/120px-Honda.svg.png',name:'City',variant:'ZX CVT',body:'Sedan',fuel:'Petrol',ex:1799900,engine:'1.5L i-VTEC',power:'119 bhp',torque:'145 Nm',mileage:'17.8 kmpl',trans:'CVT Automatic',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/134297/city-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'V',p:1149900,f:'Petrol MT'},{n:'VX',p:1399900,f:'Petrol MT'},{n:'ZX',p:1649900,f:'Petrol MT'},{n:'ZX CVT',p:1799900,f:'Petrol CVT'}],features:['LaneWatch Camera','Honda Connect','8" Touchscreen','Wireless AA/CP','LED Headlights','Paddle Shifters','Auto AC','Push Start','Walk Away Lock','Ventilated Seats','Rear Sunshade','Ambient Lighting'],specs:{Length:'4549 mm',Width:'1748 mm',Height:'1489 mm',Wheelbase:'2589 mm','Boot Space':'506 L','Fuel Tank':'40 L','Ground Clearance':'165 mm','Kerb Weight':'1160 kg','Tyre Size':'185/55 R16',Airbags:'6',Warranty:'3yr / Unlimited'}},
+  {id:1,brand:'Tata',brandLogo:'https://www.carlogos.org/car-logos/tata-logo-640.png',name:'Nexon',variant:'XZ+ (O) Dark',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'Manual/AMT',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'Smart',p:789900,f:'Petrol MT'},{n:'Pure',p:959900,f:'Petrol MT'},{n:'Creative+',p:1149900,f:'Petrol MT'},{n:'Fearless+',p:1369900,f:'Petrol AMT'},{n:'XZ+ Dark',p:1499900,f:'Petrol AMT'}],features:['Sunroof','Connected Car','Air Purifier','JBL Sound','Wireless Charging','ADAS Level 2','Ventilated Seats','Digital Cluster','360° Camera','Ambient Lighting','Cruise Control','Auto-dimming IRVM'],specs:{Length:'3993 mm',Width:'1811 mm',Height:'1606 mm',Wheelbase:'2498 mm','Boot Space':'350 L','Fuel Tank':'44 L','Ground Clearance':'208 mm','Kerb Weight':'1255 kg','Tyre Size':'215/60 R16',Airbags:'6',Warranty:'3yr / 1.25L km'}},
+  {id:2,brand:'Hyundai',brandLogo:'https://www.carlogos.org/car-logos/hyundai-logo-2017-640.png',name:'Creta',variant:'SX Tech (O)',body:'SUV',fuel:'Petrol',ex:1999000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'16.8 kmpl',trans:'7-DCT Auto',seats:5,safety:'5★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',emoji:'🚘',variants:[{n:'E',p:1099000,f:'Petrol MT'},{n:'EX',p:1299000,f:'Petrol MT'},{n:'S',p:1499000,f:'Petrol MT'},{n:'SX',p:1749000,f:'Petrol DCT'},{n:'SX Tech (O)',p:1999000,f:'Turbo DCT'}],features:['Panoramic Sunroof','ADAS Level 2','Bose Sound','Digital Key','Ventilated Seats','Wireless AA/CP','BlueLink Connected','360° Camera','Drive Modes','HUD','Ambient Lighting','Remote Start'],specs:{Length:'4310 mm',Width:'1790 mm',Height:'1635 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1375 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
+  {id:3,brand:'Maruti Suzuki',brandLogo:'https://www.carlogos.org/car-logos/suzuki-logo-2000-full-640.png',name:'Swift',variant:'ZXi+',body:'Hatchback',fuel:'Petrol',ex:979900,engine:'1.2L DualJet',power:'82 bhp',torque:'112 Nm',mileage:'24.8 kmpl',trans:'Manual/AMT',seats:5,safety:'3★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/159089/swift-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',emoji:'🏎',variants:[{n:'Lxi',p:679900,f:'Petrol MT'},{n:'Vxi',p:769900,f:'Petrol MT'},{n:'Zxi',p:879900,f:'Petrol MT'},{n:'ZXi+',p:979900,f:'Petrol AMT'}],features:['SmartPlay Pro+','Suzuki Connect','LED Headlamps','Cruise Control','Auto AC','Push Start','Alloys','Rear Camera','HUD','Speed Alert','Front Armrest','Steering Controls'],specs:{Length:'3860 mm',Width:'1735 mm',Height:'1530 mm',Wheelbase:'2450 mm','Boot Space':'268 L','Fuel Tank':'37 L','Ground Clearance':'163 mm','Kerb Weight':'905 kg','Tyre Size':'185/65 R15',Airbags:'6',Warranty:'2yr / 40000 km'}},
+  {id:4,brand:'Tata',brandLogo:'https://www.carlogos.org/car-logos/tata-logo-640.png',name:'Punch EV',variant:'Empowered+',body:'SUV',fuel:'Electric',ex:1399900,engine:'35 kWh Battery',power:'122 bhp',torque:'190 Nm',mileage:'421 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',emoji:'⚡',variants:[{n:'Smart',p:999900,f:'EV 25kWh'},{n:'Smart+',p:1099900,f:'EV 25kWh'},{n:'Adventure',p:1199900,f:'EV 35kWh'},{n:'Empowered+',p:1399900,f:'EV 35kWh'}],features:['V2L / V2V Charging','Arcade.ev OS','Wireless Charging','Air Purifier','ADAS','Sunroof','JBL Sound','Digital Cluster','360° Camera','DC Fast Charge','Leatherette Seats','Ambient Lighting'],specs:{Battery:'35 kWh',Range:'421 km (MIDC)','Fast Charge':'0-80% in 56 min','Home Charge':'~9.5 hrs',Wheelbase:'2445 mm','Boot Space':'366 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'140 kmph',Warranty:'3yr | Battery 8yr/1.6L km'}},
+  {id:5,brand:'Mahindra',brandLogo:'https://www.carlogos.org/car-logos/mahindra-logo-2000-640.png',name:'Thar Roxx',variant:'MX5 AWD',body:'SUV',fuel:'Diesel',ex:2199900,engine:'2.2L mHawk',power:'175 bhp',torque:'370 Nm',mileage:'15.2 kmpl',trans:'6AT/6MT',seats:5,safety:'5★ GNCAP',tag:'new',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚐',variants:[{n:'MX1',p:1299900,f:'Petrol MT 2WD'},{n:'MX3',p:1599900,f:'Diesel MT 2WD'},{n:'AX5',p:1899900,f:'Diesel AT AWD'},{n:'MX5 AWD',p:2199900,f:'Diesel AT AWD'}],features:['Level 2 ADAS','Harman Kardon','Panoramic Sunroof','AWD Terrain Modes','12.3" Cluster','Wireless AA/CP','Snorkel Intake','Skid Plates','Ventilated Seats','Hill Descent','Off-road Camera','4-zone Ambient'],specs:{Length:'4428 mm',Width:'1870 mm',Height:'1923 mm',Wheelbase:'2850 mm','Boot Space':'645 L','Fuel Tank':'57 L','Ground Clearance':'226 mm','Approach Angle':'41.6°','Departure Angle':'36.7°',Airbags:'7',Warranty:'3yr / Unlimited'}},
+  {id:6,brand:'Kia',brandLogo:'https://www.carlogos.org/car-logos/kia-logo-2021-640.png',name:'Seltos',variant:'X-Line GT',body:'SUV',fuel:'Petrol',ex:2099900,engine:'1.5L Turbo GDi',power:'158 bhp',torque:'253 Nm',mileage:'17.7 kmpl',trans:'7-DCT',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'EX',p:1099900,f:'Petrol MT'},{n:'HTX',p:1499900,f:'Petrol MT'},{n:'HTX+',p:1799900,f:'Diesel DCT'},{n:'X-Line GT',p:2099900,f:'Turbo DCT'}],features:['Panoramic Sunroof','Bose Audio','Level 2 ADAS','Connected Tech','Digital Cluster','HUD','Ventilated Seats','Meridian Sound','360° Camera','Ambient Light','6 Drive Modes','Remote Start'],specs:{Length:'4365 mm',Width:'1800 mm',Height:'1645 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1390 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited'}},
+  {id:7,brand:'Maruti Suzuki',brandLogo:'https://www.carlogos.org/car-logos/suzuki-logo-2000-full-640.png',name:'Brezza',variant:'ZXi+',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.5L K15C',power:'102 bhp',torque:'137 Nm',mileage:'19.8 kmpl',trans:'Manual/Auto',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/153601/brezza-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',emoji:'🚙',variants:[{n:'LXi',p:799900,f:'Petrol MT'},{n:'VXi',p:949900,f:'Petrol MT'},{n:'ZXi',p:1249900,f:'Petrol AT'},{n:'ZXi+',p:1499900,f:'Petrol AT'}],features:['Sunroof','Head-Up Display','Suzuki Connect','360° Camera','Wireless Charging','SmartPlay Pro','Ventilated Seats','LED DRLs','Auto AC','Push Start','Cruise Control','Rain Sensing Wipers'],specs:{Length:'3995 mm',Width:'1790 mm',Height:'1685 mm',Wheelbase:'2500 mm','Boot Space':'328 L','Fuel Tank':'48 L','Ground Clearance':'198 mm','Kerb Weight':'1175 kg','Tyre Size':'195/60 R16',Airbags:'6',Warranty:'2yr / 40000 km'}},
+  {id:8,brand:'Honda',brandLogo:'https://www.carlogos.org/car-logos/honda-logo-2000-full-640.png',name:'City',variant:'ZX CVT',body:'Sedan',fuel:'Petrol',ex:1799900,engine:'1.5L i-VTEC',power:'119 bhp',torque:'145 Nm',mileage:'17.8 kmpl',trans:'CVT Automatic',seats:5,safety:'4★ GNCAP',tag:'hot',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/134297/city-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80',emoji:'🚗',variants:[{n:'V',p:1149900,f:'Petrol MT'},{n:'VX',p:1399900,f:'Petrol MT'},{n:'ZX',p:1649900,f:'Petrol MT'},{n:'ZX CVT',p:1799900,f:'Petrol CVT'}],features:['LaneWatch Camera','Honda Connect','8" Touchscreen','Wireless AA/CP','LED Headlights','Paddle Shifters','Auto AC','Push Start','Walk Away Lock','Ventilated Seats','Rear Sunshade','Ambient Lighting'],specs:{Length:'4549 mm',Width:'1748 mm',Height:'1489 mm',Wheelbase:'2589 mm','Boot Space':'506 L','Fuel Tank':'40 L','Ground Clearance':'165 mm','Kerb Weight':'1160 kg','Tyre Size':'185/55 R16',Airbags:'6',Warranty:'3yr / Unlimited'}},
 ];
 
 const UPCOMING=[
@@ -938,6 +936,7 @@ let user=null, wishlist=JSON.parse(localStorage.getItem('td_wish')||'[]'), activ
 // INIT
 // ═══════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded',()=>{
+  buildAllCars();
   buildBrandStrip();buildBrandGrid();buildTeaserCars();buildUpcoming();calcEmi();
   const saved=localStorage.getItem('td_user');if(saved){user=JSON.parse(saved);onLogin();}
   observeFadeIns();
@@ -983,7 +982,7 @@ function carHTML(car,interactive=true){
   return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" ${onClickWish}>${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.brandLogo}" alt="${car.brand}" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span><span class="car-cta">View Details →</span></div></div>`;
 }
 
-function buildTeaserCars(){document.getElementById('teaser-grid').innerHTML=CARS.slice(0,3).map(c=>carHTML(c,false)).join('')}
+function buildTeaserCars(){document.getElementById('teaser-grid').innerHTML=CARS.slice(0,3).map(c=>carHTML(c,true)).join('')}
 
 function buildAllCars(data){
   const grid=document.getElementById('all-cars-grid');
@@ -1001,7 +1000,6 @@ function buildUpcoming(){
 
 // ─── CAR DETAIL
 function openCarDetail(id){
-  if(!user){openModal('login-modal');return}
   const car=CARS.find(c=>c.id==id);if(!car)return;
   activeCar=car;
   document.getElementById('cdm-brand').textContent=car.brand;
@@ -1056,7 +1054,7 @@ function applyFilters(){
   });
   buildAllCars(r);
 }
-function filterByBrand(brand){if(!user){openModal('login-modal');return}document.getElementById('all-cars-sec').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.getElementById('fb').value=brand;applyFilters()},400)}
+function filterByBrand(brand){document.getElementById('all-cars-sec').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.getElementById('fb').value=brand;applyFilters()},400)}
 
 // ─── SEARCH
 function doHeroSearch(){
@@ -1069,14 +1067,26 @@ function doHeroSearch(){
   setTimeout(()=>buildAllCars(found.length?found:CARS),400);
 }
 function setHeroState(){selState=document.getElementById('hero-state').value||'Chandigarh'}
+function quickSearch(q){
+  const qmap={'under 10 lakh':{budget:'500000-1000000'},'best mileage':{sort:'mileage'},'electric':{fuel:'Electric'},'suv':{body:'SUV'},'family car':{body:'MUV'},'sedan':{body:'Sedan'}};
+  const cfg=qmap[q]||{};
+  document.getElementById('all-cars-sec').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    if(cfg.budget)document.getElementById('fpr').value=cfg.budget;
+    if(cfg.fuel)document.getElementById('ff').value=cfg.fuel;
+    if(cfg.body)document.getElementById('fbo').value=cfg.body;
+    applyFilters();
+  },400);
+}
 
 // ─── AUTH
 function doLogin(){const e=document.getElementById('li-email').value.trim(),p=document.getElementById('li-pass').value;if(!e||!p){toast('Please fill all fields','info');return}if(!e.includes('@')){toast('Enter valid email','info');return}loginAs({name:e.split('@')[0],email:e})}
 function doRegister(){const n=document.getElementById('rg-name').value.trim(),e=document.getElementById('rg-email').value.trim(),p=document.getElementById('rg-pass').value;if(!n||!e||!p){toast('Please fill all fields','info');return}if(!e.includes('@')){toast('Enter valid email','info');return}if(p.length<6){toast('Password min. 6 chars','info');return}loginAs({name:n,email:e})}
 function socialAuth(provider){loginAs({name:provider+' User',email:provider.toLowerCase()+'@user.com'})}
 function loginAs(u){user=u;localStorage.setItem('td_user',JSON.stringify(u));closeAll();onLogin();toast(`Welcome, ${u.name.split(' ')[0]}! 🎉`,'success')}
-function onLogin(){document.getElementById('nav-guest').style.display='none';document.getElementById('nav-user').style.display='flex';const i=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);document.getElementById('uav').textContent=i;document.getElementById('unm').textContent=user.name.split(' ')[0];document.getElementById('lock-wall-el').style.display='none';document.getElementById('loggedin-zone').style.display='block';buildAllCars();buildWishlist();}
-function doLogout(){user=null;localStorage.removeItem('td_user');document.getElementById('nav-guest').style.display='flex';document.getElementById('nav-user').style.display='none';document.getElementById('lock-wall-el').style.display='flex';document.getElementById('loggedin-zone').style.display='none';toast('Logged out','info')}
+function onLogin(){document.getElementById('nav-guest').style.display='none';document.getElementById('nav-user').style.display='flex';const i=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);document.getElementById('uav').textContent=i;document.getElementById('unm').textContent=user.name.split(' ')[0];// lock wall already removedbuildWishlist();
+  const nudge=document.getElementById('signup-nudge-bar');if(nudge)nudge.style.display='none';}
+function doLogout(){user=null;localStorage.removeItem('td_user');document.getElementById('nav-guest').style.display='flex';document.getElementById('nav-user').style.display='none';toast('Logged out','info')}
 
 // ─── EMI
 function calcEmi(){
@@ -1105,7 +1115,7 @@ let tTimer;function toast(msg,type='info'){const t=document.getElementById('toas
 
 // ─── UTILS
 function sScroll(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
-function requireLoginAction(action){if(!user){openModal('login-modal');return}if(action==='compare'){document.getElementById('compare-bar').classList.add('visible');toast('Select cars using ⚖ button on any card','info')}}
+function requireLoginAction(action){if(action==='compare'){if(!user){openModal('login-modal');return}document.getElementById('compare-bar').classList.add('visible');toast('Select cars using ⚖ button on any card','info')}}
 
 // ─── NAV SCROLL EFFECT
 window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>60)});
@@ -1207,15 +1217,119 @@ function resetAi(){for(let i=1;i<=4;i++){const s=document.getElementById('ai-s'+
 // ═══════════════════════════════════════════════════════
 // NEWS RENDER
 // ═══════════════════════════════════════════════════════
-const NEWS=[
-  {cat:'Launch',title:'Tata Sierra EV officially confirmed for India launch in late 2025',meta:'3 days ago · Tata Motors',emoji:'⚡'},
-  {cat:'Review',title:'Mahindra Thar Roxx long-term: 6 months, 12,000 km — full verdict',meta:'1 week ago · Tendoon Drive',emoji:'🚙'},
-  {cat:'Price Update',title:'Maruti Swift prices hiked by ₹15,000 across all variants from April 2025',meta:'2 weeks ago · Maruti Suzuki',emoji:'💰'},
-  {cat:'EV',title:'India EV sales cross 2 lakh units in a single month for the first time ever',meta:'5 days ago · SIAM Data',emoji:'📊'},
-  {cat:'Upcoming',title:'Hyundai Creta Electric N-Line teased — sportier design, performance tuning',meta:'4 days ago · Hyundai India',emoji:'🔥'},
-  {cat:'Policy',title:'New BH series number plate rules 2025: Everything car buyers need to know',meta:'3 weeks ago · RTO India',emoji:'📋'},
+// ── LIVE NEWS from RSS feeds (Indian car news)
+const NEWS_FALLBACK=[
+  {cat:'Launch',title:'Tata Sierra EV confirmed for India — iconic nameplate returns electric',img:'',source:'AutoCar India',date:'2 days ago'},
+  {cat:'Review',title:'Mahindra Thar Roxx: 6 months, 12,000 km ownership review — full verdict',img:'',source:'CarDekho',date:'1 week ago'},
+  {cat:'Price',title:'Maruti Swift 2025 prices revised — new variants, updated features explained',img:'',source:'ZigWheels',date:'3 days ago'},
+  {cat:'EV',title:'India EV sales cross 2 lakh units in a single month for the first time ever',img:'',source:'SIAM India',date:'5 days ago'},
+  {cat:'Upcoming',title:'Hyundai Creta EV N-Line teased ahead of India reveal — sporty design, more range',img:'',source:'AutoCar India',date:'4 days ago'},
+  {cat:'Policy',title:'New BH series number plate rules 2025: complete guide for car buyers',img:'',source:'Government of India',date:'2 weeks ago'},
+  {cat:'Launch',title:'MG Windsor EV Pro launched — new variants, longer range, premium interior',img:'',source:'CarWale',date:'1 day ago'},
+  {cat:'Awards',title:'India Car of the Year 2025: Tata Curvv EV takes top honours',img:'',source:'ICOTY',date:'3 weeks ago'},
+  {cat:'Tech',title:'ADAS Level 2 mandatory for all new cars from 2026 — SIAM confirms',img:'',source:'AutoDesk India',date:'6 days ago'},
 ];
-function buildNews(){const g=document.getElementById('news-grid');if(g)g.innerHTML=NEWS.map(n=>`<div class="news-card fade-in"><div class="news-img">${n.emoji}</div><div class="news-body"><div class="news-cat">${n.cat}</div><div class="news-title">${n.title}</div><div class="news-meta">${n.meta}</div></div></div>`).join('')}
+
+// Category color map
+const NEWS_CATS={Launch:'#FF3B30',Review:'#7c3aed',Price:'#f59e0b',EV:'#22c55e',Upcoming:'#c9a84c',Policy:'#9896a4',Awards:'#f59e0b',Tech:'#38bdf8'};
+
+// Emoji map for img fallback
+const NEWS_EMOJI={Launch:'🚀',Review:'⭐',Price:'💰',EV:'⚡',Upcoming:'🔮',Policy:'📋',Awards:'🏆',Tech:'🤖'};
+
+async function fetchLiveNews(){
+  const g=document.getElementById('news-grid');
+  if(!g)return;
+  
+  // Show skeleton loader
+  g.innerHTML=Array(6).fill(0).map(()=>`
+    <div class="news-card" style="pointer-events:none">
+      <div class="news-img" style="background:linear-gradient(90deg,var(--bg3) 25%,var(--s) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite"></div>
+      <div class="news-body">
+        <div style="height:10px;background:var(--b2);border-radius:4px;width:40%;margin-bottom:.6rem;animation:shimmer 1.5s infinite"></div>
+        <div style="height:14px;background:var(--b2);border-radius:4px;margin-bottom:.4rem;animation:shimmer 1.5s infinite"></div>
+        <div style="height:14px;background:var(--b2);border-radius:4px;width:70%;animation:shimmer 1.5s infinite"></div>
+      </div>
+    </div>`).join('');
+
+  try{
+    // Use RSS2JSON API to fetch ZigWheels India car news (free, no key)
+    const rssUrl=encodeURIComponent('https://www.zigwheels.com/news-views/rss.xml');
+    const apiUrl=`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}&api_key=free&count=9`;
+    
+    const res=await fetch(apiUrl,{signal:AbortSignal.timeout(6000)});
+    if(!res.ok)throw new Error('RSS fetch failed');
+    const data=await res.json();
+    
+    if(data.status==='ok'&&data.items&&data.items.length>0){
+      const items=data.items.slice(0,9);
+      g.innerHTML=items.map(item=>{
+        // Extract image from content or use thumbnail
+        let imgSrc=item.thumbnail||item.enclosure?.link||'';
+        // Parse pub date
+        const d=new Date(item.pubDate);
+        const now=new Date();
+        const diff=Math.floor((now-d)/86400000);
+        const dateStr=diff===0?'Today':diff===1?'Yesterday':`${diff} days ago`;
+        // Detect category from title
+        const t=item.title.toLowerCase();
+        const cat=t.includes('launch')||t.includes('launched')?'Launch':
+          t.includes('review')?'Review':t.includes('price')||t.includes('cost')?'Price':
+          t.includes('ev')||t.includes('electric')?'EV':t.includes('upcoming')||t.includes('2025')||t.includes('2026')?'Upcoming':
+          t.includes('award')?'Awards':'News';
+        const catColor=NEWS_CATS[cat]||'#9896a4';
+        const emoji=NEWS_EMOJI[cat]||'🚗';
+        const imgHTML=imgSrc
+          ?`<img src="${imgSrc}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=\"font-size:2.5rem\">${emoji}</span>'">`
+          :`<span style="font-size:2.5rem">${emoji}</span>`;
+        return`<div class="news-card fade-in" onclick="window.open('${item.link}','_blank')">
+          <div class="news-img">${imgHTML}</div>
+          <div class="news-body">
+            <div class="news-cat" style="color:${catColor}">${cat}</div>
+            <div class="news-title">${item.title}</div>
+            <div class="news-meta">${dateStr} · ZigWheels India</div>
+          </div>
+        </div>`;
+      }).join('');
+      
+      // Re-observe fade-ins
+      document.querySelectorAll('#news-grid .fade-in').forEach(el=>{
+        el.classList.add('visible');
+      });
+      return;
+    }
+    throw new Error('No items');
+  }catch(e){
+    console.warn('Live news fetch failed, using fallback:',e.message);
+    renderFallbackNews();
+  }
+}
+
+function renderFallbackNews(){
+  const g=document.getElementById('news-grid');
+  if(!g)return;
+  g.innerHTML=NEWS_FALLBACK.map(n=>{
+    const catColor=NEWS_CATS[n.cat]||'#9896a4';
+    const emoji=NEWS_EMOJI[n.cat]||'🚗';
+    return`<div class="news-card fade-in">
+      <div class="news-img"><span style="font-size:2.5rem">${emoji}</span></div>
+      <div class="news-body">
+        <div class="news-cat" style="color:${catColor}">${n.cat}</div>
+        <div class="news-title">${n.title}</div>
+        <div class="news-meta">${n.date} · ${n.source}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Shimmer animation for skeleton
+if(!document.querySelector('#shimmer-style')){
+  const s=document.createElement('style');
+  s.id='shimmer-style';
+  s.textContent='@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}';
+  document.head.appendChild(s);
+}
+
+function buildNews(){fetchLiveNews();}
 
 // ═══════════════════════════════════════════════════════
 // UPDATED carHTML WITH COMPARE BUTTON
@@ -1243,7 +1357,7 @@ window.addEventListener('DOMContentLoaded',buildNews);
 // ═══════════════════════════════════════════════════════
 const HERO_SLIDES=[
   {bg:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',name:'Tata','model':'Nexon'},
-  {bg:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',name:'Hyundai',model:'Creta'},
+  {bg:'https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=1600&q=80',car:'https://stimg.cardekho.com/images/carexteriorimages/930x620/Hyundai/Creta/10839/1697524569740/front-left-side-47.jpg?tr=w-456',name:'Hyundai',model:'Creta'},
   {bg:'https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',name:'Mahindra',model:'Thar Roxx'},
   {bg:'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',name:'Tata',model:'Punch EV'},
   {bg:'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',name:'Kia',model:'Seltos'},
@@ -1310,27 +1424,28 @@ function startHeroAuto(){
 // Override BRANDS with logo URLs that use multiple fallback strategies
 // Logos using direct brand CDN / Wikimedia
 BRANDS.forEach(b=>{
+  // Use absolute logo URLs that render correctly (PNG format, no SVG rendering issues)
   const logoMap={
-    'Maruti Suzuki':'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/200px-Suzuki_logo_2.svg.png',
-    'Hyundai':'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/200px-Hyundai_Motor_Company_logo.svg.png',
-    'Tata':'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/200px-Tata_logo.svg.png',
-    'Mahindra':'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mahindra_%26_Mahindra.svg/200px-Mahindra_%26_Mahindra.svg.png',
-    'Honda':'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/200px-Honda.svg.png',
-    'Toyota':'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/200px-Toyota_carlogo.svg.png',
-    'Kia':'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/200px-Kia-logo.svg.png',
-    'Renault':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2021_Text.svg/200px-Renault_2021_Text.svg.png',
-    'Volkswagen':'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/200px-Volkswagen_logo_2019.svg.png',
-    'Skoda':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Skoda-auto-logo.svg/200px-Skoda-auto-logo.svg.png',
-    'MG':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MG_Motor_logo.svg/200px-MG_Motor_logo.svg.png',
-    'Jeep':'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jeep_Logo.svg/200px-Jeep_Logo.svg.png',
-    'Nissan':'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Nissan_logo.svg/200px-Nissan_logo.svg.png',
-    'BMW':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/200px-BMW.svg.png',
-    'Mercedes-Benz':'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/200px-Mercedes-Logo.svg.png',
-    'Audi':'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/200px-Audi-Logo_2016.svg.png',
-    'Lexus':'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Lexus_-_Logo.svg/200px-Lexus_-_Logo.svg.png',
-    'Volvo':'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Volvo_logo.svg/200px-Volvo_logo.svg.png',
-    'Porsche':'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Porsche_Logo.svg/200px-Porsche_Logo.svg.png',
-    'Citroen':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Citro%C3%ABn_logo.svg/200px-Citro%C3%ABn_logo.svg.png',
+    'Maruti Suzuki':'https://www.carlogos.org/car-logos/suzuki-logo-2000-full-640.png',
+    'Hyundai':'https://www.carlogos.org/car-logos/hyundai-logo-2017-640.png',
+    'Tata':'https://www.carlogos.org/car-logos/tata-logo-640.png',
+    'Mahindra':'https://www.carlogos.org/car-logos/mahindra-logo-2000-640.png',
+    'Honda':'https://www.carlogos.org/car-logos/honda-logo-2000-full-640.png',
+    'Toyota':'https://www.carlogos.org/car-logos/toyota-logo-2019-640.png',
+    'Kia':'https://www.carlogos.org/car-logos/kia-logo-2021-640.png',
+    'Renault':'https://www.carlogos.org/car-logos/renault-logo-2021-640.png',
+    'Volkswagen':'https://www.carlogos.org/car-logos/volkswagen-logo-2019-640.png',
+    'Skoda':'https://www.carlogos.org/car-logos/skoda-logo-2016-640.png',
+    'MG':'https://www.carlogos.org/car-logos/mg-logo-640.png',
+    'Jeep':'https://www.carlogos.org/car-logos/jeep-logo-640.png',
+    'Nissan':'https://www.carlogos.org/car-logos/nissan-logo-2020-640.png',
+    'BMW':'https://www.carlogos.org/car-logos/bmw-logo-2020-gray-640.png',
+    'Mercedes-Benz':'https://www.carlogos.org/car-logos/mercedes-benz-logo-2011-640.png',
+    'Audi':'https://www.carlogos.org/car-logos/audi-logo-2016-640.png',
+    'Lexus':'https://www.carlogos.org/car-logos/lexus-logo-1988-640.png',
+    'Volvo':'https://www.carlogos.org/car-logos/volvo-logo-2014-640.png',
+    'Porsche':'https://www.carlogos.org/car-logos/porsche-logo-2008-640.png',
+    'Citroen':'https://www.carlogos.org/car-logos/citroen-logo-2022-640.png',
   };
   if(logoMap[b.name])b.logo=logoMap[b.name];
 });
