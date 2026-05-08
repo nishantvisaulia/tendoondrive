@@ -910,7 +910,7 @@ const STATE_TAX={'Chandigarh':1.08,'Delhi':1.08,'Haryana':1.09,'Punjab':1.10,'Ma
 
 const CARS=[
   // ── TATA ─────────────────────────────────────────────────────
-  {id:1,brand:'Tata',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/240px-Tata_logo.svg.png',name:'Nexon',variant:'XZ+ (O) Dark Edition',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo Revotron',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'6MT / 6AMT',seats:5,safety:'5★ GNCAP',tag:'hot',
+  {id:1,brand:'Tata',bLogo:'https://1000logos.net/wp-content/uploads/2020/04/Tata-logo.png',name:'Nexon',variant:'XZ+ (O) Dark Edition',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo Revotron',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'6MT / 6AMT',seats:5,safety:'5★ GNCAP',tag:'hot',
    img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
    variants:[{n:'Smart',p:789900,f:'Petrol MT'},{n:'Smart+ S',p:889900,f:'Petrol MT'},{n:'Pure+',p:959900,f:'Petrol MT'},{n:'Creative+',p:1149900,f:'Petrol MT'},{n:'Fearless+',p:1369900,f:'Petrol AMT'},{n:'XZ+ Dark',p:1499900,f:'Petrol AMT'}],
    features:['Sunroof','ADAS Level 2','Air Purifier','JBL 9-Speaker','Wireless Charging','Ventilated Seats','12.3" Digital Cluster','360° Camera','64-Colour Ambient Light','Cruise Control','Auto-dimming IRVM','Connected Car 2.0'],
@@ -1110,7 +1110,7 @@ function buildBrandStrip(){
   track.innerHTML=doubled.map(b=>`<div class="brand-chip" onclick="filterByBrand('${b.name}')">
     <img src="${b.logo}" alt="${b.name}" width="26" height="26"
       style="width:26px;height:26px;object-fit:contain;flex-shrink:0;filter:brightness(.75)"
-      onerror="this.style.display='none'"
+      onerror="this.src='/assets/fallback-car.jpg'"
       onload="this.style.filter='brightness(.85)'"
     >
     <span class="brand-chip-name">${b.name}</span>
