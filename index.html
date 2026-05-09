@@ -40,6 +40,10 @@ body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--t);overfl
 .orb{will-change:transform}
 @media(max-width:768px){.orb{display:none}.grid-lines{display:none}.hero-car-img{width:110%;max-width:unset}}
 
+
+/* ─── BRAND LOGO data-URI rendering ─────────────────────*/
+.bc-logo-wrap img{border-radius:50%;display:block}
+.brand-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
 /* ─── SCROLLBAR ──────────────────────────────────────────*/
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -882,203 +886,203 @@ nav.scrolled{background:rgba(6,6,15,0.97);box-shadow:0 4px 30px rgba(0,0,0,.5)}
 
 <script>
 // ═══════════════════════════════════════════════════════
-const BRANDS=[
-  {name:'Maruti Suzuki',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/240px-Suzuki_logo_2.svg.png',models:16,color:'#0057a8'},
-  {name:'Hyundai',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',models:14,color:'#002c5f'},
-  {name:'Tata',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/240px-Tata_logo.svg.png',models:15,color:'#00529b'},
-  {name:'Mahindra',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mahindra_%26_Mahindra.svg/240px-Mahindra_%26_Mahindra.svg.png',models:13,color:'#cf0a2c'},
-  {name:'Honda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/240px-Honda.svg.png',models:8,color:'#cc0000'},
-  {name:'Toyota',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/240px-Toyota_carlogo.svg.png',models:10,color:'#eb0a1e'},
-  {name:'Kia',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/240px-Kia-logo.svg.png',models:7,color:'#05141f'},
-  {name:'Renault',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2021_Text.svg/240px-Renault_2021_Text.svg.png',models:5,color:'#f0c000'},
-  {name:'Volkswagen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/240px-Volkswagen_logo_2019.svg.png',models:6,color:'#001e50'},
-  {name:'Skoda',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Skoda-auto-logo.svg/240px-Skoda-auto-logo.svg.png',models:5,color:'#4ba82e'},
-  {name:'MG',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MG_Motor_logo.svg/240px-MG_Motor_logo.svg.png',models:6,color:'#b22222'},
-  {name:'Jeep',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jeep_Logo.svg/240px-Jeep_Logo.svg.png',models:4,color:'#2e5fa3'},
-  {name:'Nissan',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Nissan_logo.svg/240px-Nissan_logo.svg.png',models:3,color:'#c3002f'},
-  {name:'BMW',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/240px-BMW.svg.png',models:15,color:'#0066b2'},
-  {name:'Mercedes-Benz',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/240px-Mercedes-Logo.svg.png',models:18,color:'#888'},
-  {name:'Audi',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/240px-Audi-Logo_2016.svg.png',models:12,color:'#bb0a14'},
-  {name:'Lexus',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Lexus_-_Logo.svg/240px-Lexus_-_Logo.svg.png',models:5,color:'#8a7256'},
-  {name:'Volvo',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Volvo_logo.svg/240px-Volvo_logo.svg.png',models:6,color:'#003057'},
-  {name:'Porsche',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Porsche_Logo.svg/240px-Porsche_Logo.svg.png',models:8,color:'#c0352a'},
-  {name:'Citroen',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Citro%C3%ABn_logo.svg/240px-Citro%C3%ABn_logo.svg.png',models:3,color:'#e4141c'},
-  {name:'Force',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Force_Motors_logo.svg/240px-Force_Motors_logo.svg.png',models:2,color:'#1a3c6e'},
-];
 
+const BRANDS=[
+  {name:'Maruti Suzuki',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/suzuki.png',models:16,color:'#0057a8'},
+  {name:'Hyundai',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/hyundai.png',models:14,color:'#002c5f'},
+  {name:'Tata',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/tata.jpg',models:15,color:'#00529b'},
+  {name:'Mahindra',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mahindra.webp',models:13,color:'#cf0a2c'},
+  {name:'Honda',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/honda.jpg',models:8,color:'#cc0000'},
+  {name:'Toyota',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/toyota.png',models:10,color:'#eb0a1e'},
+  {name:'Kia',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/kia.png',models:7,color:'#05141f'},
+  {name:'Renault',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/renault.webp',models:5,color:'#efb600'},
+  {name:'Volkswagen',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/vw.png',models:6,color:'#001e50'},
+  {name:'Skoda',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/skoda.png',models:5,color:'#4ba82e'},
+  {name:'MG',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mg.webp',models:6,color:'#b22222'},
+  {name:'Jeep',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/jeep.png',models:4,color:'#2e5fa3'},
+  {name:'Nissan',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/nissan.webp',models:3,color:'#c3002f'},
+  {name:'BMW',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/bmw.webp',models:15,color:'#0066b2'},
+  {name:'Mercedes-Benz',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mercedes.png',models:18,color:'#222'},
+  {name:'Audi',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/audi.png',models:12,color:'#bb0a14'},
+  {name:'Lexus',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/lexus.jpg',models:5,color:'#8a7256'},
+  {name:'Volvo',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/volvo.png',models:6,color:'#003057'},
+  {name:'Porsche',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/porshe.webp',models:8,color:'#c0352a'},
+  {name:'Citroen',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/citroen.jpg',models:3,color:'#e4141c'},
+  {name:'Force',logo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/force.png',models:2,color:'#1a3c6e'},
+];
 const STATE_TAX={'Chandigarh':1.08,'Delhi':1.08,'Haryana':1.09,'Punjab':1.10,'Maharashtra':1.11,'Karnataka':1.13,'Tamil Nadu':1.10,'Gujarat':1.07,'Rajasthan':1.12,'Uttar Pradesh':1.11,'West Bengal':1.10,'Andhra Pradesh':1.12,'Telangana':1.11,'Kerala':1.13,'Madhya Pradesh':1.08,'Bihar':1.09,'Odisha':1.10,'Himachal Pradesh':1.09,'Uttarakhand':1.09,'Jharkhand':1.10,'Assam':1.11,'Chhattisgarh':1.09,'Goa':1.07};
 
 const CARS=[
   // ── TATA ─────────────────────────────────────────────────────
-  {id:1,brand:'Tata',bLogo:'https://1000logos.net/wp-content/uploads/2020/04/Tata-logo.png',name:'Nexon',variant:'XZ+ (O) Dark Edition',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo Revotron',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'6MT / 6AMT',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:1,brand:'Tata',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/tata.jpg',name:'Nexon',variant:'XZ+ (O) Dark Edition',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L Turbo Revotron',power:'120 bhp',torque:'170 Nm',mileage:'17.4 kmpl',trans:'6MT / 6AMT',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&q=80',
    variants:[{n:'Smart',p:789900,f:'Petrol MT'},{n:'Smart+ S',p:889900,f:'Petrol MT'},{n:'Pure+',p:959900,f:'Petrol MT'},{n:'Creative+',p:1149900,f:'Petrol MT'},{n:'Fearless+',p:1369900,f:'Petrol AMT'},{n:'XZ+ Dark',p:1499900,f:'Petrol AMT'}],
    features:['Sunroof','ADAS Level 2','Air Purifier','JBL 9-Speaker','Wireless Charging','Ventilated Seats','12.3" Digital Cluster','360° Camera','64-Colour Ambient Light','Cruise Control','Auto-dimming IRVM','Connected Car 2.0'],
    specs:{Length:'3993 mm',Width:'1811 mm',Height:'1606 mm',Wheelbase:'2498 mm','Boot Space':'350 L','Fuel Tank':'44 L','Ground Clearance':'208 mm','Kerb Weight':'1255 kg','Tyre Size':'215/60 R16',Airbags:'6','Front Suspension':'McPherson Strut','Rear Suspension':'Twist Beam',Warranty:'3yr / 1.25L km','Colors':'Pristine White, Calgary White, Flame Red, Daytona Grey, Fearless Purple, Tropical Mist'}},
 
-  {id:2,brand:'Tata',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/240px-Tata_logo.svg.png',name:'Punch EV',variant:'Empowered+ S',body:'SUV',fuel:'Electric',ex:1399900,engine:'35 kWh Battery',power:'122 bhp',torque:'190 Nm',mileage:'421 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',
+  {id:2,brand:'Tata',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/tata.jpg',name:'Punch EV',variant:'Empowered+ S',body:'SUV',fuel:'Electric',ex:1399900,engine:'35 kWh Battery',power:'122 bhp',torque:'190 Nm',mileage:'421 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',
+   img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=700&q=80',
    variants:[{n:'Smart',p:999900,f:'EV 25kWh'},{n:'Smart+',p:1099900,f:'EV 25kWh'},{n:'Adventure',p:1199900,f:'EV 35kWh'},{n:'Empowered',p:1299900,f:'EV 35kWh'},{n:'Empowered+',p:1399900,f:'EV 35kWh'}],
    features:['V2L / V2V Charging','Arcade.ev OS','Wireless Charging','Air Purifier','ADAS Level 2','Sunroof','JBL Sound','12.3" Digital Cluster','360° Camera','DC Fast Charge (50kW)','AC Home Charge','Leatherette Seats'],
    specs:{Battery:'35 kWh',Range:'421 km (MIDC)','Fast Charge':'0-80% in 56 min','AC Charge':'0-100% in ~9.5 hrs',Wheelbase:'2445 mm','Boot Space':'366 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'140 kmph','Charging Port':'CCS2',Warranty:'3yr car | Battery 8yr/1.6L km','Colors':'Pristine White, Flame Red, Daytona Grey, Fearless Purple, Empowered Oxide'}},
 
-  {id:3,brand:'Tata',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/240px-Tata_logo.svg.png',name:'Harrier',variant:'Accomplished+ AT Dual-Tone',body:'SUV',fuel:'Diesel',ex:2499900,engine:'2.0L Kryotec Diesel',power:'170 bhp',torque:'350 Nm',mileage:'16.78 kmpl',trans:'6-Speed AT',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/196049/harrier-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',
+  {id:3,brand:'Tata',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/tata.jpg',name:'Harrier',variant:'Accomplished+ AT Dual-Tone',body:'SUV',fuel:'Diesel',ex:2499900,engine:'2.0L Kryotec Diesel',power:'170 bhp',torque:'350 Nm',mileage:'16.78 kmpl',trans:'6-Speed AT',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&q=80',
    variants:[{n:'Smart',p:1499900,f:'Diesel MT'},{n:'Pure',p:1749900,f:'Diesel MT'},{n:'Creative',p:1999900,f:'Diesel AT'},{n:'Accomplished',p:2249900,f:'Diesel AT'},{n:'Accomplished+',p:2499900,f:'Diesel AT'}],
    features:['ADAS Level 2 (20+ features)','10.25" Infotainment','JBL 9-Speaker','Panoramic Sunroof','Ventilated + Heated Seats','360° Camera','Connected Car 2.0','Isofix x2','Auto Parking Assist','PM2.5 Air Purifier','65-colour Ambient Light','Wireless Charging'],
    specs:{Length:'4598 mm',Width:'1894 mm',Height:'1706 mm',Wheelbase:'2741 mm','Boot Space':'425 L','Fuel Tank':'50 L','Ground Clearance':'205 mm','Kerb Weight':'1810 kg','Tyre Size':'235/65 R17',Airbags:'7','Platform':'D8 Land Rover Derived',Seating:'5 seats',Warranty:'3yr / 1.25L km','Colors':'Orcus White, Oberon Black, Calypso Red, Telesto Grey, Daytona Grey'}},
 
-  {id:4,brand:'Tata',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/240px-Tata_logo.svg.png',name:'Curvv EV',variant:'Empowered+ S AWD',body:'SUV',fuel:'Electric',ex:2199900,engine:'55 kWh Battery',power:'167 bhp',torque:'215 Nm',mileage:'502 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'new',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/179463/curvv-ev-exterior-right-front-three-quarter-8.jpeg?isig=0&q=80',
+  {id:4,brand:'Tata',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/tata.jpg',name:'Curvv EV',variant:'Empowered+ S AWD',body:'SUV',fuel:'Electric',ex:2199900,engine:'55 kWh Battery',power:'167 bhp',torque:'215 Nm',mileage:'502 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'new',
+   img:'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=80',
    variants:[{n:'Creative 45kWh',p:1699900,f:'EV 45kWh'},{n:'Accomplished 55kWh',p:1899900,f:'EV 55kWh'},{n:'Accomplished+',p:2099900,f:'EV 55kWh'},{n:'Empowered+ AWD',p:2199900,f:'EV 55kWh AWD'}],
    features:['Coupe-SUV Design','ADAS Level 2','12.3" Infotainment','Ventilated Seats','Panoramic Sunroof','65-colour Ambient','360° Camera','DC Fast Charge 70kW','V2L Support','Connected Car 2.0','JBL Sound','Air Purifier'],
    specs:{Battery:'55 kWh',Range:'502 km (MIDC)','AWD Option':'Yes (Dual Motor)','Fast Charge':'0-80% in 40 min',Wheelbase:'2560 mm','Boot Space':'500 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'160 kmph',Warranty:'3yr car | Battery 8yr/1.6L km','Colors':'Pristine White, Flame Red, Daytona Grey, Pure Grey'}},
 
   // ── HYUNDAI ───────────────────────────────────────────────────
-  {id:5,brand:'Hyundai',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',name:'Creta',variant:'SX Tech (O) Turbo DCT',body:'SUV',fuel:'Petrol',ex:1999000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'16.8 kmpl',trans:'7-DCT Auto',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-71.jpeg?isig=0&q=80',
+  {id:5,brand:'Hyundai',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/hyundai.png',name:'Creta',variant:'SX Tech (O) Turbo DCT',body:'SUV',fuel:'Petrol',ex:1999000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'16.8 kmpl',trans:'7-DCT Auto',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=700&q=80',
    variants:[{n:'E',p:1099000,f:'Petrol MT'},{n:'EX',p:1299000,f:'Petrol MT'},{n:'S',p:1499000,f:'Petrol MT'},{n:'S+',p:1649000,f:'Petrol MT'},{n:'SX',p:1749000,f:'Petrol DCT'},{n:'SX(O)',p:1849000,f:'Turbo DCT'},{n:'SX Tech(O)',p:1999000,f:'Turbo DCT'}],
    features:['Panoramic Sunroof','ADAS Level 2 (19 features)','Bose 8-Speaker','Digital Key 2.0','Ventilated + Heated Seats','Wireless AA/CP','BlueLink 70+ features','360° Around View Monitor','6 Drive Modes','Head-Up Display','64-colour Ambient','Remote Engine Start'],
    specs:{Length:'4310 mm',Width:'1790 mm',Height:'1635 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1375 kg','Tyre Size':'215/60 R17',Airbags:'6','Front Suspension':'McPherson Strut','Rear Suspension':'Coupled Torsion Beam',Warranty:'3yr / Unlimited km','Colors':'Abyss Black, Atlas White, Titan Grey, Starry Night, Robust Emerald, Fiery Red'}},
 
-  {id:6,brand:'Hyundai',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',name:'Creta Electric',variant:'Excellence Long Range',body:'SUV',fuel:'Electric',ex:2299000,engine:'51.4 kWh Battery',power:'171 bhp',torque:'255 Nm',mileage:'473 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/176951/creta-electric-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80',
+  {id:6,brand:'Hyundai',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/hyundai.png',name:'Creta Electric',variant:'Excellence Long Range',body:'SUV',fuel:'Electric',ex:2299000,engine:'51.4 kWh Battery',power:'171 bhp',torque:'255 Nm',mileage:'473 km range',trans:'Single Speed Auto',seats:5,safety:'5★ GNCAP',tag:'ev',
+   img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80',
    variants:[{n:'Smart 42kWh',p:1799000,f:'EV 42kWh'},{n:'Smart+ 42kWh',p:1899000,f:'EV 42kWh'},{n:'Executive 51kWh',p:2099000,f:'EV 51kWh'},{n:'Excellence LR',p:2299000,f:'EV 51kWh'}],
    features:['V2L (3.6kW)','V2V Charging','ADAS Level 2','Panoramic Sunroof','BlueLink 70+ features','Digital Key','Bose 8-Speaker','64-Colour Ambient','360° Camera','DC Fast Charge 50kW','Head-Up Display','Ventilated Seats'],
    specs:{Battery:'51.4 kWh',Range:'473 km (ARAI)','Fast Charge':'0-80% in 58 min',Wheelbase:'2610 mm','Boot Space':'433 L','Ground Clearance':'190 mm',Airbags:'6','Top Speed':'167 kmph',Warranty:'3yr car | Battery 8yr/1.6L km','Colors':'Abyss Black, Atlas White, Titan Grey, Stargazing Blue, Ocean Green'}},
 
-  {id:7,brand:'Hyundai',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',name:'Alcazar',variant:'Signature (O) AT 7-Seat',body:'SUV',fuel:'Petrol',ex:2099000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'14.5 kmpl',trans:'7-DCT Auto',seats:7,safety:'NA',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115721/alcazar-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',
+  {id:7,brand:'Hyundai',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/hyundai.png',name:'Alcazar',variant:'Signature (O) AT 7-Seat',body:'SUV',fuel:'Petrol',ex:2099000,engine:'1.5L Turbo GDi',power:'160 bhp',torque:'253 Nm',mileage:'14.5 kmpl',trans:'7-DCT Auto',seats:7,safety:'NA',tag:'hot',
+   img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=700&q=80',
    variants:[{n:'Prestige 6S MT',p:1499000,f:'Petrol MT'},{n:'Platinum 6S AT',p:1799000,f:'Petrol DCT'},{n:'Signature 7S AT',p:1999000,f:'Petrol DCT'},{n:'Signature(O) 7S AT',p:2099000,f:'Turbo DCT'}],
    features:['Panoramic Sunroof','Captain Seats + Ottoman (6-seat)','ADAS Level 2','Bose 8-Speaker','Ventilated Seats','BlueLink Connected','Wireless AA/CP','360° Camera','8-Speaker Bose','Wireless Charging','Ambient Lighting','Air Purifier'],
    specs:{Length:'4500 mm',Width:'1790 mm',Height:'1675 mm',Wheelbase:'2760 mm','Boot Space':'180 L 7-seat','Fuel Tank':'50 L','Ground Clearance':'200 mm','Kerb Weight':'1525 kg','Tyre Size':'235/60 R18',Airbags:'6',Seating:'6 or 7 seats',Warranty:'3yr / Unlimited km','Colors':'Abyss Black, Atlas White, Titan Grey, Starry Night'}},
 
   // ── MARUTI SUZUKI ──────────────────────────────────────────────
-  {id:8,brand:'Maruti Suzuki',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/240px-Suzuki_logo_2.svg.png',name:'Swift',variant:'ZXi+ AMT',body:'Hatchback',fuel:'Petrol',ex:979900,engine:'1.2L Z-Series DualJet',power:'82 bhp',torque:'112 Nm',mileage:'24.8 kmpl',trans:'5MT / 5AMT',seats:5,safety:'3★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/159089/swift-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',
+  {id:8,brand:'Maruti Suzuki',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/suzuki.png',name:'Swift',variant:'ZXi+ AMT',body:'Hatchback',fuel:'Petrol',ex:979900,engine:'1.2L Z-Series DualJet',power:'82 bhp',torque:'112 Nm',mileage:'24.8 kmpl',trans:'5MT / 5AMT',seats:5,safety:'3★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=700&q=80',
    variants:[{n:'Lxi',p:679900,f:'Petrol MT'},{n:'Vxi',p:769900,f:'Petrol MT'},{n:'Vxi+',p:829900,f:'Petrol MT'},{n:'Zxi',p:879900,f:'Petrol MT'},{n:'ZXi+',p:949900,f:'Petrol MT'},{n:'ZXi+ AMT',p:979900,f:'Petrol AMT'}],
    features:['SmartPlay Pro+ 9"','Suzuki Connect 52 features','LED Projector Headlamps','Cruise Control','Auto Climate Control','Keyless Entry + Push Start','Alloy Wheels 15"','Rear Camera + Sensor','Head-Up Display','Speed Alert','Front Armrest','Electric Folding ORVMs'],
    specs:{Length:'3860 mm',Width:'1735 mm',Height:'1530 mm',Wheelbase:'2450 mm','Boot Space':'268 L','Fuel Tank':'37 L','Ground Clearance':'163 mm','Kerb Weight':'905 kg','Tyre Size':'185/65 R15',Airbags:'6','Front Suspension':'McPherson Strut','Rear Suspension':'Torsion Beam',Warranty:'2yr / 40,000 km','Colors':'Solid White, Metallic Silky Silver, Magma Grey, Pearl Midnight Black, Speedy Blue, Sizzling Red, Lucent Orange'}},
 
-  {id:9,brand:'Maruti Suzuki',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/240px-Suzuki_logo_2.svg.png',name:'Brezza',variant:'ZXi+ AT Dual-Tone',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.5L K15C SmartHybrid',power:'102 bhp',torque:'137 Nm',mileage:'19.8 kmpl',trans:'5MT / 6AT',seats:5,safety:'4★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/153601/brezza-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:9,brand:'Maruti Suzuki',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/suzuki.png',name:'Brezza',variant:'ZXi+ AT Dual-Tone',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.5L K15C SmartHybrid',power:'102 bhp',torque:'137 Nm',mileage:'19.8 kmpl',trans:'5MT / 6AT',seats:5,safety:'4★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=700&q=80',
    variants:[{n:'LXi',p:799900,f:'Petrol MT'},{n:'VXi',p:949900,f:'Petrol MT'},{n:'ZXi',p:1249900,f:'Petrol AT'},{n:'ZXi+',p:1399900,f:'Petrol AT'},{n:'ZXi+ DT',p:1499900,f:'Petrol AT'}],
    features:['Sunroof','Head-Up Display','Suzuki Connect','360° Camera','Wireless Charging','SmartPlay Pro+ 9"','Ventilated Seats','LED DRLs','Auto AC Dual Zone','Push Start','Cruise Control','Rain Sensing Wipers'],
    specs:{Length:'3995 mm',Width:'1790 mm',Height:'1685 mm',Wheelbase:'2500 mm','Boot Space':'328 L','Fuel Tank':'48 L','Ground Clearance':'198 mm','Kerb Weight':'1175 kg','Tyre Size':'195/60 R16',Airbags:'6',Warranty:'2yr / 40,000 km','Colors':'Sizzling Red, Arctic White Pearl, Brave Khaki, Pearl Midnight Black, Magma Grey, Earthen Brown'}},
 
-  {id:10,brand:'Maruti Suzuki',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Suzuki_logo_2.svg/240px-Suzuki_logo_2.svg.png',name:'Grand Vitara',variant:'Alpha+ e-Hybrid AT',body:'SUV',fuel:'Hybrid',ex:1999900,engine:'1.5L K15C Strong Hybrid',power:'115 bhp (combined)',torque:'141 Nm',mileage:'27.97 kmpl',trans:'e-CVT',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/134297/grand-vitara-exterior-right-front-three-quarter-8.jpeg?isig=0&q=80',
+  {id:10,brand:'Maruti Suzuki',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/suzuki.png',name:'Grand Vitara',variant:'Alpha+ e-Hybrid AT',body:'SUV',fuel:'Hybrid',ex:1999900,engine:'1.5L K15C Strong Hybrid',power:'115 bhp (combined)',torque:'141 Nm',mileage:'27.97 kmpl',trans:'e-CVT',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=700&q=80',
    variants:[{n:'Delta 1.5 MT',p:1099900,f:'Petrol MT'},{n:'Zeta 1.5 AT',p:1349900,f:'Petrol AT'},{n:'Alpha 1.5 AT',p:1599900,f:'Petrol AT'},{n:'Alpha+ Hybrid eCVT',p:1999900,f:'Strong Hybrid eCVT'}],
    features:['Panoramic Sunroof','Strong Hybrid e-CVT','ADAS Level 1','Head-Up Display','9" Infotainment','Ventilated Seats','360° Camera','Wireless Charging','AllGrip AWD Option','Suzuki Connect','Ambient Lighting','Auto AC'],
    specs:{Length:'4345 mm',Width:'1795 mm',Height:'1645 mm',Wheelbase:'2600 mm','Boot Space':'373 L','Fuel Tank':'36.2 L Hybrid','Ground Clearance':'210 mm','Kerb Weight':'1420 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited km','Colors':'Nexa Blue, Opulent Red, Grandeur Grey, Pearl Arctic White, Splendid Silver'}},
 
   // ── MAHINDRA ───────────────────────────────────────────────────
-  {id:11,brand:'Mahindra',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mahindra_%26_Mahindra.svg/240px-Mahindra_%26_Mahindra.svg.png',name:'Thar Roxx',variant:'MX5 AWD Diesel AT',body:'SUV',fuel:'Diesel',ex:2199900,engine:'2.2L mHawk Diesel',power:'175 bhp',torque:'370 Nm',mileage:'15.2 kmpl',trans:'6-Speed AT / MT',seats:5,safety:'5★ GNCAP',tag:'new',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:11,brand:'Mahindra',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mahindra.webp',name:'Thar Roxx',variant:'MX5 AWD Diesel AT',body:'SUV',fuel:'Diesel',ex:2199900,engine:'2.2L mHawk Diesel',power:'175 bhp',torque:'370 Nm',mileage:'15.2 kmpl',trans:'6-Speed AT / MT',seats:5,safety:'5★ GNCAP',tag:'new',
+   img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=700&q=80',
    variants:[{n:'MX1 Petrol MT',p:1299900,f:'Petrol MT 2WD'},{n:'MX3 Diesel MT',p:1599900,f:'Diesel MT 2WD'},{n:'AX5 Diesel AT',p:1899900,f:'Diesel AT AWD'},{n:'AX7L Diesel AT',p:2099900,f:'Diesel AT AWD'},{n:'MX5 AWD AT',p:2199900,f:'Diesel AT AWD'}],
    features:['Level 2 ADAS','Harman Kardon 10-Spk','Panoramic Sunroof','AWD Terrain Modes (Snow/Sand/Rock)','12.3" Cluster','Wireless AA/CP','Snorkel Intake','Skid Plates (3)','Ventilated Seats','Hill Descent Control','Off-road Camera','4-zone Ambient Light'],
    specs:{Length:'4428 mm',Width:'1870 mm',Height:'1923 mm',Wheelbase:'2850 mm','Boot Space':'645 L','Fuel Tank':'57 L','Ground Clearance':'226 mm','Approach Angle':'41.6°','Departure Angle':'36.7°','Wading Depth':'650 mm',Airbags:'7',Warranty:'3yr / Unlimited km','Colors':'Everest White, Stealth Black, Bronzed Copper, Tango Red, Nebula Blue, Desert Fury'}},
 
-  {id:12,brand:'Mahindra',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mahindra_%26_Mahindra.svg/240px-Mahindra_%26_Mahindra.svg.png',name:'Scorpio N',variant:'Z8 L Diesel AT 4WD',body:'SUV',fuel:'Diesel',ex:2299900,engine:'2.2L mHawk Diesel',power:'175 bhp',torque:'400 Nm',mileage:'15.05 kmpl',trans:'6-Speed AT',seats:7,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/scorpio-n-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:12,brand:'Mahindra',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mahindra.webp',name:'Scorpio N',variant:'Z8 L Diesel AT 4WD',body:'SUV',fuel:'Diesel',ex:2299900,engine:'2.2L mHawk Diesel',power:'175 bhp',torque:'400 Nm',mileage:'15.05 kmpl',trans:'6-Speed AT',seats:7,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1461632830798-3adb3034e4c8?w=700&q=80',
    variants:[{n:'Z2 Petrol MT',p:1349900,f:'Petrol MT 2WD'},{n:'Z4 Diesel MT',p:1499900,f:'Diesel MT'},{n:'Z6 Diesel AT',p:1749900,f:'Diesel AT'},{n:'Z8 4WD AT',p:1999900,f:'Diesel AT 4WD'},{n:'Z8 L 4WD AT',p:2299900,f:'Diesel AT 4WD'}],
    features:['5★ GNCAP','4WD Terrain Modes','ADAS Level 1','Sony 3D 12-Speaker','Captain Seats 2nd Row','Panoramic Sunroof','12" Touchscreen','AdrenoX Connected','Ventilated Seats','360° Camera','Wireless Charging','Electric Sunroof'],
    specs:{Length:'4662 mm',Width:'1917 mm',Height:'1857 mm',Wheelbase:'2750 mm','Boot Space':'189 L 7-seat','Fuel Tank':'57.5 L','Ground Clearance':'200 mm','Kerb Weight':'2025 kg','Tyre Size':'255/60 R18',Airbags:'6',Seating:'7 seats 2-2-3',Warranty:'3yr / Unlimited km','Colors':'Everest White, Dune Beige, Tango Red, Napoli Black, Burnt Sienna'}},
 
-  {id:13,brand:'Mahindra',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Mahindra_%26_Mahindra.svg/240px-Mahindra_%26_Mahindra.svg.png',name:'XUV 3XO',variant:'AX7 L Turbo AT',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L TGDi Turbo',power:'130 bhp',torque:'230 Nm',mileage:'17.96 kmpl',trans:'6-Speed AT',seats:5,safety:'5★ GNCAP',tag:'new',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/178397/xuv-3xo-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:13,brand:'Mahindra',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mahindra.webp',name:'XUV 3XO',variant:'AX7 L Turbo AT',body:'SUV',fuel:'Petrol',ex:1499900,engine:'1.2L TGDi Turbo',power:'130 bhp',torque:'230 Nm',mileage:'17.96 kmpl',trans:'6-Speed AT',seats:5,safety:'5★ GNCAP',tag:'new',
+   img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=700&q=80',
    variants:[{n:'MX1 Petrol',p:799900,f:'Petrol MT'},{n:'MX3 Petrol',p:999900,f:'Petrol MT'},{n:'AX5 Turbo AT',p:1299900,f:'Turbo AT'},{n:'AX7 L Turbo AT',p:1499900,f:'Turbo AT'}],
    features:['5★ GNCAP','ADAS Level 2 (20 features)','10.25" Sony Infotainment','Wireless AA/CP','Panoramic Sunroof','7 Airbags','AdrenoX Connected','60-colour Ambient','Ventilated Seats','Level 2 Autonomous','Harman Audio','360° Camera'],
    specs:{Length:'3990 mm',Width:'1821 mm',Height:'1647 mm',Wheelbase:'2600 mm','Boot Space':'364 L','Fuel Tank':'40 L','Ground Clearance':'201 mm','Kerb Weight':'1275 kg','Tyre Size':'215/60 R17',Airbags:'7',Warranty:'3yr / Unlimited km','Colors':'Everest White, Stealth Black, Tango Red, Napoli Black, Blazing Bronze'}},
 
   // ── VOLKSWAGEN ─────────────────────────────────────────────────
-  {id:14,brand:'Volkswagen',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/240px-Volkswagen_logo_2019.svg.png',name:'Virtus',variant:'GT Plus DSG',body:'Sedan',fuel:'Petrol',ex:1899900,engine:'1.5L TSI EVO',power:'150 bhp',torque:'250 Nm',mileage:'19.4 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/130609/virtus-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:14,brand:'Volkswagen',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/vw.png',name:'Virtus',variant:'GT Plus DSG',body:'Sedan',fuel:'Petrol',ex:1899900,engine:'1.5L TSI EVO',power:'150 bhp',torque:'250 Nm',mileage:'19.4 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=700&q=80',
    variants:[{n:'Comfortline 1.0 TSI MT',p:1149900,f:'Petrol MT'},{n:'Highline 1.0 TSI AT',p:1449900,f:'Petrol AT'},{n:'Topline 1.0 TSI AT',p:1649900,f:'Petrol AT'},{n:'GT 1.5 TSI DSG',p:1799900,f:'Petrol DSG'},{n:'GT Plus 1.5 TSI DSG',p:1899900,f:'Petrol DSG'}],
    features:['10" Infotainment','Wireless AA/CP','Ventilated Seats','IQ.Drive ADAS','Travel Assist','Lane Assist','ACC Cruise','Electronic Diff Lock','Ambient Lighting','Wireless Charging','Digital Cockpit','RainSensing Wipers'],
    specs:{Length:'4561 mm',Width:'1752 mm',Height:'1507 mm',Wheelbase:'2651 mm','Boot Space':'521 L','Fuel Tank':'55 L','Ground Clearance':'169 mm','Kerb Weight':'1250 kg','Tyre Size':'205/55 R16',Airbags:'6','Front Suspension':'McPherson Strut','Rear Suspension':'Multi-link',Warranty:'4yr / 1L km','Colors':'Reflex Silver, Carbon Steel, Candy White, Curcuma Yellow, Sunset Red, Deep Black Pearl'}},
 
-  {id:15,brand:'Volkswagen',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/240px-Volkswagen_logo_2019.svg.png',name:'Taigun',variant:'GT Plus 1.5 TSI DSG',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L TSI EVO',power:'150 bhp',torque:'250 Nm',mileage:'17.3 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/134297/taigun-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:15,brand:'Volkswagen',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/vw.png',name:'Taigun',variant:'GT Plus 1.5 TSI DSG',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L TSI EVO',power:'150 bhp',torque:'250 Nm',mileage:'17.3 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&q=80',
    variants:[{n:'Comfortline 1.0 MT',p:1149900,f:'Petrol MT'},{n:'Highline 1.0 AT',p:1449900,f:'Petrol AT'},{n:'Topline 1.0 AT',p:1649900,f:'Petrol AT'},{n:'GT 1.5 DSG',p:1799900,f:'Petrol DSG'},{n:'GT Plus 1.5 DSG',p:1999900,f:'Petrol DSG'}],
    features:['10" Infotainment','IQ.Drive ADAS (Level 2)','Travel Assist (Hands-free)','Lane Assist','ACC with Stop & Go','Electronic Diff Lock','Ventilated Seats','Digital Cockpit Pro','Ambient Lighting','Wireless Charging','360° Area View','GT Sport Seats'],
    specs:{Length:'4221 mm',Width:'1760 mm',Height:'1612 mm',Wheelbase:'2651 mm','Boot Space':'385 L','Fuel Tank':'50 L','Ground Clearance':'188 mm','Kerb Weight':'1250 kg','Tyre Size':'215/50 R17',Airbags:'6','Front Suspension':'McPherson Strut','Rear Suspension':'Multi-link',Warranty:'4yr / 1L km','Colors':'Reflex Silver, Carbon Steel, Candy White, Curcuma Yellow, Sunset Red, Rising Blue'}},
 
   // ── SKODA ──────────────────────────────────────────────────────
-  {id:16,brand:'Skoda',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Skoda-auto-logo.svg/240px-Skoda-auto-logo.svg.png',name:'Kushaq',variant:'Monte Carlo 1.5 TSI DSG',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L TSI EVO ACT',power:'150 bhp',torque:'250 Nm',mileage:'17.6 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/47087/kushaq-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:16,brand:'Skoda',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/skoda.png',name:'Kushaq',variant:'Monte Carlo 1.5 TSI DSG',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L TSI EVO ACT',power:'150 bhp',torque:'250 Nm',mileage:'17.6 kmpl',trans:'7-Speed DSG',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=700&q=80',
    variants:[{n:'Active 1.0 TSI MT',p:1199900,f:'Petrol MT'},{n:'Ambition 1.0 AT',p:1499900,f:'Petrol AT'},{n:'Style 1.5 DSG',p:1749900,f:'Petrol DSG'},{n:'Monte Carlo 1.5 DSG',p:1999900,f:'Petrol DSG'}],
    features:['10" Virtual Cockpit','Simply Clever storage','ADAS Level 2 (SmartSense)','Ventilated Seats','Wireless AA/CP','Ambient Lighting','10" Infotainment','360° Surround Camera','Wireless Charging','Electric Sunroof','Massage Seats front','Rain Sensing Wipers'],
    specs:{Length:'4221 mm',Width:'1760 mm',Height:'1612 mm',Wheelbase:'2651 mm','Boot Space':'385 L','Fuel Tank':'50 L','Ground Clearance':'188 mm','Kerb Weight':'1266 kg','Tyre Size':'215/50 R17',Airbags:'6',Warranty:'4yr / 1L km','Colors':'Candy White, Magnetic Brown, Carbon Steel, Brilliant Silver, Tornado Red, Cornflower Blue'}},
 
   // ── KIA ────────────────────────────────────────────────────────
-  {id:17,brand:'Kia',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/240px-Kia-logo.svg.png',name:'Seltos',variant:'X-Line GT 1.5 Turbo DCT',body:'SUV',fuel:'Petrol',ex:2099900,engine:'1.5L Turbo GDi',power:'158 bhp',torque:'253 Nm',mileage:'17.7 kmpl',trans:'7-DCT',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',
+  {id:17,brand:'Kia',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/kia.png',name:'Seltos',variant:'X-Line GT 1.5 Turbo DCT',body:'SUV',fuel:'Petrol',ex:2099900,engine:'1.5L Turbo GDi',power:'158 bhp',torque:'253 Nm',mileage:'17.7 kmpl',trans:'7-DCT',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=700&q=80',
    variants:[{n:'EX 1.5 MT',p:1099900,f:'Petrol MT'},{n:'HTX 1.5 MT',p:1499900,f:'Petrol MT'},{n:'HTX+ Diesel DCT',p:1799900,f:'Diesel DCT'},{n:'GTX+ Turbo DCT',p:1899900,f:'Turbo DCT'},{n:'X-Line GT DCT',p:2099900,f:'Turbo DCT'}],
    features:['Panoramic Sunroof','Meridian 8-Speaker','Level 2 ADAS','Connected Car 50+ features','12.3" Cluster + 12.3" Touchscreen','HUD','Ventilated Seats','360° Camera','6 Drive Modes','Ambient Light 64-colour','Remote Start','Wireless Charging'],
    specs:{Length:'4365 mm',Width:'1800 mm',Height:'1645 mm',Wheelbase:'2610 mm','Boot Space':'433 L','Fuel Tank':'50 L','Ground Clearance':'190 mm','Kerb Weight':'1390 kg','Tyre Size':'215/60 R17',Airbags:'6',Warranty:'3yr / Unlimited km','Colors':'Gravity Grey, Aurora Black, Pewter Olive, Glacier White Pearl, Imperial Blue'}},
 
-  {id:18,brand:'Kia',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Kia-logo.svg/240px-Kia-logo.svg.png',name:'Carens',variant:'Luxury Plus 1.5 DCT 7S',body:'MUV',fuel:'Diesel',ex:1999900,engine:'1.5L CRDi VGT Diesel',power:'116 bhp',torque:'250 Nm',mileage:'19.5 kmpl',trans:'7-DCT',seats:7,safety:'NA',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/118977/carens-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:18,brand:'Kia',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/kia.png',name:'Carens',variant:'Luxury Plus 1.5 DCT 7S',body:'MUV',fuel:'Diesel',ex:1999900,engine:'1.5L CRDi VGT Diesel',power:'116 bhp',torque:'250 Nm',mileage:'19.5 kmpl',trans:'7-DCT',seats:7,safety:'NA',tag:'hot',
+   img:'https://images.unsplash.com/photo-1569163139394-de4e5f43e5ca?w=700&q=80',
    variants:[{n:'Premium 6S MT',p:1099900,f:'Petrol MT'},{n:'Prestige 6S AT',p:1399900,f:'Petrol AT'},{n:'Prestige+ 7S AT',p:1599900,f:'Diesel AT'},{n:'Luxury 7S DCT',p:1799900,f:'Diesel DCT'},{n:'Luxury Plus 7S DCT',p:1999900,f:'Diesel DCT'}],
    features:['Panoramic Sunroof','Captain Seats 2nd Row','ADAS Level 2','Bose 8-Speaker Premium','Connected Car','12.3" Infotainment','Wireless Charging','Ventilated Seats','Ambient Lighting','360° Camera','Smart Power Tailgate','Air Purifier'],
    specs:{Length:'4540 mm',Width:'1800 mm',Height:'1708 mm',Wheelbase:'2780 mm','Boot Space':'216 L 7-seat','Fuel Tank':'45 L','Ground Clearance':'195 mm','Kerb Weight':'1615 kg','Tyre Size':'215/60 R17',Airbags:'6',Seating:'6 or 7 seats',Warranty:'3yr / Unlimited km','Colors':'Gravity Grey, Aurora Black, Glacier White Pearl, Imperial Blue, Moss Green'}},
 
   // ── HONDA ──────────────────────────────────────────────────────
-  {id:19,brand:'Honda',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/240px-Honda.svg.png',name:'Elevate',variant:'ZX CVT',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L i-VTEC 4-cyl',power:'121 bhp',torque:'145 Nm',mileage:'16.92 kmpl',trans:'6MT / CVT',seats:5,safety:'5★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/155785/elevate-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:19,brand:'Honda',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/honda.jpg',name:'Elevate',variant:'ZX CVT',body:'SUV',fuel:'Petrol',ex:1999900,engine:'1.5L i-VTEC 4-cyl',power:'121 bhp',torque:'145 Nm',mileage:'16.92 kmpl',trans:'6MT / CVT',seats:5,safety:'5★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=700&q=80',
    variants:[{n:'S MT',p:1149900,f:'Petrol MT'},{n:'V MT',p:1399900,f:'Petrol MT'},{n:'V CVT',p:1549900,f:'Petrol CVT'},{n:'ZX MT',p:1799900,f:'Petrol MT'},{n:'ZX CVT',p:1999900,f:'Petrol CVT'}],
    features:['10.25" Touchscreen','LaneWatch Camera (left)','Honda Connect','ADAS Level 1','Wireless AA/CP','LED Headlights + DRL','Ventilated Seats','Sunroof','Ambient Lighting','Walk Away Auto Lock','Rear Sunshade','Electronic Parking Brake'],
    specs:{Length:'4312 mm',Width:'1790 mm',Height:'1650 mm',Wheelbase:'2650 mm','Boot Space':'458 L','Fuel Tank':'40 L','Ground Clearance':'220 mm','Kerb Weight':'1256 kg','Tyre Size':'215/60 R16',Airbags:'6',Warranty:'3yr / Unlimited km','Colors':'Lunar Silver, Radiant Red, Meteoroid Grey, Platinum White Pearl, Obsidian Blue Pearl'}},
 
-  {id:20,brand:'Honda',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/240px-Honda.svg.png',name:'Amaze',variant:'V CVT',body:'Sedan',fuel:'Petrol',ex:899900,engine:'1.2L i-VTEC',power:'89 bhp',torque:'110 Nm',mileage:'18.6 kmpl',trans:'5MT / CVT',seats:5,safety:'NA',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/145755/amaze-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',
+  {id:20,brand:'Honda',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/honda.jpg',name:'Amaze',variant:'V CVT',body:'Sedan',fuel:'Petrol',ex:899900,engine:'1.2L i-VTEC',power:'89 bhp',torque:'110 Nm',mileage:'18.6 kmpl',trans:'5MT / CVT',seats:5,safety:'NA',tag:'hot',
+   img:'https://images.unsplash.com/photo-1587920748804-93ffe7a4be12?w=700&q=80',
    variants:[{n:'E MT',p:799900,f:'Petrol MT'},{n:'S MT',p:849900,f:'Petrol MT'},{n:'V MT',p:879900,f:'Petrol MT'},{n:'V CVT',p:899900,f:'Petrol CVT'}],
    features:['8" Touchscreen','Wireless AA/CP','Honda Connect','Lane Watch Camera','LED Headlights','Rear Camera','Auto AC','Push Start','Alloy Wheels','Voice Commands','Cruise Control','Speed Sensing Locks'],
    specs:{Length:'3995 mm',Width:'1695 mm',Height:'1500 mm',Wheelbase:'2470 mm','Boot Space':'420 L','Fuel Tank':'35 L','Ground Clearance':'165 mm','Kerb Weight':'1056 kg','Tyre Size':'175/65 R15',Airbags:'2',Warranty:'3yr / Unlimited km','Colors':'Lunar Silver, Radiant Red, Meteoroid Grey, Platinum White Pearl, Golden Brown'}},
 
   // ── TOYOTA ─────────────────────────────────────────────────────
-  {id:21,brand:'Toyota',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/240px-Toyota_carlogo.svg.png',name:'Fortuner',variant:'Legender 4×4 AT',body:'SUV',fuel:'Diesel',ex:3999900,engine:'2.8L GD-Series Diesel',power:'204 bhp',torque:'500 Nm',mileage:'12.75 kmpl',trans:'6-Speed AT',seats:7,safety:'NA',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/170415/fortuner-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:21,brand:'Toyota',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/toyota.png',name:'Fortuner',variant:'Legender 4×4 AT',body:'SUV',fuel:'Diesel',ex:3999900,engine:'2.8L GD-Series Diesel',power:'204 bhp',torque:'500 Nm',mileage:'12.75 kmpl',trans:'6-Speed AT',seats:7,safety:'NA',tag:'hot',
+   img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=700&q=80',
    variants:[{n:'4×2 MT Diesel',p:3399900,f:'Diesel MT'},{n:'4×2 AT Diesel',p:3599900,f:'Diesel AT'},{n:'4×4 AT Diesel',p:3799900,f:'Diesel AT 4WD'},{n:'Legender 4×4 AT',p:3999900,f:'Diesel AT 4WD'}],
    features:['Toyota Safety Sense ADAS','9" Touchscreen','JBL 11-Speaker Premium','Legender Exclusive Styling','Ventilated Seats','Electric Sunroof','4WD Active Traction','Multi-terrain Select 6 modes','Crawl Control','360° Camera','Wireless Charging','Ambient Lighting'],
    specs:{Length:'4795 mm',Width:'1855 mm',Height:'1835 mm',Wheelbase:'2745 mm','Boot Space':'296 L 7-seat','Fuel Tank':'80 L','Ground Clearance':'221 mm','Kerb Weight':'2035 kg','Tyre Size':'265/60 R18',Airbags:'7','Frame':'Ladder Frame BOF',Seating:'7 seats 2-3-2',Warranty:'3yr / Unlimited km','Colors':'Super White, Attitude Black, Phantom Brown, Silver Metallic, Dark Blue Mica'}},
 
-  {id:22,brand:'Toyota',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/240px-Toyota_carlogo.svg.png',name:'Innova HyCross',variant:'ZX(O) Hybrid e-CVT',body:'MUV',fuel:'Hybrid',ex:2899900,engine:'2.0L Strong Hybrid',power:'186 bhp (combined)',torque:'NA Hybrid',mileage:'21.1 kmpl',trans:'e-CVT',seats:7,safety:'NA',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/166225/innova-hycross-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',
+  {id:22,brand:'Toyota',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/toyota.png',name:'Innova HyCross',variant:'ZX(O) Hybrid e-CVT',body:'MUV',fuel:'Hybrid',ex:2899900,engine:'2.0L Strong Hybrid',power:'186 bhp (combined)',torque:'NA Hybrid',mileage:'21.1 kmpl',trans:'e-CVT',seats:7,safety:'NA',tag:'hot',
+   img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=700&q=80',
    variants:[{n:'GX 8S MT',p:1899900,f:'Petrol MT'},{n:'VX 7S AT',p:2299900,f:'Petrol AT'},{n:'ZX 7S Hybrid',p:2699900,f:'Hybrid eCVT'},{n:'ZX(O) 7S Hybrid',p:2899900,f:'Hybrid eCVT'}],
    features:['TNGA-C Platform','Strong Hybrid e-CVT','Ottoman Captain Seats','10.1" Touchscreen','JBL 9-Speaker','Panoramic Sunroof','360° Camera','Wireless Charging','Ambient Lighting','Ventilated Seats','Power Tailgate','Touch & Go 2.0 Connected'],
    specs:{Length:'4755 mm',Width:'1850 mm',Height:'1795 mm',Wheelbase:'2850 mm','Boot Space':'213 L 7-seat','Fuel Tank':'52 L','Ground Clearance':'185 mm','Kerb Weight':'1840 kg','Tyre Size':'235/55 R18',Airbags:'7',Seating:'7 or 8 seats',Warranty:'3yr / Unlimited km','Colors':'Super White, Attitude Black, Silver Metallic, Crimson Sparkle Red, Phantom Brown'}},
 
   // ── FORCE MOTORS ───────────────────────────────────────────────
-  {id:23,brand:'Force',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Force_Motors_logo.svg/240px-Force_Motors_logo.svg.png',name:'Gurkha',variant:'5-Door 4WD AT',body:'SUV',fuel:'Diesel',ex:1699900,engine:'2.6L BS6 Diesel (Mercedes-derived)',power:'140 bhp',torque:'320 Nm',mileage:'12.5 kmpl',trans:'5MT / 5AT',seats:5,safety:'NA',tag:'new',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/133223/gurkha-exterior-right-front-three-quarter-8.jpeg?isig=0&q=80',
+  {id:23,brand:'Force',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/force.png',name:'Gurkha',variant:'5-Door 4WD AT',body:'SUV',fuel:'Diesel',ex:1699900,engine:'2.6L BS6 Diesel (Mercedes-derived)',power:'140 bhp',torque:'320 Nm',mileage:'12.5 kmpl',trans:'5MT / 5AT',seats:5,safety:'NA',tag:'new',
+   img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&q=80',
    variants:[{n:'3-Door 4WD MT',p:1399900,f:'Diesel MT 4WD'},{n:'3-Door 4WD AT',p:1549900,f:'Diesel AT 4WD'},{n:'5-Door 4WD MT',p:1599900,f:'Diesel MT 4WD'},{n:'5-Door 4WD AT',p:1699900,f:'Diesel AT 4WD'}],
    features:['Part-time 4WD (Hi/Lo)','Locking Front Differential','Locking Rear Differential','Steel Ladder Frame Chassis','Removable Doors','Fold-flat Windscreen','Rock Crawler Ready','Sill Step Plates','Rear Differential Lock','Off-road Tyres','Snorkel Ready','9" Touchscreen'],
    specs:{Length:'4115 mm (5-door)',Width:'1830 mm',Height:'1955 mm',Wheelbase:'2700 mm','Boot Space':'NA','Fuel Tank':'60 L','Ground Clearance':'210 mm','Kerb Weight':'1880 kg','Tyre Size':'235/85 R16 (BF Goodrich)','Axle Type':'Solid Front + Rear Axle','Transfer Case':'2H / 4H / 4L',Airbags:'2',Warranty:'2yr / 50,000 km','Colors':'Galaxy Grey, Dune Beige, Fire Red, Black','Off-road Rating':'Class-leading Indian SUV'}},
 
   // ── MG ─────────────────────────────────────────────────────────
-  {id:24,brand:'MG',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MG_Motor_logo.svg/240px-MG_Motor_logo.svg.png',name:'Windsor EV',variant:'Essence Pro',body:'SUV',fuel:'Electric',ex:1999900,engine:'52 kWh Battery',power:'173 bhp',torque:'220 Nm',mileage:'449 km range',trans:'Single Speed Auto',seats:5,safety:'NA',tag:'ev',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/201719/windsor-ev-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',
+  {id:24,brand:'MG',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/mg.webp',name:'Windsor EV',variant:'Essence Pro',body:'SUV',fuel:'Electric',ex:1999900,engine:'52 kWh Battery',power:'173 bhp',torque:'220 Nm',mileage:'449 km range',trans:'Single Speed Auto',seats:5,safety:'NA',tag:'ev',
+   img:'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=80',
    variants:[{n:'Excite 38kWh',p:1399900,f:'EV 38kWh'},{n:'Exclusive 50kWh',p:1699900,f:'EV 50kWh'},{n:'Essence 52kWh',p:1899900,f:'EV 52kWh'},{n:'Essence Pro',p:1999900,f:'EV 52kWh'}],
    features:['Aerosense ADAS (Level 2)','i-SMART 5.0 Connected','Comfort Reclining Rear Seats','Panoramic Sunroof','V2L (3.3kW)','Infinity Sound System','15.6" Infotainment','360° Camera','Wireless Charging','DC Fast Charge','Ambient Lighting','Air Purifier'],
    specs:{Battery:'52 kWh',Range:'449 km (MIDC)','Fast Charge':'0-80% in 40 min','V2L':'3.3kW (power appliances)',Wheelbase:'2700 mm','Boot Space':'604 L','Ground Clearance':'175 mm','Airbags':'6','Top Speed':'170 kmph',Warranty:'3yr car | Battery 8yr/1.5L km','Colors':'Starburst Black, Pearl White, Candy Red, Turquoise Green, Aurora Silver'}},
 
   // ── RENAULT ────────────────────────────────────────────────────
-  {id:25,brand:'Renault',bLogo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2021_Text.svg/240px-Renault_2021_Text.svg.png',name:'Kiger',variant:'RXT Turbo CVT',body:'SUV',fuel:'Petrol',ex:999900,engine:'1.0L Turbo SCe',power:'100 bhp',torque:'160 Nm',mileage:'18.75 kmpl',trans:'CVT / IMT',seats:5,safety:'4★ GNCAP',tag:'hot',
-   img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/44709/kiger-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80',
+  {id:25,brand:'Renault',bLogo:'https://raw.githubusercontent.com/nishantvisaulia/tendoondrive/main/renault.webp',name:'Kiger',variant:'RXT Turbo CVT',body:'SUV',fuel:'Petrol',ex:999900,engine:'1.0L Turbo SCe',power:'100 bhp',torque:'160 Nm',mileage:'18.75 kmpl',trans:'CVT / IMT',seats:5,safety:'4★ GNCAP',tag:'hot',
+   img:'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=700&q=80',
    variants:[{n:'RXE MT',p:599900,f:'Petrol MT'},{n:'RXL MT',p:699900,f:'Petrol MT'},{n:'RXT MT',p:799900,f:'Petrol MT'},{n:'RXT Turbo MT',p:899900,f:'Turbo MT'},{n:'RXT Turbo CVT',p:999900,f:'Turbo CVT'}],
    features:['8" Touchscreen','Wireless AA/CP','360° Around View Monitor','Rear Camera','Ambient Lighting','Air Purifier','LED Headlamps','Auto AC','Keyless Entry','Push Start','Voice Commands','Multi-drive Modes'],
    specs:{Length:'3991 mm',Width:'1750 mm',Height:'1600 mm',Wheelbase:'2500 mm','Boot Space':'405 L','Fuel Tank':'40 L','Ground Clearance':'205 mm','Kerb Weight':'973 kg','Tyre Size':'195/60 R16',Airbags:'2',Warranty:'3yr / 1L km','Colors':'Moonlight Silver, Ice Cool White, Mahogany Brown, Fiery Orange, Vivid Blue, Radiant Red'}},
 ];
 
 const UPCOMING=[
-  {brand:'Mahindra',name:'BE 6e',launch:'Q1 2025',price:'₹18.90–26.90 Lakh',type:'Electric SUV',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/207171/be-6e-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80'},
-  {brand:'Mahindra',name:'XEV 9e',launch:'Q2 2025',price:'₹30–40 Lakh (est.)',type:'Electric Flagship SUV',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/207173/xev-9e-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80'},
-  {brand:'Tata',name:'Sierra EV',launch:'Q3 2025',price:'₹25–35 Lakh (est.)',type:'Electric SUV',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/140047/sierra-ev-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80'},
-  {brand:'Maruti Suzuki',name:'e Vitara',launch:'Q2 2025',price:'₹17–25 Lakh (est.)',type:'Electric SUV',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/206651/e-vitara-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80'},
-  {brand:'Hyundai',name:'Creta EV N-Line',launch:'Q3 2025',price:'₹22–28 Lakh (est.)',type:'Electric SUV Sport',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/176951/creta-electric-exterior-right-front-three-quarter-6.jpeg?isig=0&q=80'},
-  {brand:'Kia',name:'Syros',launch:'Q2 2025',price:'₹10–16 Lakh (est.)',type:'Sub-Compact SUV',img:'https://imgd.aeplcdn.com/664x374/n/cw/ec/212399/syros-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80'},
+  {brand:'Mahindra',name:'BE 6e',launch:'Q1 2025',price:'₹18.90–26.90 Lakh',type:'Electric SUV',img:'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=660&q=80'},
+  {brand:'Mahindra',name:'XEV 9e',launch:'Q2 2025',price:'₹30–40 Lakh (est.)',type:'Electric Flagship SUV',img:'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=660&q=80'},
+  {brand:'Tata',name:'Sierra EV',launch:'Q3 2025',price:'₹25–35 Lakh (est.)',type:'Electric SUV',img:'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=660&q=80'},
+  {brand:'Maruti Suzuki',name:'e Vitara',launch:'Q2 2025',price:'₹17–25 Lakh (est.)',type:'Electric SUV',img:'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=660&q=80'},
+  {brand:'Hyundai',name:'Creta EV N-Line',launch:'Q3 2025',price:'₹22–28 Lakh (est.)',type:'Electric SUV Sport',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=660&q=80'},
+  {brand:'Kia',name:'Syros',launch:'Q2 2025',price:'₹10–16 Lakh (est.)',type:'Sub-Compact SUV',img:'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=660&q=80'},
   {brand:'Toyota',name:'Urban Cruiser EV',launch:'Q3 2025',price:'₹15–22 Lakh (est.)',type:'Electric SUV',img:''},
   {brand:'BMW',name:'iX2',launch:'Q4 2025',price:'₹65–80 Lakh (est.)',type:'Luxury Electric SAV',img:''},
 ];
@@ -1107,27 +1111,26 @@ function pf(p){return p>=100000?'₹'+(p/100000).toFixed(2)+'L':'₹'+(p/1000).t
 function buildBrandStrip(){
   const track=document.getElementById('brands-strip');
   const doubled=[...BRANDS,...BRANDS];
-  track.innerHTML=doubled.map(b=>`<div class="brand-chip" onclick="filterByBrand('${b.name}')">
-    <img src="${b.logo}" alt="${b.name}" width="26" height="26"
-      style="width:26px;height:26px;object-fit:contain;flex-shrink:0;filter:brightness(.75)"
-      onerror="this.src='/assets/fallback-car.jpg'"
-      onload="this.style.filter='brightness(.85)'"
-    >
-    <span class="brand-chip-name">${b.name}</span>
-  </div>`).join('');
+  track.innerHTML=doubled.map(b=>`
+    <div class="brand-chip" onclick="filterByBrand('${b.name}')">
+      <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <img src="${b.logo}" alt="${b.name}" width="26" height="26"
+          style="width:26px;height:26px;object-fit:contain;display:block"
+          onerror="this.style.display='none'">
+      </div>
+      <span class="brand-chip-name">${b.name}</span>
+    </div>`).join('');
 }
 function buildBrandGrid(){
   const grid=document.getElementById('brands-grid-main');
   grid.innerHTML=BRANDS.map(b=>{
     const init=b.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    const logoStyle="width:56px;height:56px;object-fit:contain;display:block;margin:0 auto;transition:all .3s;filter:brightness(.8) grayscale(20%)";
-    const fbStyle="display:none;width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(255,59,48,.15),rgba(255,59,48,.05));color:var(--r);align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;font-family:'Bebas Neue',display;border:1px solid rgba(255,59,48,.2);letter-spacing:.04em";
     return`<div class="brand-card" onclick="filterByBrand('${b.name}')" title="${b.name} — ${b.models} models">
-      <div style="width:60px;height:60px;display:flex;align-items:center;justify-content:center;margin:0 auto">
-        <img src="${b.logo}" alt="${b.name} logo" loading="lazy" style="${logoStyle}"
-          onload="this.style.filter='brightness(1) grayscale(0)';this.style.opacity='1'"
-          onerror="this.style.display='none';this.parentElement.querySelector('.car-img-placeholder').style.display='flex'" loading="lazy">
-        <div style="${fbStyle}">${init}</div>
+      <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff;border:2px solid rgba(255,255,255,.1);box-shadow:0 4px 18px rgba(0,0,0,.35);flex-shrink:0">
+        <img src="${b.logo}" alt="${b.name}" loading="lazy"
+          style="width:56px;height:56px;object-fit:contain;display:block"
+          onerror="this.parentElement.innerHTML='<div style=&quot;width:64px;height:64px;border-radius:50%;background:${encodeURIComponent(b.color)};display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#fff;font-family:Arial&quot;>${init}</div>'"
+        >
       </div>
       <div class="brand-card-name">${b.name}</div>
       <div class="brand-card-count">${b.models} models</div>
@@ -1142,7 +1145,7 @@ function carHTML(car,interactive=true){
   const onClickBody=interactive?`onclick="openCarDetail(${car.id})"`:`onclick="openModal('login-modal')"`;
   const onClickWish=interactive?`onclick="event.stopPropagation();toggleWish(${car.id})"`:``; 
   const isWished=wishlist.includes(car.id);
-  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.car-img-placeholder').style.display='flex'" loading="lazy"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" ${onClickWish}>${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.bLogo}" alt="${car.brand}" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span><span class="car-cta">View Details →</span></div></div>`;
+  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.car-img-placeholder').style.display='flex'" loading="lazy"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" ${onClickWish}>${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.bLogo}" alt="${car.brand}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;background:#fff;padding:1px" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span><span class="car-cta">View Details →</span></div></div>`;
 }
 
 function buildTeaserCars(){document.getElementById('teaser-grid').innerHTML=CARS.slice(0,3).map(c=>carHTML(c,true)).join('')}
@@ -1503,7 +1506,7 @@ function carHTML(car,interactive=true){
   const onClickBody=interactive?`onclick="openCarDetail(${car.id})"`:`onclick="openModal('login-modal')"`;
   const isWished=wishlist.includes(car.id);
   const inCompare=compareCars.includes(car.id);
-  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.car-img-placeholder').style.display='flex'" loading="lazy"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" onclick="event.stopPropagation();toggleWish(${car.id})">${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.bLogo}" alt="${car.brand}" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span>${interactive?`<button class="btn btn-ghost" style="font-size:.66rem;padding:.25rem .6rem;${inCompare?'border-color:rgba(255,59,48,.6);color:var(--r)':''}" onclick="event.stopPropagation();toggleCompare(${car.id})">${inCompare?'⚖ Added':'⚖'}</button>`:''}<span class="car-cta">Details →</span></div></div>`;
+  return`<div class="car-card" ${onClickBody}><div class="car-img-wrap"><img src="${car.img}" alt="${car.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.car-img-placeholder').style.display='flex'" loading="lazy"><div class="car-img-placeholder" style="display:none">${car.emoji}</div><span class="car-tag ${tClass}">${tLabel}</span>${interactive?`<div class="car-wish ${isWished?'active':''}" onclick="event.stopPropagation();toggleWish(${car.id})">${isWished?'♥':'♡'}</div>`:''}</div><div class="car-body"><div class="car-brand-row"><img class="car-brand-logo" src="${car.bLogo}" alt="${car.brand}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;background:#fff;padding:1px" onerror="this.style.display='none'"><span class="car-brand-txt">${car.brand}</span></div><div class="car-name">${car.name}</div><div class="car-variant">${car.variant}</div><div class="car-price-row"><div class="car-price">${pf(car.ex)}<span class="car-price-sub">Ex-showroom price</span></div></div><div class="car-specs-row"><div class="cspec"><div class="cspec-val">${car.engine}</div><div class="cspec-key">Engine</div></div><div class="cspec"><div class="cspec-val">${car.mileage}</div><div class="cspec-key">Mileage</div></div><div class="cspec"><div class="cspec-val">${car.power}</div><div class="cspec-key">Power</div></div></div></div><div class="car-card-footer"><span class="car-fuel-badge">${car.fuel}</span>${interactive?`<button class="btn btn-ghost" style="font-size:.66rem;padding:.25rem .6rem;${inCompare?'border-color:rgba(255,59,48,.6);color:var(--r)':''}" onclick="event.stopPropagation();toggleCompare(${car.id})">${inCompare?'⚖ Added':'⚖'}</button>`:''}<span class="car-cta">Details →</span></div></div>`;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1519,16 +1522,16 @@ window.addEventListener('DOMContentLoaded',buildNews);
 // NFS-STYLE HERO SLIDER
 // ═══════════════════════════════════════════════════════
 const HERO_SLIDES=[
-  {bg:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80',name:'Tata',model:'Nexon'},
-  {bg:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-71.jpeg?isig=0&q=80',name:'Hyundai',model:'Creta'},
-  {bg:'https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/168621/thar-roxx-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',name:'Mahindra',model:'Thar Roxx'},
-  {bg:'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/162691/punch-ev-exterior-right-front-three-quarter-5.jpeg?isig=0&q=80',name:'Tata',model:'Punch EV'},
-  {bg:'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/seltos-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',name:'Kia',model:'Seltos X-Line'},
-  {bg:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/159089/swift-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80',name:'Maruti',model:'Swift'},
-  {bg:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/133223/gurkha-exterior-right-front-three-quarter-8.jpeg?isig=0&q=80',name:'Force',model:'Gurkha'},
-  {bg:'https://images.unsplash.com/photo-1541348263662-e068662d82af?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/130609/virtus-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',name:'Volkswagen',model:'Virtus GT'},
-  {bg:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/47087/kushaq-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80',name:'Skoda',model:'Kushaq'},
-  {bg:'https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=1600&q=80',car:'https://imgd.aeplcdn.com/664x374/n/cw/ec/196049/harrier-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80',name:'Tata',model:'Harrier'},
+  {bg:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600&q=80',car:'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=660&q=80?isig=0&q=80',name:'Tata',model:'Nexon'},
+  {bg:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',car:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=660&q=80?isig=0&q=80',name:'Hyundai',model:'Creta'},
+  {bg:'https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80',car:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=660&q=80',name:'Mahindra',model:'Thar Roxx'},
+  {bg:'https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=1600&q=80',car:'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=660&q=80?isig=0&q=80',name:'Tata',model:'Punch EV'},
+  {bg:'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',car:'https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=660&q=80',name:'Kia',model:'Seltos X-Line'},
+  {bg:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1600&q=80',car:'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=660&q=80',name:'Maruti',model:'Swift'},
+  {bg:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80',car:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=660&q=80',name:'Force',model:'Gurkha'},
+  {bg:'https://images.unsplash.com/photo-1541348263662-e068662d82af?w=1600&q=80',car:'https://images.unsplash.com/photo-1471444928139-48c5bf5173f8?w=660&q=80',name:'Volkswagen',model:'Virtus GT'},
+  {bg:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1600&q=80',car:'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=660&q=80',name:'Skoda',model:'Kushaq'},
+  {bg:'https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=1600&q=80',car:'https://images.unsplash.com/photo-1659535815765-5236b94d5a73?w=660&q=80',name:'Tata',model:'Harrier'},
 ];
 let heroIdx=0, heroTimer=null;
 
